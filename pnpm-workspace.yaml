@@ -10,3 +10,6 @@ peerDependencyRules:
   ignoreMissing:
     - eslint
     - typescript
+
+packages:
+  - "."
