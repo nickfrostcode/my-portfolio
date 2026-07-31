@@ -1,4 +1,4 @@
-# Architecture — Nicholas Benson Oluwaferanmi
+# Architecture — Nicholas Benson Olúwafẹ́rànmi
 
 *This document outlines the underlying data structure, routing system, and technical architecture of the portfolio.*
 

@@ -1,6 +1,8 @@
-# Design System — Nicholas Benson Oluwaferanmi
+<!-- @format -->
 
-*Visual design decisions for the portfolio. Structural/architectural decisions live in README.md — this file is UI only.*
+# Design System — Nicholas Benson Olúwafẹ́rànmi
+
+_Visual design decisions for the portfolio. Structural/architectural decisions live in README.md — this file is UI only._
 
 > **Status:** Color system defined. Typography and layout to follow.
 
@@ -10,29 +12,30 @@
 
 **Neutrals (shared across modes):**
 
-| Token | Hex | Role |
-|---|---|---|
-| `neutral-white` | `#F0EDE9` | Light mode background, dark mode text |
-| `neutral-black` | `#111111` | Dark mode background, light mode text |
-| `neutral-100` | `#E5E2DE` | Light mode card fill (one step down from background — same step size as dark mode's card fill) |
-| `neutral-800` | `#1C1C1C` | Dark mode card fill (one step up from background) |
-| `neutral-150` | `#DBD8D4` | Light mode button/tag fill on cards (one step down from card — same step size as dark mode) |
-| `neutral-750` | `#262626` | Dark mode button/tag fill on cards (one step up from card) |
-| `neutral-200` | `#D3D0CC` | Light mode card border (one step down from button/tag fill — same step size as dark mode) |
-| `neutral-700` | `#2E2E2E` | Dark mode card border (one step up from button/tag fill) |
-| `neutral-500` | `#6E6E6E` | Secondary/muted text — works on both modes |
+| Token           | Hex       | Role                                                                                           |
+| --------------- | --------- | ---------------------------------------------------------------------------------------------- |
+| `neutral-white` | `#F0EDE9` | Light mode background, dark mode text                                                          |
+| `neutral-black` | `#111111` | Dark mode background, light mode text                                                          |
+| `neutral-100`   | `#E5E2DE` | Light mode card fill (one step down from background — same step size as dark mode's card fill) |
+| `neutral-800`   | `#1C1C1C` | Dark mode card fill (one step up from background)                                              |
+| `neutral-150`   | `#DBD8D4` | Light mode button/tag fill on cards (one step down from card — same step size as dark mode)    |
+| `neutral-750`   | `#262626` | Dark mode button/tag fill on cards (one step up from card)                                     |
+| `neutral-200`   | `#D3D0CC` | Light mode card border (one step down from button/tag fill — same step size as dark mode)      |
+| `neutral-700`   | `#2E2E2E` | Dark mode card border (one step up from button/tag fill)                                       |
+| `neutral-500`   | `#6E6E6E` | Secondary/muted text — works on both modes                                                     |
 
 **Accent — Electric Cyan:**
 
-| Token | Hex | Role |
-|---|---|---|
-| `accent` | `#00D4FF` | Primary accent — links, active states, icons (dark mode: safe as text; light mode: icons/fills only, not text) |
-| `accent-hover` | `#33DDFF` | Hover state tint |
-| `accent-pressed` | `#00A8CC` | Pressed/active state, and accent text on light backgrounds (contrast-safe substitute for raw `accent`) |
-| `accent-tint` | `#E6FBFF` | Light background wash — selected-tab background, subtle highlight blocks |
-| `accent-glow` | `rgba(0, 212, 255, 0.25)` | Soft glow/shadow, dark mode only |
+| Token            | Hex                       | Role                                                                                                           |
+| ---------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `accent`         | `#00D4FF`                 | Primary accent — links, active states, icons (dark mode: safe as text; light mode: icons/fills only, not text) |
+| `accent-hover`   | `#33DDFF`                 | Hover state tint                                                                                               |
+| `accent-pressed` | `#00A8CC`                 | Pressed/active state, and accent text on light backgrounds (contrast-safe substitute for raw`accent`)          |
+| `accent-tint`    | `#E6FBFF`                 | Light background wash — selected-tab background, subtle highlight blocks                                       |
+| `accent-glow`    | `rgba(0, 212, 255, 0.25)` | Soft glow/shadow, dark mode only                                                                               |
 
 **Usage discipline:**
+
 - Accent is reserved for interactive/subtle moments only: links, active nav state, button fills, tab underlines, tag highlights.
 - Never used for large surfaces, body text blocks, or more than one accent moment per screen section.
 - On light backgrounds, use `accent-pressed` instead of raw `accent` for any accent text — raw `accent` fails contrast on white.
@@ -45,7 +48,7 @@
 
 ## 2. Surface & Card System
 
-**Flat surfaces, everywhere.** No glass/blur panels, no floating/hover-lift depth, no grain or noise texture. Solid neutral colors with clean edges — this is what keeps the site reading as disciplined and formal rather than trend-chasing.
+**Flat surfaces, everywhere.** No glass/blur panels, no floating/hover-lift depth. Solid neutral colors with clean edges — this is what keeps the site reading as disciplined and formal rather than trend-chasing.
 
 **Page background vs. cards — distinguished by shade + border, not texture.** The page background uses `neutral-white` (light mode) / `neutral-black` (dark mode). Cards (project, blog, certification, testimonial, form, etc.) use a step-different shade from the same neutral family — `neutral-100` in light mode, `neutral-800` in dark mode — paired with a thin, visible border (`neutral-200` light / `neutral-700` dark). The shade shift plus border is what separates a card from the page behind it — no overlay effects needed.
 
@@ -62,6 +65,7 @@ No other depth or motion effects layered on top of this — plain color + border
 Why: text-over-photo needs a dark overlay/scrim to stay readable, which conflicts with the flat-surfaces decision (Section 2) and starts to read as a glass effect. It also pushes the tone toward "personal brand" landing page rather than "Computer Scientist" portfolio. Side-by-side keeps full contrast control over the name/subtitle with no overlay tricks, while the photo stays fixed in place beside it.
 
 **Photo treatment:**
+
 - Black & white (grayscale) — not full color, so the photo doesn't visually compete with the accent/neutral palette
 - Shoulders-up or half-body, composed — not full-body, not casual
 - Plain or softly blurred background in the shot itself — avoid generic "typing on laptop" stock-photo framing
@@ -72,11 +76,11 @@ Why: text-over-photo needs a dark overlay/scrim to stay readable, which conflict
 
 Two typeface families, self-hosted locally via `next/font/local`.
 
-| Role | Font | Weight/Usage |
-|---|---|---|
-| Headings (hero name, section titles, project titles) | General Sans | Semibold / Bold |
-| Paragraphs, UI, buttons, nav, labels | General Sans | Regular / Medium |
-| Tertiary — tags, tech stack, dates, metadata, code | JetBrains Mono | Regular |
+| Role                                                 | Font           | Weight/Usage     |
+| ---------------------------------------------------- | -------------- | ---------------- |
+| Headings (hero name, section titles, project titles) | General Sans   | Semibold / Bold  |
+| Paragraphs, UI, buttons, nav, labels                 | General Sans   | Regular / Medium |
+| Tertiary — tags, tech stack, dates, metadata, code   | JetBrains Mono | Regular          |
 
 One typeface (General Sans) carries both headings and body, differentiated by weight and size rather than a separate display face — kept in line with the system's overall discipline of fewer, deliberate choices rather than stacking more elements. JetBrains Mono is reserved for the "data layer" — anything tag-like, dated, or technical — which is also where the dev identity shows up structurally in the type system itself.
 
@@ -86,12 +90,13 @@ One typeface (General Sans) carries both headings and body, differentiated by we
 
 **Library: React Icons**, split by role to create deliberate contrast between functional UI and brand/social elements.
 
-| Role | Icon set | Style | Usage |
-|---|---|---|---|
-| Functional UI | Lucide (`lu`) | Stroke/outline | Nav, buttons, filters, arrows, mode switch, theme toggle — matches shadcn/ui, stays visually quiet |
-| Social / brand links | Simple Icons (`si`) | Solid/fill | GitHub, LinkedIn, X, etc. — solid shapes read as recognizable brand marks; outlining them hurts recognizability |
+| Role                 | Icon set            | Style          | Usage                                                                                                           |
+| -------------------- | ------------------- | -------------- | --------------------------------------------------------------------------------------------------------------- |
+| Functional UI        | Lucide (`lu`)       | Stroke/outline | Nav, buttons, filters, arrows, mode switch, theme toggle — matches shadcn/ui, stays visually quiet              |
+| Social / brand links | Simple Icons (`si`) | Solid/fill     | GitHub, LinkedIn, X, etc. — solid shapes read as recognizable brand marks; outlining them hurts recognizability |
 
 **Fallback priority** (when an icon isn't available in the preferred set, check the next one down before reaching for something visually inconsistent):
+
 1. Lucide (`lu`) — functional UI icons
 2. Simple Icons (`si`) — brand/social icons
 3. FontAwesome 6 (`fa6`) — solid fallback if a brand mark isn't in Simple Icons
@@ -129,7 +134,8 @@ One typeface (General Sans) carries both headings and body, differentiated by we
 ## 8. Anti-Patterns & Visual Constraints
 
 To maintain the core identity of the portfolio, deliberately avoid:
+
 - **Autoplaying animations:** Avoid autoplaying hero animations on the name or other critical text. It breaks scannability for recruiters.
-- **Duplicate CTAs:** Avoid competing primary buttons above the fold. 
+- **Duplicate CTAs:** Avoid competing primary buttons above the fold.
 - **Overcrowded Navigation:** Do not exceed ~6 top-level navigation items.
 - **Separate mode templates:** Do not build separate layouts for `/dev` vs `/design` — rely on data sorting and minor text changes within the same template.

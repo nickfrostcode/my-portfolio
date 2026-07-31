@@ -1,6 +1,8 @@
-# Component Specs — Nicholas Benson Oluwaferanmi
+<!-- @format -->
 
-*Detailed behavior and layout for individual UI components and page flows, desktop and mobile. Structure lives in README.md, visual language (color/type/icons/texture) lives in design.md — this file is where those get applied to specific components.*
+# Component Specs — Nicholas Benson Olúwafẹ́rànmi
+
+_Detailed behavior and layout for individual UI components and page flows, desktop and mobile. Structure lives in README.md, visual language (color/type/icons/texture) lives in design.md — this file is where those get applied to specific components._
 
 > **Status:** Skeleton — components to be defined one at a time.
 
@@ -9,6 +11,7 @@
 ## 1. Page Flows
 
 ### 1.1 Home / Dev / Design Flow
+
 ```
 Hero
  ↓
@@ -29,6 +32,7 @@ Contact              (form, email, LinkedIn, GitHub, socials)
 ```
 
 ### 1.2 About Page Flow
+
 ```
 Hero
  ↓
@@ -50,9 +54,11 @@ Awards        (grid)
  ↓
 Contact
 ```
+
 **Awards** display as a card grid, same pattern as Certifications: Title, Issuing Body, Date, short description, and a link/image of the award if available.
 
 ### 1.3 Projects Page Flow
+
 ```
 Search (title / technology / description)
  ↓
@@ -65,7 +71,9 @@ Sort (Newest / Oldest / Featured / Popular)
  ↓
 Project Grid
 ```
+
 **Case study contents (`/projects/[slug]`):**
+
 ```
 Overview → Gallery → Problem → Research → Solution → Features →
 Technology Stack → Architecture → Challenges → Lessons Learned →
@@ -73,11 +81,14 @@ Future Improvements → Links (Live Demo / GitHub / Case Study) → Related Proj
 ```
 
 ### 1.4 Blog Flow
+
 **List (`/blog`):** Featured → Categories (Software, Design, Leadership, Career, Computer Science, Research, Publications, Personal) → Search → Article list
 **Post (`/blog/[slug]`):** Title → Hero Image → Content → Table of Contents → Related Articles → Share → Contact
 
 ### 1.5 Resume Page Flow
+
 Human-readable CV, fully indexed, with a PDF download option.
+
 ```
 Summary → Education → Experience → Projects → Leadership →
 Skills → Certifications → Awards → Download PDF
@@ -123,7 +134,7 @@ Skills → Certifications → Awards → Download PDF
 ```
 ┌───────────────────────────────────────────────────────────┐
 │  · · · · · · · · · · · · · (subtle grid background) · · · │
-│  Nicholas Benson Oluwaferanmi        ┌─────────────────┐  │
+│  Nicholas Benson Olúwafẹ́rànmi        ┌─────────────────┐  │
 │  [mode subtitle]                     │                 │  │
 │  Nick Frost » @nickfrostcode         │   photo (B&W    │  │
 │  [View Projects] [Download CV]       │   treatment)    │  │
@@ -139,6 +150,7 @@ Skills → Certifications → Awards → Download PDF
 ### Mobile
 
 Stacking order, top to bottom, both blocks centered:
+
 1. **Text block** — name, subtitle, identity element, CTA buttons (centered)
 2. **Photo** — same black & white treatment, centered below the text
 3. **Grid background** continues full-bleed behind both.
@@ -190,6 +202,7 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 ## 6. Mode Switch (General / Developer / Designer)
 
 **Behavior:** a small dropdown, not a segmented control with all three options always visible. Shows the current mode in the nav; tapping/clicking expands just that part downward.
+
 - **On open:** the trigger's immediate area extends downward, revealing the other mode options.
 - **Options:** General, Developer, Designer — selecting one navigates to the respective mode URL.
 - **Mobile:** Lives inside the navbar's own expanded drawer.
@@ -199,6 +212,7 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 ## 7. Theme Toggle (Light/Dark/System)
 
 **Behavior:** same local dropdown pattern as the Mode Switch.
+
 - **Trigger:** icon representing the current theme (Lucide).
 - **Options:** Light, Dark, System.
 - **Mobile:** Lives inside the navbar's own expanded drawer.
@@ -235,6 +249,7 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 **Hover state:** title text shifts to `accent` color, preview image zooms in slightly (1.0 → 1.05). No shadow or lift.
 
 **Shared card anatomy:**
+
 ```
 ┌───────────────────────┐
 │      preview image    │
@@ -247,31 +262,32 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 └───────────────────────┘
 ```
 
-| Field | Project | Blog | Certification |
-|---|---|---|---|
-| Preview | Thumbnail/screenshot | Cover image | Issuer badge/logo |
-| Title | Project title | Post title | Certification name |
-| Description | Short summary | Excerpt | Issuer + short note |
-| Tags | Tech stack used | Category | Skills covered |
-| Link A | View Case Study → `/projects/[slug]` | Read Article → `/blog/[slug]` | View Certificate |
-| Link B | Live Demo | *none* | Verify Credential |
+| Field       | Project                              | Blog                          | Certification       |
+| ----------- | ------------------------------------ | ----------------------------- | ------------------- |
+| Preview     | Thumbnail/screenshot                 | Cover image                   | Issuer badge/logo   |
+| Title       | Project title                        | Post title                    | Certification name  |
+| Description | Short summary                        | Excerpt                       | Issuer + short note |
+| Tags        | Tech stack used                      | Category                      | Skills covered      |
+| Link A      | View Case Study → `/projects/[slug]` | Read Article → `/blog/[slug]` | View Certificate    |
+| Link B      | Live Demo                            | _none_                        | Verify Credential   |
 
 ---
 
 ## 10. Tabs & Filters
 
 **Style:** plain text labels, no pill/button backgrounds. Hover shifts the label to `accent`/`accent-pressed` color. Active/selected tab combines `accent` color **and** a thin underline beneath it.
+
 - **Used for:** Featured Projects mode-filter, `/projects` Quick Tabs.
 
 ---
 
 ## 11. Buttons
 
-| Variant | Fill | Use |
-|---|---|---|
-| Primary | Solid — `neutral-black` (light) or `neutral-white` (dark) | Main actions — Contact, Download CV, form submit |
-| Secondary | Outlined, neutral border/text, transparent fill | Supporting actions — View More, View All Projects |
-| Tertiary | Outlined in `accent`, transparent fill | Used sparingly |
+| Variant   | Fill                                                      | Use                                               |
+| --------- | --------------------------------------------------------- | ------------------------------------------------- |
+| Primary   | Solid — `neutral-black` (light) or `neutral-white` (dark) | Main actions — Contact, Download CV, form submit  |
+| Secondary | Outlined, neutral border/text, transparent fill           | Supporting actions — View More, View All Projects |
+| Tertiary  | Outlined in `accent`, transparent fill                    | Used sparingly                                    |
 
 **Hover:** reduced contrast on the button's own fill/border.
 **Sizes:** small / default / large (32px / 40px / 48px height).
@@ -283,9 +299,11 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 **Layout:** two cards side by side on desktop (form 70%, socials 30%), stacking vertically on mobile. This is a persistent component, not a standalone `/contact` page.
 
 ### Form Card
+
 Fields: Name + Email → Subject → Category + File attachment → Message → Send button. Left-aligned internally.
 
 ### Socials Card
+
 Lists all social/contact links using Simple Icons — icon + label per row, neutral color with `accent-pressed` on hover.
 
 ---
@@ -314,6 +332,7 @@ Lists all social/contact links using Simple Icons — icon + label per row, neut
 - **Below columns:** "NICHOLAS" in large type, faded. Copyright/current status/last-updated sit near the faded name.
 
 ### Mobile
+
 All three columns stack vertically (Quick Summary → Routes → Social Handles), followed by the faded "NICHOLAS" watermark.
 
 ---
@@ -327,6 +346,7 @@ All three columns stack vertically (Quick Summary → Routes → Social Handles)
 ## 15. 404 / Empty States
 
 A normal page, no illustration, no signature-element animation.
+
 ```
                           404
               This page doesn't exist.
