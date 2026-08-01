@@ -46,7 +46,7 @@ export function Footer() {
 
 				<div className="mt-24 pt-8 border-t border-border flex flex-col items-center justify-center relative overflow-hidden">
 					<h1 className="text-[12vw] font-bold leading-none text-muted-foreground/10 select-none tracking-tighter">
-						NICHOLAS
+						 BENSON NICHOLAS
 					</h1>
 					<div className="absolute bottom-4 w-full flex justify-between items-end text-xs text-muted-foreground px-2">
 						<p>© {new Date().getFullYear()} Nicholas Benson Olúwafẹ́rànmi</p>

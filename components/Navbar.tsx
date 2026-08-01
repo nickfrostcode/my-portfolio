@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMode } from "@/context/ModeContext";
 import { useTheme } from "next-themes";
-import { Moon, Sun, Monitor, Menu, X, ChevronDown } from "lucide-react";
+import { LuMoon as Moon, LuSun as Sun, LuMonitor as Monitor, LuMenu as Menu, LuX as X, LuChevronDown as ChevronDown } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
@@ -108,7 +108,7 @@ export function Navbar() {
 					</div>
 					<Link
 						href={getHref("#", "/")}
-						className='font-semibold text-lg tracking-tight hover:text-accent-pressed transition-colors'
+						className='font-semibold text-lg tracking-tight hover:text-accent transition-colors'
 					>
 						Nicholas
 					</Link>
@@ -120,7 +120,7 @@ export function Navbar() {
 						<Link
 							key={link.label}
 							href={link.href}
-							className='text-md font-semibold text-muted-foreground transition-colors hover:text-accent-pressed'
+							className='text-md font-semibold text-muted-foreground transition-colors hover:text-accent'
 						>
 							{link.label}
 						</Link>
@@ -132,7 +132,7 @@ export function Navbar() {
 					<div className='relative'>
 						<button
 							onClick={() => setModeMenuOpen(!modeMenuOpen)}
-							className='flex items-center gap-1.5 text-md font-semibold text-muted-foreground hover:text-accent-pressed transition-colors capitalize cursor-pointer'
+							className='flex items-center gap-1.5 text-md font-semibold text-muted-foreground hover:text-accent transition-colors capitalize cursor-pointer'
 						>
 							{activeMode}{" "}
 							<motion.div animate={{ rotate: modeMenuOpen ? 180 : 0 }}>
@@ -196,21 +196,21 @@ export function Navbar() {
 											<Link
 												href='/'
 												onClick={() => setModeMenuOpen(false)}
-												className='text-sm text-muted-foreground hover:text-accent-pressed transition-colors font-semibold'
+												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold'
 											>
 												General
 											</Link>
 											<Link
 												href='/dev'
 												onClick={() => setModeMenuOpen(false)}
-												className='text-sm text-muted-foreground hover:text-accent-pressed transition-colors font-semibold'
+												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold'
 											>
 												Developer
 											</Link>
 											<Link
 												href='/design'
 												onClick={() => setModeMenuOpen(false)}
-												className='text-sm text-muted-foreground hover:text-accent-pressed transition-colors font-semibold'
+												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold'
 											>
 												Designer
 											</Link>
@@ -230,7 +230,7 @@ export function Navbar() {
 								damping: 10,
 							}}
 							onClick={toggleTheme}
-							className='flex items-center justify-center w-8 h-8 rounded-full text-muted-foreground hover:text-accent-pressed transition-colors cursor-pointer'
+							className='flex items-center justify-center w-8 h-8 rounded-full text-muted-foreground hover:text-accent transition-colors cursor-pointer'
 						>
 							{renderThemeIcon()}
 						</motion.button>
@@ -302,7 +302,7 @@ export function Navbar() {
 							</div>
 							<Link
 								href={getHref("#", "/")}
-								className='font-semibold text-lg tracking-tight hover:text-accent-pressed transition-colors'
+								className='font-semibold text-lg tracking-tight hover:text-accent transition-colors'
 							>
 								Nicholas
 							</Link>
@@ -312,13 +312,13 @@ export function Navbar() {
 							<motion.button
 								whileTap={{ scale: 0.8, rotate: 180 }}
 								onClick={toggleTheme}
-								className='p-2 text-muted-foreground hover:text-accent-pressed transition-colors cursor-pointer'
+								className='p-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer'
 							>
 								{renderThemeIcon()}
 							</motion.button>
 							<motion.button
 								whileTap={{ scale: 0.8 }}
-								className='p-2 text-muted-foreground hover:text-accent-pressed cursor-pointer'
+								className='p-2 text-muted-foreground hover:text-accent cursor-pointer'
 								onClick={() => setIsOpen(!isOpen)}
 							>
 								<AnimatePresence mode='wait'>
@@ -356,7 +356,7 @@ export function Navbar() {
 									key={link.label}
 									href={link.href}
 									onClick={() => setIsOpen(false)}
-									className='text-xl font-semibold text-muted-foreground hover:text-accent-pressed transition-colors'
+									className='text-xl font-semibold text-muted-foreground hover:text-accent transition-colors'
 								>
 									{link.label}
 								</Link>
@@ -371,7 +371,7 @@ export function Navbar() {
 									"text-center py-2 text-sm rounded-md transition-colors",
 									activeMode === "general"
 										? "bg-background font-semibold"
-										: "text-muted-foreground hover:text-accent-pressed",
+										: "text-muted-foreground hover:text-accent",
 								)}
 							>
 								General
@@ -383,7 +383,7 @@ export function Navbar() {
 									"text-center py-2 text-sm rounded-md transition-colors",
 									activeMode === "dev"
 										? "bg-background font-semibold"
-										: "text-muted-foreground hover:text-accent-pressed",
+										: "text-muted-foreground hover:text-accent",
 								)}
 							>
 								Dev
@@ -395,7 +395,7 @@ export function Navbar() {
 									"text-center py-2 text-sm rounded-md transition-colors",
 									activeMode === "design"
 										? "bg-background  font-semibold"
-										: "text-muted-foreground hover:text-accent-pressed",
+										: "text-muted-foreground hover:text-accent",
 								)}
 							>
 								Design
