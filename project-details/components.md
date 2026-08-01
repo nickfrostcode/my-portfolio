@@ -262,14 +262,14 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 └───────────────────────┘
 ```
 
-| Field       | Project                              | Blog                          | Certification       |
-| ----------- | ------------------------------------ | ----------------------------- | ------------------- |
-| Preview     | Thumbnail/screenshot                 | Cover image                   | Issuer badge/logo   |
-| Title       | Project title                        | Post title                    | Certification name  |
-| Description | Short summary                        | Excerpt                       | Issuer + short note |
-| Tags        | Tech stack used                      | Category                      | Skills covered      |
-| Link A      | View Case Study → `/projects/[slug]` | Read Article → `/blog/[slug]` | View Certificate    |
-| Link B      | Live Demo                            | _none_                        | Verify Credential   |
+| Field       | Project                                | Blog                            | Certification       |
+| ----------- | -------------------------------------- | ------------------------------- | ------------------- |
+| Preview     | Thumbnail/screenshot                   | Cover image                     | Issuer badge/logo   |
+| Title       | Project title                          | Post title                      | Certification name  |
+| Description | Short summary                          | Excerpt                         | Issuer + short note |
+| Tags        | Tech stack used                        | Category                        | Skills covered      |
+| Link A      | View Case Study →`/projects/[slug]` | Read Article →`/blog/[slug]` | View Certificate    |
+| Link B      | Live Demo                              | _none_                        | Verify Credential   |
 
 ---
 
@@ -283,11 +283,11 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 
 ## 11. Buttons
 
-| Variant   | Fill                                                      | Use                                               |
-| --------- | --------------------------------------------------------- | ------------------------------------------------- |
-| Primary   | Solid — `neutral-black` (light) or `neutral-white` (dark) | Main actions — Contact, Download CV, form submit  |
-| Secondary | Outlined, neutral border/text, transparent fill           | Supporting actions — View More, View All Projects |
-| Tertiary  | Outlined in `accent`, transparent fill                    | Used sparingly                                    |
+| Variant   | Fill                                                          | Use                                                |
+| --------- | ------------------------------------------------------------- | -------------------------------------------------- |
+| Primary   | Solid —`neutral-black` (light) or `neutral-white` (dark) | Main actions — Contact, Download CV, form submit  |
+| Secondary | Outlined, neutral border/text, transparent fill               | Supporting actions — View More, View All Projects |
+| Tertiary  | Outlined in`accent`, transparent fill                       | Used sparingly                                     |
 
 **Hover:** reduced contrast on the button's own fill/border.
 **Sizes:** small / default / large (32px / 40px / 48px height).
