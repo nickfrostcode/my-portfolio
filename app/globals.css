@@ -55,7 +55,7 @@
 :root {
    --background: #FFFFFF;
    --foreground: #000000;
-   --card: #E5E2DE;
+   --card: rgb(242, 243, 243);
    --card-foreground: #000000;
    --popover: #E5E2DE;
    --popover-foreground: #000000;
