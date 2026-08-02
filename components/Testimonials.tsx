@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { LuStar, LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useMode } from "@/context/ModeContext";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type ContentType = "text" | "image" | "video";
 
@@ -104,9 +105,7 @@ export function Testimonials() {
 	const [current, setCurrent] = useState(0);
 	const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-	const plugin = useRef(
-		Autoplay({ delay: 5000, stopOnInteraction: false })
-	);
+	const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
 
 	const displayTestimonials =
 		mode === "general"
@@ -132,11 +131,11 @@ export function Testimonials() {
 			<div className='container px-4 md:px-6 w-full max-w-7xl mx-auto mb-10'>
 				<div className='text-center space-y-2 relative z-30'>
 					<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
-						Client {" "}
-						<span className='text-accent'>Testimonials</span>
+						Testimonials &amp;{" "}
+						<span className='text-accent'>Recommendations</span>
 					</h2>
 					<p className='text-muted-foreground font-medium max-w-2xl mx-auto'>
-						What people are saying about my work.
+						What people are saying about me.
 					</p>
 				</div>
 			</div>
@@ -151,24 +150,20 @@ export function Testimonials() {
 				<div className='absolute inset-y-0 right-0 w-16 md:w-48 bg-linear-to-l from-background to-transparent z-40 pointer-events-none' />
 
 				{/* Side Controllers */}
-				<Button
-					variant='secondary'
-					size='icon'
+				<button
 					onClick={() => api?.scrollPrev()}
-					className='absolute left-4 md:left-15 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full backdrop-blur-sm shadow-md hidden sm:flex z-39'
+					className='absolute left-4 md:left-15 top-1/2 -translate-y-1/2 z-39 w-12 h-12 items-center justify-center rounded-full bg-card/60 backdrop-blur-sm border border-border shadow-md hover:bg-muted transition-colors hidden sm:flex'
 					aria-label='Previous slide'
 				>
 					<LuChevronLeft className='w-6 h-6' />
-				</Button>
-				<Button
-					variant='secondary'
-					size='icon'
+				</button>
+				<button
 					onClick={() => api?.scrollNext()}
-					className='absolute right-4 md:right-15 top-1/2 -translate-y-1/2 z-39 w-12 h-12 rounded-full backdrop-blur-sm shadow-md hidden sm:flex'
+					className='absolute right-4 md:right-15 top-1/2 -translate-y-1/2 z-39 w-12 h-12 items-center justify-center rounded-full bg-card/60 backdrop-blur-sm border border-border shadow-md hover:bg-muted transition-colors hidden sm:flex'
 					aria-label='Next slide'
 				>
 					<LuChevronRight className='w-6 h-6' />
-				</Button>
+				</button>
 
 				<Carousel
 					setApi={setApi}
@@ -179,7 +174,7 @@ export function Testimonials() {
 					}}
 					className='w-full'
 				>
-					<CarouselContent className='ml-0 py-10'>
+					<CarouselContent className='ml-0 py-10 cursor-grab active:cursor-grabbing'>
 						{displayTestimonials.map((testimonial, index) => {
 							const isCenter = current === index;
 							const isLeft =
@@ -270,8 +265,8 @@ export function Testimonials() {
 													<video
 														src={testimonial.content}
 														muted
-                                          playsInline
-                                          controls
+														playsInline
+														controls
 														className='w-full h-full object-cover'
 													/>
 												</div>
@@ -300,6 +295,12 @@ export function Testimonials() {
 						/>
 					))}
 				</div>
+         </div>
+         
+			<div className='flex items-center justify-center mt-3 text-accent'>
+				<Link href='https://docs.google.com/forms/d/e/1FAIpQLSeQpC5O3o2N12n1YyYf6f6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6/viewform?usp=sharing'>
+					Drop a testimonial or review for me
+				</Link>
 			</div>
 		</section>
 	);
