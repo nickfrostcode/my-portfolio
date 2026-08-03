@@ -134,11 +134,22 @@
       @apply border-border outline-ring/50;
    }
 
+   button {
+      @apply cursor-pointer;
+   }
+
    body {
       @apply bg-background text-foreground;
    }
 
    html {
       @apply font-sans;
+   }
+
+}
+
+@layer components {
+   .form-input {
+      @apply w-full px-3 py-2 rounded-lg border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 transition-all mt-1 h-11;
    }
 }

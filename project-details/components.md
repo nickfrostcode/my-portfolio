@@ -304,7 +304,7 @@ Fields: Name + Email → Subject → Category + File attachment → Message → 
 
 ### Socials Card
 
-Lists all social/contact links using Simple Icons — icon + label per row, neutral color with `accent-pressed` on hover.
+Lists all social/contact links using Simple Icons — icon + label per row, neutral color with `accent` on hover.
 
 ---
 

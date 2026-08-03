@@ -29,7 +29,7 @@ const upcomingProjects = [
 
 export function ComingSoonProjects() {
 	return (
-		<div className='w-full py-10 mt-5'>
+		<div className='w-full py-3'>
 			<div className='text-center space-y-2 mb-12'>
 				<h3 className='text-2xl md:text-3xl font-bold tracking-tight text-foreground'>
 					In the <span className='text-accent'>Pipeline</span>
