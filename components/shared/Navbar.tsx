@@ -36,10 +36,10 @@ export function Navbar() {
 	};
 
 	const links = [
-		{ label: "About", href: getHref("#about", "/about") },
-		{ label: "Projects", href: getHref("#projects", "/projects") },
-		{ label: "Blog", href: getHref("#blog", "/blog") },
-		{ label: "Resume", href: getHref("#resume", "/resume") },
+		{ label: "About", href: "/about" },
+		{ label: "Projects", href: isLanding ? "#projects" : "/#projects" },
+		{ label: "Blog", href: "#" },
+		{ label: "Resume", href: "#" },
 	];
 
 	const toggleTheme = () => {
@@ -239,7 +239,7 @@ export function Navbar() {
 						variant='secondary'
 						className='rounded-3xl font-semibold bg-background hover:bg-card'
 					>
-						<Link href={getHref("#contact", "/contact")}>Contact</Link>
+						<Link href={isLanding ? "#contact" : "/#contact"}>Contact</Link>
 					</Button>
 				</div>
 			</nav>
@@ -407,7 +407,7 @@ export function Navbar() {
 							className='w-full rounded-md font-semibold bg-background text-foreground'
 						>
 							<Link
-								href={getHref("#contact", "/contact")}
+								href={isLanding ? "#contact" : "/#contact"}
 								onClick={() => setIsOpen(false)}
 							>
 								Contact

@@ -9,91 +9,14 @@ import { Badge } from "@/components/ui/badge";
 import { ComingSoonProjects } from "./ComingSoonProjects";
 
 
-const projects = [
-	{
-		id: 1,
-		title: "Uniscore",
-		description:
-			"Estimate admission aggregate scores for Nigerian universities, polytechnics, and colleges of education. Calculate your chances with JAMB scores and O'Level grades.",
-		image: "https://uniscore.vercel.app/og.png",
-		link: "https://uniscore.vercel.app",
-		status: "Completed",
-		mode: "dev",
-		tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-	},
-	{
-		id: 2,
-		title: "Ttenda",
-		description:
-			"Smart attendance management system for general use. Location-based attendance tracking, geofencing verification, real-time session management, and Excel reporting.",
-		image: "https://ttenda.vercel.app/og_image.png",
-		link: "https://ttenda.vercel.app",
-		status: "Ongoing",
-		mode: "dev",
-		tech: ["React", "Node.js", "MongoDB"],
-	},
-	{
-		id: 3,
-		title: "Nickspay",
-		description:
-			"A secure and seamless payment gateway and financial technology platform.",
-		image: "https://nickspay.com.ng/og.webp",
-		link: "https://nickspay.com.ng",
-		status: "Ongoing",
-		mode: "dev",
-		tech: ["Next.js", "PostgreSQL", "Stripe"],
-	},
-	{
-		id: 4,
-		title: "Brand Identity Design",
-		description:
-			"A comprehensive brand identity including logo, typography, and color palette for a fintech startup.",
-		image: "https://nickspay.com.ng/og.webp",
-		link: "#",
-		status: "Completed",
-		mode: "design",
-		tech: ["Illustrator", "Photoshop"],
-	},
-	{
-		id: 5,
-		title: "Modern Flyer Design",
-		description:
-			"Eye-catching promotional materials and digital flyers for a major tech conference.",
-		image: "https://ttenda.vercel.app/og_image.png",
-		link: "#",
-		status: "Completed",
-		mode: "design",
-		tech: ["Photoshop", "InDesign"],
-	},
-	{
-		id: 6,
-		title: "Minimalist Logo Design",
-		description:
-			"A clean, memorable, and scalable logo for a fast-growing tech startup.",
-		image: "https://uniscore.vercel.app/og.png",
-		link: "#",
-		status: "Completed",
-		mode: "design",
-		tech: ["Illustrator", "Figma"],
-	},
-];
+import { projects } from "@/lib/data";
+import { getFeaturedProjects } from "@/lib/logic";
+import { cn } from "@/lib/utils";
 
 export function FeaturedProjects() {
 	const { mode } = useMode();
 
-	let displayProjects = [];
-	if (mode === "dev") {
-		displayProjects = projects.filter((p) => p.mode === "dev").slice(0, 3);
-	} else if (mode === "design") {
-		displayProjects = projects.filter((p) => p.mode === "design").slice(0, 3);
-	} else {
-		// General mode: 2 dev, 1 design
-		const devProjects = projects.filter((p) => p.mode === "dev").slice(0, 2);
-		const designProjects = projects
-			.filter((p) => p.mode === "design")
-			.slice(0, 1);
-		displayProjects = [...devProjects, ...designProjects];
-	}
+	const displayProjects = getFeaturedProjects(projects, mode);
 
 	return (
 		<section
@@ -123,7 +46,7 @@ export function FeaturedProjects() {
 							key={project.id}
 							className='group flex flex-col bg-background border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
 						>
-							<Link href={`/projects/${project.id}`} className="absolute inset-0 z-10">
+							<Link href="#" className="absolute inset-0 z-10">
 								<span className="sr-only">View {project.title} Case Study</span>
 							</Link>
 							{/* Project Image */}
@@ -200,8 +123,8 @@ export function FeaturedProjects() {
 				{/* View All Projects CTA */}
 				<div className='flex justify-center md:w-1/3 w-full mx-auto md:px-4 -mt-10 relative z-20'>
 					<Link
-						href='/projects'
-						className='text-background font-semibold bg-foreground h-10 w-full flex justify-center items-center gap-2 rounded-full hover:bg-foreground/90'
+						href='#'
+						className={cn('text-background font-semibold bg-foreground h-10 w-full flex justify-center items-center gap-2 rounded-full hover:bg-foreground/90')}
 					>
 						View All Projects
 						<ArrowRight className='w-4 h-4' />

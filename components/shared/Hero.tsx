@@ -3,7 +3,7 @@
 "use client";
 
 import { useMode } from "@/context/ModeContext";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
 	LuArrowRight as ArrowRight,
 	LuDownload as Download,
@@ -16,38 +16,10 @@ import { motion } from "motion/react";
 import darkPicture from "@/app/assets/picture_dark.png";
 import lightPicture from "@/app/assets/picture_light.png";
 
-export function Hero() {
+import { titles, secondaryTitles, techStack } from "@/lib/data";
+
+export function Hero({ page = "home" }: { page: string }) {
 	const { mode } = useMode();
-
-	const titles = {
-		general:
-			"I build digital experiences through software engineering and visual design.",
-		dev: "Building scalable software and modern web applications.",
-		design: "Designing visual identities and intuitive digital experiences.",
-	};
-
-	const secondaryTitles = {
-		general:
-			"TypeScript Ecosystem | Golang | DBM Systems | Adobe Suites | AI Tools",
-		dev: "Also working across visual and graphics design.",
-		design: "Also working across software and web development.",
-	};
-
-	const techStack = {
-		general: [
-			"Computer Scientist",
-			"Software Developer",
-			"Visual & Graphic Designer",
-		],
-		dev: [
-			"React/Next.js",
-			"TypeScript",
-			"Node.js/Fastify",
-			"PostgreSQL",
-			"AI tools",
-		],
-		design: ["Photoshop", "CorelDraw", "AI", "Figma", "Canva", "Ai tools"],
-	};
 
 	return (
 		<section className='relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-border pt-12 pb-12'>
@@ -67,7 +39,7 @@ export function Hero() {
 					<div className='space-y-4'>
 						<h1 className='text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]'>
 							<span className='text-accent block text-4xl'>
-								Hello, I'm
+								{page === "home" ? "Hello, I'm" : "About me"}
 							</span>
 							Nicholas Benson {/*Olúwafẹ́rànmi */}
 						</h1>

@@ -12,32 +12,7 @@ import pictureImg from "@/app/assets/picture.jpg";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const certificates = [
-	{
-		type: "Soft Skill",
-		issuer: "Hp Life",
-		title: "Effective Business Websites",
-		desc: "Learnt how to build websites that align with user needs and business goals.",
-		counts: "(13 Hard • 20 Soft)",
-		progress: "14/33",
-	},
-	{
-		type: "Hard Skill",
-		issuer: "AWS",
-		title: "AWS Certified Cloud Practitioner",
-		desc: "Demonstrated overall understanding of the AWS Cloud platform, covering basic cloud concepts and security.",
-		counts: "(13 Hard • 20 Soft)",
-		progress: "15/33",
-	},
-	{
-		type: "Hard Skill",
-		issuer: "Meta",
-		title: "Front-End Developer Professional",
-		desc: "Mastered building responsive, interactive applications with React and advanced UI/UX principles.",
-		counts: "(13 Hard • 20 Soft)",
-		progress: "16/33",
-	},
-];
+import { certificates, technicalArsenal } from "@/lib/data";
 
 export function AboutPreview() {
 	const { mode } = useMode();
@@ -50,54 +25,7 @@ export function AboutPreview() {
 		return () => clearInterval(interval);
 	}, []);
 
-	const technicalArsenal = {
-		general: [
-			{
-				category: "Frontend",
-				items: "React, Next.js, TypeScript, Tailwind",
-			},
-			{
-				category: "Backend & Data",
-				items: "Node.js, Fastify, PostgreSQL",
-			},
-			{
-				category: "Visual & Graphic Design",
-				items: "Adobe Photoshop, CorelDraw, Figma, Canva",
-			},
-			{
-				category: "AI & Integrations",
-				items: "Gemini, Claude, Kimi, Grok, Stitch, Codex, AWS Bedrock",
-			}
-		],
-		dev: [
-			{
-				category: "Frontend",
-				items: "React, Next.js, TypeScript, Tailwind, Expo / React Native",
-			},
-			{
-				category: "Backend & Data",
-				items: "Node.js, Fastify, PostgreSQL, Redis",
-			},
-			{
-				category: "Infrastructure",
-				items: "Vercel, Cloudflare, Git, AWS",
-			},
-		],
-		design: [
-			{
-				category: "Design Tools",
-				items: "Photoshop, Illustrator, CorelDraw, Figma, Canva",
-			},
-			{
-				category: "AI Tools",
-				items: "Midjourney, Gemini, Groq, Copilot, ChatGpt, Claude",
-			},
-			{
-				category: "Idealizations",
-				items: "Pinterest, Behance, Dribbble, etc" 
-			}
-		],
-	};
+
 
 	const activeArsenal = technicalArsenal[mode] || technicalArsenal.general;
 
@@ -165,7 +93,7 @@ export function AboutPreview() {
 						</div>
 
 						{/* Certifications Card */}
-						<Link href='/certificates' className='group block'>
+						<Link href='#' className='group block'>
 							<div className='p-6 rounded-2xl bg-card border border-border/50 space-y-4 transition-colors hover:border-accent'>
 								<div className="flex items-center justify-between">
 									<h3 className='text-sm font-semibold tracking-widest text-accent uppercase'>

@@ -17,86 +17,8 @@ import { useMode } from "@/context/ModeContext";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-type ContentType = "text" | "image" | "video";
-
-interface Testimonial {
-	id: number;
-	name: string;
-	role: string;
-	avatar: string;
-	rating: number;
-	type: ContentType;
-	content: string;
-	mode: "dev" | "design" | "general";
-}
-
-const allTestimonials: Testimonial[] = [
-	{
-		id: 1,
-		name: "Sarah Jenkins",
-		role: "Product Manager @ TechFlow",
-		avatar: "https://i.pravatar.cc/150?u=sarah",
-		rating: 5,
-		type: "text",
-		content:
-			"Nicholas delivered an exceptional frontend product ahead of schedule. His strict adherence to technical best practices, deeply robust architecture, and pixel-perfect execution is entirely unmatched. Our entire engineering team was blown away by the quality of the codebase he handed over.",
-		mode: "dev",
-	},
-	{
-		id: 2,
-		name: "Michael Chen",
-		role: "Founder @ StartupX",
-		avatar: "https://i.pravatar.cc/150?u=michael",
-		rating: 4,
-		type: "image",
-		content:
-			"https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
-		mode: "dev",
-	},
-	{
-		id: 3,
-		name: "Elena Rodriguez",
-		role: "Creative Director",
-		avatar: "https://i.pravatar.cc/150?u=elena",
-		rating: 5,
-		type: "text",
-		content:
-			"The level of animation and detail in the UI completely elevated our brand. Nicholas is a true professional bridging the gap between design and code. Every micro-interaction feels fluid and natural, proving that he doesn't just write code—he truly understands the user experience.",
-		mode: "design",
-	},
-	{
-		id: 4,
-		name: "David Kim",
-		role: "Lead Engineer",
-		avatar: "https://i.pravatar.cc/150?u=david",
-		rating: 5,
-		type: "video",
-		content: "https://www.w3schools.com/html/mov_bbb.mp4",
-		mode: "dev",
-	},
-	{
-		id: 5,
-		name: "Jessica Walsh",
-		role: "Marketing Head",
-		avatar: "https://i.pravatar.cc/150?u=jessica",
-		rating: 5,
-		type: "text",
-		content:
-			"The branding and layout redesign increased our conversion rates by 40% in just the first month. The typography choices were absolutely flawless, and the entire aesthetic perfectly communicated the premium feel we were struggling to capture for so long.",
-		mode: "design",
-	},
-	{
-		id: 6,
-		name: "Tom Hardy",
-		role: "CEO @ Visionary",
-		avatar: "https://i.pravatar.cc/150?u=tom",
-		rating: 4,
-		type: "image",
-		content:
-			"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop",
-		mode: "design",
-	},
-];
+import { allTestimonials } from "@/lib/data";
+import { rearrangeByMode } from "@/lib/logic";
 
 export function Testimonials() {
 	const { mode } = useMode();
@@ -107,10 +29,7 @@ export function Testimonials() {
 
 	const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
 
-	const displayTestimonials =
-		mode === "general"
-			? allTestimonials
-			: allTestimonials.filter((t) => t.mode === mode);
+	const displayTestimonials = rearrangeByMode(allTestimonials, mode);
 
 	useEffect(() => {
 		if (!api) return;

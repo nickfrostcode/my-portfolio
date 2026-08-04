@@ -1,20 +1,20 @@
 /** @format */
 
-import { Hero } from "@/components/Hero";
-import { AboutPreview } from "@/components/AboutPreview";
-import { FeaturedProjects } from "@/components/FeaturedProjects";
-import { WorkExperience } from "@/components/WorkExperience";
-import { Testimonials } from "@/components/Testimonials";
-import { Contact } from "@/components/Contact";
+import { Hero } from "@/components/shared/Hero";
+import { AboutPreview } from "@/components/home/AboutPreview";
+import { FeaturedProjects } from "@/components/home/FeaturedProjects";
+import { WorkExperience } from "@/components/shared/WorkExperience";
+import { Testimonials } from "@/components/home/Testimonials";
+import { Contact } from "@/components/shared/Contact";
 
 export default function Home() {
 	return (
-		<div className='flex flex-col min-h-screen bg-background text-foreground font-sans'>
+		<div className='flex flex-col min-h-screen bg-background text-foreground'>
 			<main className='flex-1 flex flex-col'>
-				<Hero />
+				<Hero page='home' />
 				<AboutPreview />
-            <FeaturedProjects />
-            <WorkExperience />
+				<FeaturedProjects />
+				<WorkExperience />
 				<Testimonials />
 				<Contact />
 			</main>

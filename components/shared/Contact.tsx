@@ -5,13 +5,7 @@
 import { Button } from "@/components/ui/button";
 
 import { LuMail, LuSend } from "react-icons/lu";
-import {
-	FaXTwitter,
-	FaLinkedinIn,
-	FaGithub,
-	FaInstagram,
-	FaWhatsapp,
-} from "react-icons/fa6";
+import { socialLinks } from "@/lib/data";
 
 export function Contact() {
 	return (
@@ -145,7 +139,7 @@ export function Contact() {
 
 							{/* Submit */}
 							<div className='pt-2'>
-								<Button type='submit' className='w-full'>
+								<Button type='submit' className='w-full h-12'>
 									<LuSend className='w-4 h-4' />
 									Send Message
 								</Button>
@@ -160,76 +154,23 @@ export function Contact() {
 								Connect
 							</h3>
 							<div className='flex flex-col gap-4'>
-								<a
-									href='https://github.com/nickfrostcode'
-									target='_blank'
-									rel='noreferrer'
-									className='group flex items-center gap-2'
-								>
-									<FaGithub className='w-5 h-5 group-hover:text-accent transition-colors' />
-									<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
-										GitHub
-									</span>
-								</a>
-
-								<a
-									href='https://linkedin.com/nickfrostcode'
-									target='_blank'
-									rel='noreferrer'
-									className='group flex items-center gap-2'
-								>
-									<FaLinkedinIn className='w-5 h-5 group-hover:text-accent transition-colors' />
-									<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
-										LinkedIn
-									</span>
-								</a>
-
-								<a
-									href='https://x.com/nickfrostcode'
-									target='_blank'
-									rel='noreferrer'
-									className='group flex items-center gap-2'
-								>
-									<FaXTwitter className='w-5 h-5 group-hover:text-accent transition-colors' />
-									<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
-										X (formerly Twitter)
-									</span>
-								</a>
-
-								<a
-									href='https://github.com/'
-									target='_blank'
-									rel='noreferrer'
-									className='group flex items-center gap-2'
-								>
-									<FaInstagram className='w-5 h-5 group-hover:text-accent transition-colors' />
-									<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
-										Instagram
-									</span>
-								</a>
-								<a
-									href='https://github.com/'
-									target='_blank'
-									rel='noreferrer'
-									className='group flex items-center gap-2'
-								>
-									<FaWhatsapp className='w-5 h-5 group-hover:text-accent transition-colors' />
-									<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
-										Whatsapp
-									</span>
-								</a>
-
-								<a
-									href='https://github.com/'
-									target='_blank'
-									rel='noreferrer'
-									className='group flex items-center gap-2'
-								>
-									<LuMail className='w-5 h-5 group-hover:text-accent transition-colors' />
-									<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
-										Email
-									</span>
-								</a>
+								{socialLinks.map((social) => {
+									const Icon = social.icon;
+									return (
+										<a
+											key={social.name}
+											href={social.url}
+											target='_blank'
+											rel='noreferrer'
+											className='group flex items-center gap-2'
+										>
+											<Icon className='w-5 h-5 group-hover:text-accent transition-colors' />
+											<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
+												{social.name}
+											</span>
+										</a>
+									);
+								})}
 							</div>
 						</div>
 						<div className='bg-card border border-border rounded-3xl p-6'>
