@@ -1,0 +1,15 @@
+# @format
+
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
+peerDependencyRules:
+  ignoreMissing:
+    - eslint
+    - typescript
+
+packages:
+  - "."
