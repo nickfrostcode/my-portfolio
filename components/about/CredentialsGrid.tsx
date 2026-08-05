@@ -78,7 +78,7 @@ export function CredentialsGrid() {
 				<div className='flex items-center gap-4'>
 					<div className='text-center space-y-2 w-full'>
 						<h2 className='text-3xl md:text-4xl font-bold text-foreground'>
-							Awards & <span className="text-accent">Honors</span>
+							Awards & <span className='text-accent'>Honors</span>
 						</h2>
 						<p className='text-muted-foreground font-medium text-center'>
 							Recognition for outstanding contributions.
@@ -111,7 +111,7 @@ export function CredentialsGrid() {
 							{/* Content */}
 							<div className='flex flex-col flex-1 p-2 pt-5'>
 								<div className='mb-4'>
-									<span className='inline-block px-3 py-1 text-[10px] md:text-xs font-medium rounded-full bg-accent/10 text-accent border border-accent/20 mb-3'>
+									<span className='inline-block px-3 py-1 text-[10px] md:text-xs font-medium rounded-full bg-muted text-muted-foreground mb-3'>
 										{award.date}
 									</span>
 									<h3 className='text-lg md:text-xl font-bold text-foreground mb-1 leading-tight'>
