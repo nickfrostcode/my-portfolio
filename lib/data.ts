@@ -10,6 +10,7 @@ import {
 	Award,
 	JourneyItem,
 	SkillGroup,
+	BlogPost,
 } from "@/types";
 import {
 	FaGithub,
@@ -36,10 +37,12 @@ import {
 	FaBriefcase,
 	FaGraduationCap,
 	FaGolang,
-   FaGoogleDrive,
-   FaFileWord,
-   FaFileExcel,
-   FaFilePowerpoint,
+	FaGoogleDrive,
+	FaFileWord,
+	FaFileExcel,
+	FaFilePowerpoint,
+   FaThreads,
+   FaTiktok,
 } from "react-icons/fa6";
 import {
 	SiTypescript,
@@ -50,14 +53,14 @@ import {
 	SiShadcnui,
 	SiPython,
 	SiJavascript,
-   SiFastify,
-   SiExpress,
-   SiSupabase,
-   SiCoreldraw,
-   SiGooglegemini,
-   SiAnthropic,
-   SiGithubcopilot,
-   SiCursor,
+	SiFastify,
+	SiExpress,
+	SiSupabase,
+	SiCoreldraw,
+	SiGooglegemini,
+	SiAnthropic,
+	SiGithubcopilot,
+	SiCursor,
 } from "react-icons/si";
 import { LuMail } from "react-icons/lu";
 import { FaBirthdayCake, FaPlusCircle } from "react-icons/fa";
@@ -101,11 +104,11 @@ export const certificates: Certificate[] = [
 	{
 		id: 1,
 		type: "Academic",
-		issuer: "University / Institute",
-		title: "Computer Science Certification",
+		issuer: "Federal University Oye Ekiti (FUOYE)",
+		title: "B.Sc Computer Science",
 		desc: "Comprehensive study of algorithms, data structures, software engineering, and computer architecture.",
 		counts: "(Core CS Curriculum)",
-		progress: "Completed",
+		progress: "400L",
 		mode: "general",
 		image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop",
 	},
@@ -192,7 +195,7 @@ export const projects: Project[] = [
 		link: "https://ttenda.vercel.app",
 		status: "Ongoing",
 		mode: "dev",
-		tech: ["React", "Node.js", "MongoDB"],
+		tech: ["React", "Node.js"],
 	},
 	{
 		id: 3,
@@ -225,7 +228,7 @@ export const projects: Project[] = [
 		link: "#",
 		status: "Completed",
 		mode: "design",
-		tech: ["Photoshop", "InDesign"],
+		tech: ["Photoshop"],
 	},
 	{
 		id: 6,
@@ -236,11 +239,10 @@ export const projects: Project[] = [
 		link: "#",
 		status: "Completed",
 		mode: "design",
-		tech: ["Illustrator", "Figma"],
+		tech: ["Illustrator", "Figma", "CorelDraw"],
 	},
 ];
 
-// --- WORK EXPERIENCE DATA ---
 export const allExperiences: Experience[] = [
 	{
 		id: 1,
@@ -253,7 +255,28 @@ export const allExperiences: Experience[] = [
 		logo: "https://i.pravatar.cc/150?u=techstart",
 	},
 	{
+		id: 101,
+		role: "UI/UX Design Intern",
+		company: "Tech Innovations Lab",
+		date: "Jan 2022 - Jun 2022",
+		dateVal: 202201,
+		description: `Collaborated with senior designers to create wireframes and high-fidelity mockups. Conducted user research to improve onboarding flows.`,
+		mode: "design",
+		logo: "https://i.pravatar.cc/150?u=techstart",
+	},
+	{
 		id: 2,
+		role: "Systems Research Assistant",
+		company: "University CS Lab",
+		date: "Jul 2022 - Dec 2022",
+		dateVal: 202207,
+		description:
+			"Assisted in research on distributed systems, running simulations and analyzing data output using Python and bash scripts.",
+		mode: "dev",
+		logo: "https://i.pravatar.cc/150?u=creative",
+	},
+	{
+		id: 102,
 		role: "HCI Research Assistant",
 		company: "University CS Lab",
 		date: "Jul 2022 - Dec 2022",
@@ -274,7 +297,27 @@ export const allExperiences: Experience[] = [
 		mode: "dev",
 	},
 	{
+		id: 103,
+		role: "Product Designer",
+		company: "FinTech Solutions",
+		date: "Jan 2023 - Dec 2023",
+		dateVal: 202301,
+		description:
+			"Spearheaded the redesign of the core banking application, improving user retention by 15% through intuitive navigation and better visual hierarchy.",
+		mode: "design",
+	},
+	{
 		id: 4,
+		role: "Frontend Architect",
+		company: "Innovate Inc.",
+		date: "Jan 2024 - Present",
+		dateVal: 202401,
+		description:
+			"Architecting scalable frontend solutions using Next.js and TypeScript. Optimizing performance and establishing core component libraries for engineering teams.",
+		mode: "dev",
+	},
+	{
+		id: 104,
 		role: "Design Technologist",
 		company: "Innovate Inc.",
 		date: "Jan 2024 - Present",
@@ -294,6 +337,16 @@ export const allExperiences: Experience[] = [
 		mode: "dev",
 	},
 	{
+		id: 105,
+		role: "Lead Product Designer",
+		company: "Enterprise Solutions Ltd.",
+		date: "Mar 2023 - Present",
+		dateVal: 202303,
+		description:
+			"Directing product design strategy across multiple client portfolios. Designing comprehensive design systems that reduced development time by 30%.",
+		mode: "design",
+	},
+	{
 		id: 6,
 		role: "Open Source Contributor",
 		company: "Various Repositories",
@@ -302,6 +355,16 @@ export const allExperiences: Experience[] = [
 		description:
 			"Actively contributing to open-source algorithmic libraries and modern React frameworks. Focus on code optimization, memory management, and comprehensive documentation.",
 		mode: "dev",
+	},
+	{
+		id: 106,
+		role: "Open Source Design Contributor",
+		company: "Various Repositories",
+		date: "Oct 2023 - Present",
+		dateVal: 202310,
+		description:
+			"Contributing to open-source UI libraries, designing accessible components, icon sets, and providing comprehensive usage guidelines for community adoption.",
+		mode: "design",
 	},
 ];
 
@@ -377,6 +440,7 @@ export const allTestimonials: Testimonial[] = [
 // --- SOCIAL LINKS DATA ---
 export const socialLinks: SocialLink[] = [
 	{ name: "GitHub", url: "https://github.com/nickfrostcode", icon: FaGithub },
+	{ name: "Email", url: "mailto:bensonicholas206@gmail.com", icon: LuMail },
 	{
 		name: "LinkedIn",
 		url: "https://linkedin.com/nickfrostcode",
@@ -394,10 +458,19 @@ export const socialLinks: SocialLink[] = [
 	},
 	{
 		name: "Whatsapp",
-		url: "https://whatsapp.com/@nickfrostcode",
+		url: "https://whatsapp.com/nickfrostcode",
 		icon: FaWhatsapp,
 	},
-	{ name: "Email", url: "mailto:bensonicholas206@gmail.com", icon: LuMail },
+	{
+		name: "Threads",
+		url: "https://threads.com/nickfrostcode",
+		icon: FaThreads,
+	},
+	{
+		name: "TikTok",
+		url: "https://tiktok.com/nickfrostcode",
+		icon: FaTiktok,
+	},
 ];
 
 // --- JOURNEY DATA ---
@@ -578,12 +651,12 @@ export const skillsData: SkillGroup[] = [
 export const awards: Award[] = [
 	{
 		id: 1,
-		title: "Outstanding Project Award",
-		issuer: "University Department of CS",
-		date: "2023",
+		title: "Developer of the Year",
+		issuer: "Federal University Oye Ekiti (FUOYE)",
+		date: "2026",
 		description:
-			"Awarded for designing and implementing the most scalable backend architecture during the annual capstone presentation.",
-		mode: "dev",
+			"Awarded for exceptional performance in software development and system design during the annual Developer Of The Year competition.",
+		mode: "general",
 		image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop",
 	},
 	{
@@ -605,5 +678,68 @@ export const awards: Award[] = [
 			"Recognized for leading a team of 15 developers and designers to launch a community-driven open source platform.",
 		mode: "general",
 		image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop",
+	},
+];
+
+export const blogPosts: BlogPost[] = [
+	{
+		id: 1,
+		title: "Architecting Scalable Microservices in Node.js",
+		excerpt:
+			"A deep dive into how we migrated from a monolith to microservices and optimized our database queries.",
+		image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
+		link: "#",
+		date: "2023-10-12",
+		mode: "dev",
+		category: ["Developer", "Computer Science"],
+		platform: "Medium",
+	},
+	{
+		id: 2,
+		title: "The Art of Minimalist UI Design",
+		excerpt:
+			"Exploring the principles of minimalism in modern web interfaces and how less often means more for the user.",
+		image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1000&auto=format&fit=crop",
+		link: "#",
+		date: "2023-11-05",
+		mode: "design",
+		category: ["Designer", "Design"],
+		platform: "LinkedIn",
+	},
+	{
+		id: 3,
+		title: "Navigating Career Growth as a Tech Lead",
+		excerpt:
+			"Lessons learned from leading cross-functional teams, managing expectations, and fostering a healthy engineering culture.",
+		image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop",
+		link: "#",
+		date: "2024-01-20",
+		mode: "general",
+		category: ["Leadership", "Career"],
+		platform: "Medium",
+	},
+	{
+		id: 4,
+		title: "Understanding React Server Components",
+		excerpt:
+			"Breaking down the paradigm shift in React 18+ and how Server Components change the way we build web applications.",
+		image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000&auto=format&fit=crop",
+		link: "#",
+		date: "2024-02-15",
+		mode: "dev",
+		category: ["Developer", "Software"],
+		platform: "Dev.to",
+	},
+	{
+		id: 5,
+		title: "Designing for Accessibility (a11y)",
+		excerpt:
+			"Practical steps to ensure your web designs are inclusive and accessible to everyone, going beyond just color contrast.",
+		image: "https://images.unsplash.com/photo-1586953208448-b95a7929a714?q=80&w=1000&auto=format&fit=crop",
+		link: "#",
+		date: "2024-03-10",
+		mode: "design",
+		category: ["Designer", "Design"],
+		platform: "LinkedIn",
 	},
 ];

@@ -44,7 +44,7 @@ export function getFeaturedProjects(projects: Project[], currentMode: ModeType):
 export function getSortedExperiences(experiences: Experience[], currentMode: ModeType): Experience[] {
 	// Get relevant items (current mode + general)
 	const relevantItems = currentMode === "general" 
-		? experiences 
+		? experiences.filter((e) => e.mode === "dev" || e.mode === "general")
 		: experiences.filter((e) => e.mode === currentMode || e.mode === "general");
 
 	// Sort chronologically (earlier first)

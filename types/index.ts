@@ -88,3 +88,15 @@ export interface TechCategory {
 	category: string;
 	items: string;
 }
+
+export interface BlogPost {
+	id: number;
+	title: string;
+	excerpt: string;
+	image: string;
+	link: string;
+	date: string;
+	mode: ModeType;
+	category: string[];
+	platform: string;
+}
