@@ -2,69 +2,67 @@
 
 # Portfolio — Nicholas Benson Olúwafẹ́rànmi
 
-_A single, data-driven personal website presenting one Computer Scientist through two lenses — Software Engineering and Visual Design — with three audience-tuned entry points._
+A visually stunning, dynamic, and data-driven personal portfolio designed to present one versatile professional through two distinct lenses: **Software Engineering** and **Visual Design**. 
 
-This repository contains the source code for the portfolio, built with a unique "mode system" that re-prioritizes content based on the visitor's context without duplicating the site.
-
----
-
-## 📖 Documentation Index
-
-The project architecture and design specifications have been separated into dedicated documents to maintain clarity:
-
-1. **[Architecture & Data Schema](architecture.md)** — Explains the Mode System, routing logic, SEO strategy, and TypeScript data models.
-2. **[Component Specifications](components.md)** — Detailed layouts and flows for pages (Home, About, Projects) and shared components (Navbar, Hero, Footer, etc.).
-3. **[Design System](design.md)** — Visual rules including color tokens, typography, surface logic, and anti-patterns.
+Built with an innovative **"Mode System"**, this portfolio adapts its content, themes, and messaging based on the visitor's chosen context (`general`, `dev`, or `design`) without duplicating the site structure.
 
 ---
+
+## ✨ Key Features
+
+- **The Mode System**: Visitors can experience the portfolio tailored to their specific interests:
+  - `/` (General) — A comprehensive view of both technical and design accomplishments.
+  - `/dev` (Software Engineering) — Prioritizes code, architecture, backend systems, and technical leadership.
+  - `/design` (Visual Design) — Showcases UI/UX, brand identity, accessibility, and pixel-perfect design work.
+- **Dynamic Content**: Data is dynamically filtered and reordered based on the active mode (e.g., the Resume page toggles between Software Developer and Visual Designer layouts instantly).
+- **Responsive & Modern UI**: Features smooth micro-interactions, clean typography, dark/light theme support, and a highly polished UI.
+- **Robust Page Architecture**: Features dedicated pages for `Projects`, `Blog`, `Resume`, and `About`, all deeply integrated with the Mode System.
 
 ## 🛠 Tech Stack
 
-- **Next.js (App Router)** — Routing and Server-Side Rendering
-- **TypeScript** — Type safety
-- **Tailwind CSS + shadcn/ui** — Styling and accessible UI primitives
-- **Motion** — Used sparingly for subtle transitions only
-- **MDX** — Blog content authoring
-- **Supabase/PostgreSQL** (or static JSON initially) — Projects, certifications, and structured data
+- **Framework**: [Next.js (App Router)](https://nextjs.org/) for routing and Server-Side Rendering
+- **Language**: [TypeScript](https://www.typescriptlang.org/) for strict type safety
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) for beautiful, accessible UI components
+- **Icons**: React Icons (Lucide & FontAwesome)
+- **State Management**: React Context API (for global Mode persistence)
 
----
+## 📖 Documentation Index
+
+The architecture and design specifications have been separated into dedicated documents to maintain clarity. You can find them in the `project-details/` directory:
+
+1. **[Architecture & Data Schema](project-details/architecture.md)** — Explains the Mode System, routing logic, SEO strategy, and TypeScript data models.
+2. **[Component Specifications](project-details/components.md)** — Detailed layouts and flows for pages (Home, About, Projects) and shared components.
+3. **[Design System](project-details/design.md)** — Visual rules including color tokens, typography, surface logic, and anti-patterns.
 
 ## 🚀 Quick Start (Local Development)
 
-_(Instructions to be expanded once project initialization is complete)_
+To run this portfolio locally:
 
 1. **Clone the repository:**
-
    ```bash
    git clone <repository-url>
    cd my-portfolio
    ```
 
 2. **Install dependencies:**
-
    ```bash
-   npm install
+   pnpm install
+   # or npm install / yarn install
    ```
 
-   _(or `yarn install` / `pnpm install` depending on preference)_
-
-3. **Set up environment variables:**
-   - Copy `.env.example` to `.env.local`
-   - Fill in the required API keys (e.g., Supabase connection strings, analytics IDs)
-
-4. **Run the development server:**
-
+3. **Run the development server:**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
-5. **Open the site:**
-   Visit [http://localhost:3000](http://localhost:3000) in your browser.
-   - For developer view, visit: [http://localhost:3000/dev](http://localhost:3000/dev)
-   - For designer view, visit: [http://localhost:3000/design](http://localhost:3000/design)
+4. **Explore the site:**
+   Open your browser and visit:
+   - General view: [http://localhost:3000](http://localhost:3000)
+   - Developer view: [http://localhost:3000/dev](http://localhost:3000/dev)
+   - Designer view: [http://localhost:3000/design](http://localhost:3000/design)
 
 ---
 
 ## 📄 License
 
-_(Add License Information Here)_
+MIT License. See `LICENSE` for more information.
