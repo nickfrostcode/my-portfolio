@@ -1,8 +1,8 @@
 <!-- @format -->
 
-# Portfolio — Nicholas Benson Olúwafẹ́rànmi
+# Portfolio — Nicholas Benson
 
-A visually stunning, dynamic, and data-driven personal portfolio designed to present one versatile professional through two distinct lenses: **Software Engineering** and **Visual Design**. 
+A visually stunning, dynamic, and data-driven personal portfolio designed to present one versatile professional through two distinct lenses: **Software Engineering** and **Visual Design**.
 
 Built with an innovative **"Mode System"**, this portfolio adapts its content, themes, and messaging based on the visitor's chosen context (`general`, `dev`, or `design`) without duplicating the site structure.
 
@@ -30,7 +30,7 @@ Built with an innovative **"Mode System"**, this portfolio adapts its content, t
 
 The architecture and design specifications have been separated into dedicated documents to maintain clarity. You can find them in the `project-details/` directory:
 
-1. **[Architecture & Data Schema](project-details/architecture.md)** — Explains the Mode System, routing logic, SEO strategy, and TypeScript data models.
+1. **[Architecture &amp; Data Schema](project-details/architecture.md)** — Explains the Mode System, routing logic, SEO strategy, and TypeScript data models.
 2. **[Component Specifications](project-details/components.md)** — Detailed layouts and flows for pages (Home, About, Projects) and shared components.
 3. **[Design System](project-details/design.md)** — Visual rules including color tokens, typography, surface logic, and anti-patterns.
 
@@ -39,24 +39,25 @@ The architecture and design specifications have been separated into dedicated do
 To run this portfolio locally:
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository-url>
    cd my-portfolio
    ```
-
 2. **Install dependencies:**
+
    ```bash
    pnpm install
    # or npm install / yarn install
    ```
-
 3. **Run the development server:**
+
    ```bash
    pnpm run dev
    ```
-
 4. **Explore the site:**
    Open your browser and visit:
+
    - General view: [http://localhost:3000](http://localhost:3000)
    - Developer view: [http://localhost:3000/dev](http://localhost:3000/dev)
    - Designer view: [http://localhost:3000/design](http://localhost:3000/design)
