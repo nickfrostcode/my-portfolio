@@ -24,8 +24,8 @@ export function Hero({ page = "home" }: { page: string }) {
 	return (
 		<section className='relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-border pt-12 pb-12'>
 			{/* Grid Background */}
-			<div className='absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px]'>
-				<div className='absolute inset-0 bg-background mask-[radial-gradient(ellipse_60%_60%_at_50%_50%,transparent_20%,black_100%)]'></div>
+			<div className='absolute inset-0 z-0 bg-[linear-gradient(to_right,#88888812_1px,transparent_1px),linear-gradient(to_bottom,#88888812_1px,transparent_1px)] bg-size-[40px_40px]'>
+				<div className='absolute inset-0 bg-background mask-[radial-gradient(ellipse_90%_90%_at_50%_50%,transparent_10%,black_100%)]'></div>
 			</div>
 
 			<div className='container px-4 md:px-6 relative z-10 w-full max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-16'>
@@ -34,12 +34,25 @@ export function Hero({ page = "home" }: { page: string }) {
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
-					className='flex flex-col items-center md:items-start text-center md:text-left space-y-8 max-w-xl'
+					className={cn(
+						"flex flex-col space-y-8 max-w-xl",
+						page === "home"
+							? "items-center md:items-start text-center md:text-left"
+							: "items-center text-center mx-auto mt-15",
+					)}
 				>
 					<div className='space-y-4'>
 						<h1 className='text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]'>
 							<span className='text-accent block text-4xl'>
-								{page === "home" ? "Hello, I'm" : "About me"}
+								{page === "home"
+									? "Hello, I'm"
+									: page === "projects"
+										? "Works by"
+										: page === "blog"
+											? "Articles by"
+											: page === "resume"
+												? "Resume of"
+												: "About"}
 							</span>
 							Nicholas Benson {/*Olúwafẹ́rànmi */}
 						</h1>
@@ -63,7 +76,12 @@ export function Hero({ page = "home" }: { page: string }) {
 						Nick Frost » @nickfrostcode
 					</div>
 
-					<div className='flex flex-col sm:flex-row gap-4 w-full sm:w-auto'>
+					<div
+						className={cn(
+							"flex flex-col sm:flex-row gap-4 w-full sm:w-auto",
+							page !== "home" && "justify-center",
+						)}
+					>
 						<Link
 							href='#projects'
 							className={cn(
@@ -86,25 +104,27 @@ export function Hero({ page = "home" }: { page: string }) {
 				</motion.div>
 
 				{/* Photo Column */}
-				<motion.div
-					initial={{ opacity: 0, scale: 0.95 }}
-					animate={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.8, delay: 0.2 }}
-					className='w-full max-w-sm md:max-w-md mx-auto md:mx-0 relative group'
-				>
-					<Image
-						src={lightPicture}
-						alt='Nicholas Benson'
-						className='w-full h-auto object-contain grayscale opacity-90 transition-all duration-700 hover:opacity-100 mask-[linear-gradient(to_bottom,black_90%,transparent_100%)] block dark:hidden'
-						priority
-					/>
-					<Image
-						src={darkPicture}
-						alt='Nicholas Benson'
-						className='w-full h-auto object-contain grayscale opacity-90 transition-all duration-700 hover:opacity-100 mask-[linear-gradient(to_bottom,black_90%,transparent_100%)] hidden dark:block'
-						priority
-					/>
-				</motion.div>
+				{page === "home" && (
+					<motion.div
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className='w-full max-w-sm md:max-w-md mx-auto md:mx-0 relative group'
+					>
+						<Image
+							src={lightPicture}
+							alt='Nicholas Benson'
+							className='w-full h-auto object-contain grayscale opacity-90 transition-all duration-700 hover:opacity-100 mask-[linear-gradient(to_bottom,black_90%,transparent_100%)] block dark:hidden'
+							priority
+						/>
+						<Image
+							src={darkPicture}
+							alt='Nicholas Benson'
+							className='w-full h-auto object-contain grayscale opacity-90 transition-all duration-700 hover:opacity-100 mask-[linear-gradient(to_bottom,black_90%,transparent_100%)] hidden dark:block'
+							priority
+						/>
+					</motion.div>
+				)}
 			</div>
 		</section>
 	);

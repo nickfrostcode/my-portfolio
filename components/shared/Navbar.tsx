@@ -36,10 +36,10 @@ export function Navbar() {
 	};
 
 	const links = [
-		{ label: "About", href: "/about" },
-		{ label: "Projects", href: isLanding ? "#projects" : "/#projects" },
-		{ label: "Blog", href: "#" },
-		{ label: "Resume", href: "#" },
+		{ label: "About", href: isLanding ? "#about" : "/about" },
+		{ label: "Projects", href: isLanding ? "#projects" : "/projects" },
+		{ label: "Blog", href: isLanding ? "#blog" : "/blog" },
+		{ label: "Resume", href: isLanding ? "#resume" : "/resume" },
 	];
 
 	const toggleTheme = () => {
