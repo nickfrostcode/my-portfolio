@@ -47,7 +47,6 @@ export interface Certificate {
 	issuer: string;
 	title: string;
 	desc: string;
-	counts: string;
 	progress: string;
 	mode: ModeType;
 	image?: string;

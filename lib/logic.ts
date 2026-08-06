@@ -1,4 +1,4 @@
-import { Experience, ModeType, Project, Testimonial } from "@/types";
+import { Experience, ModeType, Project } from "@/types";
 
 /**
  * Generic function to rearrange items based on mode.
@@ -42,20 +42,22 @@ export function getFeaturedProjects(projects: Project[], currentMode: ModeType):
  * Filters by mode and sorts chronologically based on dateVal.
  */
 export function getSortedExperiences(experiences: Experience[], currentMode: ModeType): Experience[] {
-	// Get relevant items (current mode + general)
-	const relevantItems = currentMode === "general" 
-		? experiences.filter((e) => e.mode === "dev" || e.mode === "general")
-		: experiences.filter((e) => e.mode === currentMode || e.mode === "general");
-
-	// Sort chronologically (earlier first)
-	const chronological = [...relevantItems].sort((a, b) => a.dateVal - b.dateVal);
-	
-	// If not general mode, pull exact matches to the front while maintaining their relative chronological order
-	if (currentMode !== "general") {
-		const exact = chronological.filter(e => e.mode === currentMode);
-		const general = chronological.filter(e => e.mode === "general");
-		return [...exact, ...general];
+	// General mode: show ALL experiences sorted latest first
+	if (currentMode === "general") {
+		return [...experiences].sort((a, b) => b.dateVal - a.dateVal);
 	}
+
+	// Specific mode (dev or design)
+	const otherMode = currentMode === "dev" ? "design" : "dev";
 	
-	return chronological;
+	// Get general and specific mode experiences, sorted latest first
+	const primaryItems = experiences.filter((e) => e.mode === currentMode || e.mode === "general");
+	const sortedPrimary = [...primaryItems].sort((a, b) => b.dateVal - a.dateVal);
+	
+	// Get other mode experiences, sorted latest first
+	const secondaryItems = experiences.filter((e) => e.mode === otherMode);
+	const sortedSecondary = [...secondaryItems].sort((a, b) => b.dateVal - a.dateVal);
+	
+	// Append the secondary mode experiences to the end
+	return [...sortedPrimary, ...sortedSecondary];
 }
