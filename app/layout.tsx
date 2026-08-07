@@ -36,24 +36,28 @@ export default async function RootLayout({
 }>) {
 	const headersList = await headers();
 	const mode = (headersList.get("x-portfolio-mode") as Mode) || "general";
+	const host = headersList.get("host") || "";
+	const isSubdomain = host.startsWith("dev.") || host.startsWith("design.");
 
 	return (
 		<html
 			lang='en'
+			data-scroll-behavior="smooth"
 			className={cn(
-				"h-full antialiased font-sans",
+            "h-full antialiased font-sans",
+            "scroll-smooth",
 				generalSans.variable,
 				jetBrainsMono.variable,
-			)}
+         )}
+         suppressHydrationWarning
 		>
 			<body className='min-h-full flex flex-col'>
 				<ThemeProvider
 					attribute="class"
-					defaultTheme="system"
-					enableSystem
+					defaultTheme="dark"
 					disableTransitionOnChange
 				>
-					<ModeProvider mode={mode}>
+					<ModeProvider mode={mode} isSubdomain={isSubdomain}>
 						<Navbar />
 						<main className="flex-1">
 							{children}

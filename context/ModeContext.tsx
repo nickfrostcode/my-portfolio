@@ -8,6 +8,7 @@ export type Mode = "general" | "dev" | "design";
 
 interface ModeContextType {
 	mode: Mode;
+	isSubdomain: boolean;
 }
 
 const ModeContext = createContext<ModeContextType | undefined>(undefined);
@@ -15,21 +16,30 @@ const ModeContext = createContext<ModeContextType | undefined>(undefined);
 export function ModeProvider({
 	children,
 	mode: initialMode,
+	isSubdomain = false,
 }: {
 	children: ReactNode;
 	mode: Mode;
+	isSubdomain?: boolean;
 }) {
 	const pathname = usePathname();
 	const [mode, setMode] = useState<Mode>(initialMode);
 
 	useEffect(() => {
-		if (pathname.startsWith("/dev")) setMode("dev");
-		else if (pathname.startsWith("/design")) setMode("design");
-		else setMode("general");
-	}, [pathname]);
+		if (isSubdomain) {
+			const host = window.location.hostname;
+			if (host.startsWith("dev.")) setMode("dev");
+			else if (host.startsWith("design.")) setMode("design");
+			else setMode("general");
+		} else {
+			if (pathname.startsWith("/dev")) setMode("dev");
+			else if (pathname.startsWith("/design")) setMode("design");
+			else setMode("general");
+		}
+	}, [pathname, isSubdomain]);
 
 	return (
-		<ModeContext.Provider value={{ mode }}>{children}</ModeContext.Provider>
+		<ModeContext.Provider value={{ mode, isSubdomain }}>{children}</ModeContext.Provider>
 	);
 }
 
