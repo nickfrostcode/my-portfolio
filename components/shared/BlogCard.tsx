@@ -1,7 +1,7 @@
 /** @format */
 
 import Image from "next/image";
-import Link from "next/link";
+import { ModeLink } from "@/components/shared/ModeLink";
 import {
 	LuCodeXml as Code2,
 	LuPalette as Palette,
@@ -15,11 +15,11 @@ interface BlogCardProps {
 export function BlogCard({ post }: BlogCardProps) {
 	return (
 		<div className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'>
-			<Link href={post.link} target={post.link !== "#" ? "_blank" : "_self"} className='absolute inset-0 z-10'>
+			<ModeLink href={post.link} target={post.link !== "#" ? "_blank" : "_self"} className='absolute inset-0 z-10'>
 				<span className='sr-only'>
 					Read {post.title} Article
 				</span>
-			</Link>
+			</ModeLink>
 
 			{/* Post Image */}
 			<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>

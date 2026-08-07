@@ -2,10 +2,27 @@
 "use client";
 
 import Image from "next/image";
+import { motion, AnimatePresence, Variants } from "motion/react";
 import { useMode } from "@/context/ModeContext";
 import { rearrangeByMode } from "@/lib/logic";
 import { certificates, awards } from "@/lib/data";
 import { LuAward, LuFileBadge } from "react-icons/lu";
+
+const containerVariants: Variants = {
+	hidden: { opacity: 0 },
+	show: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+		},
+	},
+};
+
+const itemVariants: Variants = {
+	hidden: { opacity: 0, scale: 0.9, y: 20 },
+	show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+	exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } }
+};
 
 export function CredentialsGrid() {
 	const { mode } = useMode();
@@ -14,7 +31,13 @@ export function CredentialsGrid() {
 	const sortedAwards = rearrangeByMode(awards, mode);
 
 	return (
-		<section className='w-full py-20 bg-card/50 space-y-24 border-b border-border'>
+		<motion.section 
+			initial={{ opacity: 0, y: 30 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, margin: "-50px" }}
+			transition={{ duration: 0.5 }}
+			className='w-full py-20 bg-card/50 space-y-24 border-b border-border'
+		>
 			{/* CERTIFICATIONS */}
 			<div className='container px-4 md:px-6 w-full max-w-7xl mx-auto space-y-10'>
 				<div className='flex items-center gap-4'>
@@ -28,13 +51,25 @@ export function CredentialsGrid() {
 					</div>
 				</div>
 
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{sortedCerts.map((cert) => (
-						<div
-							key={cert.id}
-							className='group flex flex-col bg-background border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
-						>
-							{/* Image */}
+				<motion.div 
+					variants={containerVariants}
+					initial="hidden"
+					whileInView="show"
+					viewport={{ once: true, margin: "-50px" }}
+					className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+				>
+					<AnimatePresence mode="popLayout">
+						{sortedCerts.map((cert) => (
+							<motion.div
+								key={cert.id}
+								layout
+								variants={itemVariants}
+								initial="hidden"
+								animate="show"
+								exit="exit"
+								className='group flex flex-col bg-background border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
+							>
+								{/* Image */}
 							<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
 								{cert.image ? (
 									<Image
@@ -68,9 +103,10 @@ export function CredentialsGrid() {
 									{cert.desc}
 								</p>
 							</div>
-						</div>
+						</motion.div>
 					))}
-				</div>
+					</AnimatePresence>
+				</motion.div>
 			</div>
 
 			{/* AWARDS */}
@@ -86,13 +122,25 @@ export function CredentialsGrid() {
 					</div>
 				</div>
 
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{sortedAwards.map((award) => (
-						<div
-							key={award.id}
-							className='group flex flex-col bg-background border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
-						>
-							{/* Image */}
+				<motion.div 
+					variants={containerVariants}
+					initial="hidden"
+					whileInView="show"
+					viewport={{ once: true, margin: "-50px" }}
+					className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+				>
+					<AnimatePresence mode="popLayout">
+						{sortedAwards.map((award) => (
+							<motion.div
+								key={award.id}
+								layout
+								variants={itemVariants}
+								initial="hidden"
+								animate="show"
+								exit="exit"
+								className='group flex flex-col bg-background border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
+							>
+								{/* Image */}
 							<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
 								{award.image ? (
 									<Image
@@ -126,10 +174,11 @@ export function CredentialsGrid() {
 									{award.description}
 								</p>
 							</div>
-						</div>
-					))}
-				</div>
+						</motion.div>
+						))}
+					</AnimatePresence>
+				</motion.div>
 			</div>
-		</section>
+		</motion.section>
 	);
 }

@@ -14,11 +14,10 @@ import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import { LuStar, LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useMode } from "@/context/ModeContext";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 import { allTestimonials } from "@/lib/data";
 import { rearrangeByMode } from "@/lib/logic";
+import Link from "next/link";
 
 export function Testimonials() {
 	const { mode } = useMode();

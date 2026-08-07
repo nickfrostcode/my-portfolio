@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-import { motion, useMotionValue, animate } from "motion/react";
+import { motion, useMotionValue, animate, AnimatePresence } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -101,37 +101,44 @@ export function TimelineScroll({ items }: TimelineScrollProps) {
 					{/* Start Spacer to avoid edge fade */}
 					<div className='w-4 md:w-10 shrink-0' />
 
-					{items.map((item) => {
-						const Icon = item.icon;
-						return (
-							<div
-								key={item.id}
-								className='relative flex flex-col items-center shrink-0 w-70 md:w-85 z-10'
-							>
-								{/* The Node Dot or Logo */}
-								<div className='relative w-11 h-11 md:w-13 md:h-13 rounded-full bg-background border-2 md:border-4 border-muted-foreground z-20 hover:scale-105 transition-transform duration-300 flex items-center justify-center overflow-hidden shrink-0 mt-0'>
-									{item.logo ? (
-										<Image
-											src={item.logo}
-											alt="Logo"
-											fill
-											className='object-cover'
-										/>
-									) : Icon ? (
-										<Icon className='w-5 h-5 text-accent' />
-									) : (
-										<div className='w-2 h-2 md:w-3 md:h-3 rounded-full bg-accent' />
-									)}
-								</div>
+					<AnimatePresence mode="popLayout">
+						{items.map((item) => {
+							const Icon = item.icon;
+							return (
+								<motion.div
+									key={item.id}
+									layout
+									initial={{ opacity: 0, scale: 0.8 }}
+									animate={{ opacity: 1, scale: 1 }}
+									exit={{ opacity: 0, scale: 0.8 }}
+									transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+									className='relative flex flex-col items-center shrink-0 w-70 md:w-85 z-10'
+								>
+									{/* The Node Dot or Logo */}
+									<div className='relative w-11 h-11 md:w-13 md:h-13 rounded-full bg-background border-2 md:border-4 border-muted-foreground z-20 hover:scale-105 transition-transform duration-300 flex items-center justify-center overflow-hidden shrink-0 mt-0'>
+										{item.logo ? (
+											<Image
+												src={item.logo}
+												alt="Logo"
+												fill
+												className='object-cover'
+											/>
+										) : Icon ? (
+											<Icon className='w-5 h-5 text-accent' />
+										) : (
+											<div className='w-2 h-2 md:w-3 md:h-3 rounded-full bg-accent' />
+										)}
+									</div>
 
-								{/* Connecting vertical line */}
-								<div className='w-0.5 h-6 md:h-10 bg-border/50 z-10' />
+									{/* Connecting vertical line */}
+									<div className='w-0.5 h-6 md:h-10 bg-border/50 z-10' />
 
-                        {/* The Card */}
-								{item.card}
-							</div>
-						);
-					})}
+									{/* The Card */}
+									{item.card}
+								</motion.div>
+							);
+						})}
+					</AnimatePresence>
 
 					{/* End Spacer to avoid edge fade */}
 					<div className='w-8 md:w-36 shrink-0' />

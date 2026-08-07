@@ -5,6 +5,7 @@
 import { useMode } from "@/context/ModeContext";
 import { LuBriefcase, LuCodeXml, LuPalette } from "react-icons/lu";
 import { TimelineScroll } from "./TimelineScroll";
+import { motion } from "motion/react";
 
 import { allExperiences } from "@/lib/data";
 import { getSortedExperiences } from "@/lib/logic";
@@ -48,8 +49,12 @@ export function WorkExperience() {
 	}));
 
 	return (
-		<section
+		<motion.section
 			id='experience'
+			initial={{ opacity: 0, y: 30 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, margin: "-50px" }}
+			transition={{ duration: 0.5, delay: 0.1 }}
 			className='relative w-full py-10 overflow-hidden border-b border-border bg-background'
 		>
 			{/* Dot Grid Background */}
@@ -80,6 +85,6 @@ export function WorkExperience() {
 			</div>
 
 			<TimelineScroll items={timelineItems} />
-		</section>
+		</motion.section>
 	);
 }

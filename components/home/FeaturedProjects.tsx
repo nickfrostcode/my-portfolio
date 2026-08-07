@@ -1,7 +1,7 @@
 /** @format */
 "use client";
 
-import Link from "next/link";
+import { ModeLink } from "@/components/shared/ModeLink";
 import { LuArrowRight as ArrowRight } from "react-icons/lu";
 import { useMode } from "@/context/ModeContext";
 import { ComingSoonProjects } from "../shared/ComingSoonProjects";
@@ -10,6 +10,7 @@ import { ProjectCard } from "@/components/shared/ProjectCard";
 import { projects } from "@/lib/data";
 import { getFeaturedProjects } from "@/lib/logic";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "motion/react";
 
 export function FeaturedProjects() {
 	const { mode } = useMode();
@@ -26,7 +27,13 @@ export function FeaturedProjects() {
 				<div className='absolute inset-0 mask-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_10%,black_100%)]'></div>
 			</div>
 
-			<div className='container px-4 md:px-6 relative z-10 w-full max-w-7xl mx-auto space-y-16'>
+			<motion.div 
+				initial={{ opacity: 0, y: 30 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true, margin: "-50px" }}
+				transition={{ duration: 0.5 }}
+				className='container px-4 md:px-6 relative z-10 w-full max-w-7xl mx-auto space-y-16'
+			>
 				{/* Section Title */}
 				<div className='text-center space-y-2'>
 					<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
@@ -38,15 +45,26 @@ export function FeaturedProjects() {
 				</div>
 
 				{/* Projects Grid */}
-				<div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-					{displayProjects.map((project) => (
-						<ProjectCard key={project.id} project={project} />
-					))}
-				</div>
+				<motion.div layout className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+					<AnimatePresence mode="popLayout">
+						{displayProjects.map((project) => (
+							<motion.div
+								key={project.id}
+								layout
+								initial={{ opacity: 0, scale: 0.9 }}
+								animate={{ opacity: 1, scale: 1 }}
+								exit={{ opacity: 0, scale: 0.9 }}
+								transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+							>
+								<ProjectCard project={project} />
+							</motion.div>
+						))}
+					</AnimatePresence>
+				</motion.div>
 
 				{/* View All Projects CTA */}
 				<div className='flex justify-center md:w-1/3 w-full mx-auto md:px-4 -mt-10 relative z-20'>
-					<Link
+					<ModeLink
 						href='/projects'
 						className={cn(
 							"text-background font-semibold bg-foreground h-10 w-full flex justify-center items-center gap-2 rounded-full hover:bg-foreground/90",
@@ -54,11 +72,11 @@ export function FeaturedProjects() {
 					>
 						View All Projects
 						<ArrowRight className='w-4 h-4' />
-					</Link>
+					</ModeLink>
 				</div>
 				<hr className='my-10' />
 				<ComingSoonProjects />
-			</div>
+			</motion.div>
 		</section>
 	);
 }

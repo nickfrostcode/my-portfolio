@@ -2,11 +2,19 @@
 
 "use client";
 
+import { motion } from "motion/react";
 import { journey } from "@/lib/data";
 import { TimelineScroll } from "@/components/shared/TimelineScroll";
 
 export function Journey() {
-	const timelineItems = journey.map((item) => ({
+	// Sort by date (year) in descending order to ensure the latest is always first
+	const sortedJourney = [...journey].sort((a, b) => {
+		const yearA = parseInt(a.date) || 0;
+		const yearB = parseInt(b.date) || 0;
+		return yearB - yearA;
+	});
+
+	const timelineItems = sortedJourney.map((item) => ({
 		id: item.id,
 		icon: item.icon,
 		card: (
@@ -31,7 +39,13 @@ export function Journey() {
 	}));
 
 	return (
-		<section className='relative w-full py-20 overflow-hidden border-border dark:border-0 border-y'>
+		<motion.section 
+			initial={{ opacity: 0, y: 30 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, margin: "-50px" }}
+			transition={{ duration: 0.5 }}
+			className='relative w-full py-20 overflow-hidden border-border dark:border-0 border-y'
+		>
 			{/* Diagonal Pattern Background */}
 			<div className='absolute inset-0 z-0 bg-[linear-gradient(45deg,transparent_25%,rgba(128,128,128,0.05)_50%,transparent_75%,transparent_100%)] bg-size-[20px_20px]'>
 				<div className='absolute inset-0 bg-background mask-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_10%,black_100%)]'></div>
@@ -53,6 +67,6 @@ export function Journey() {
 			</div>
 
 			<TimelineScroll items={timelineItems} />
-		</section>
+		</motion.section>
 	);
 }

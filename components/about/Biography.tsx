@@ -12,42 +12,72 @@ export function Biography() {
 
 				<div className='text-md md:text-lg text-muted-foreground leading-relaxed md:leading-loose space-y-10 text-pretty'>
 					<p>
-						I'm a highly motivated
-						Computer Scientist and Software Engineer bridging the gap
-						between hardcore engineering and aesthetic visual design.
+						I'm a Computer Scientist, Software Developer, and Graphic
+						Designer who enjoys building digital products that combine
+						reliable engineering with thoughtful design. I believe great
+						software is created when technology and design work together,
+						not as separate disciplines but as complementary parts of the
+						same solution.
 					</p>
-					<p className="-mt-7">
-						My journey didn't start with a perfectly planned curriculum. It began with a sheer curiosity about how digital systems were built. I spent countless nights disassembling open-source projects, breaking code just to see how to fix it, and realizing that programming wasn't just about syntax—it was about solving human problems. This curiosity eventually pushed me to pursue a formal degree in Computer Science, where I fell in love with the underlying architecture of the web, algorithms, and the raw performance of scalable systems.
+
+					<p className='-mt-7'>
+						My journey into technology started with a genuine curiosity
+						about how software works and how digital products are built.
+						That curiosity eventually led me to study Computer Science,
+						where I developed a strong foundation in software engineering,
+						algorithms, databases, and modern web technologies. Along the
+						way, I discovered graphic design, which broadened my
+						perspective on creating products that are not only functional
+						but also intuitive and visually refined.
 					</p>
-					
-					<blockquote className="border-l-4 border-accent pl-6 italic text-foreground/70 text-xl font-medium leading-relaxed">
-						"Great software isn't just written; it's engineered with empathy for the user and respect for the machine."
+
+					<blockquote className='border-l-4 border-accent pl-6 italic text-foreground/70 text-xl font-medium leading-relaxed'>
+						"I believe the best digital products are built when strong
+						engineering meets thoughtful design."
 					</blockquote>
 
 					<p>
-						With a strong academic foundation in algorithms and software
-						architecture, I specialize in building scalable systems that
-						don't just work flawlessly behind the scenes, but also provide
-						an intuitive, engaging, and premium experience for users on
-						the frontend. I thrive in environments where technical
-						complexity meets creative design.
+						Today, I build modern web applications from the frontend to
+						the backend, with a focus on writing maintainable code,
+						designing scalable systems, and delivering experiences that
+						feel simple and reliable to the people who use them. Whether
+						it's architecting an application, developing reusable
+						components, or improving performance, I enjoy solving problems
+						through practical and well-structured software.
 					</p>
-					
-					<div className="space-y-10">
+
+					<div className='space-y-10'>
 						<div>
-							<h3 className="text-xl md:text-2xl font-semibold text-foreground">Why design AND engineering?</h3>
+							<h3 className='text-xl md:text-2xl font-semibold text-foreground'>
+								Why both design and engineering?
+							</h3>
 							<p>
-								Early in my career, I noticed a massive disconnect between backend architecture and frontend user experience. Engineers would build incredibly robust, scalable systems that were ultimately frustrating to use. Designers would craft beautiful interfaces that were practically impossible to implement efficiently. I decided to live in the intersection of both. By understanding the constraints of the backend and the nuances of visual design, I can architect solutions that are both technically sound and visually stunning.
+								For me, development and design have never been separate
+								interests. While software engineering provides the
+								structure, logic, and reliability behind an application,
+								design shapes how people experience and interact with
+								it. Having experience in both disciplines allows me to
+								bridge the gap between technical implementation and user
+								experience, creating products that are practical,
+								accessible, and enjoyable to use.
 							</p>
 						</div>
 
 						<div>
-							<h3 className="text-xl md:text-2xl font-semibold text-foreground">What drives my work?</h3>
+							<h3 className='text-xl md:text-2xl font-semibold text-foreground'>
+								What drives my work?
+							</h3>
 							<p>
-								Impact and performance. Whether I'm designing a brand identity, optimizing a PostgreSQL database, or animating a React component, my goal is always to create something that feels lightning-fast and native. Beyond the editor, I'm passionate about exploring
-								human-computer interaction, contributing to open-source
-								projects, and constantly challenging myself to learn new tools
-								in the rapidly evolving AI and software landscapes.
+								I'm motivated by continuous learning and meaningful
+								problem-solving. I enjoy exploring new technologies,
+								improving my skills, and taking on projects that
+								challenge me to think differently. Beyond development
+								and design, I've also had the opportunity to serve in
+								student leadership, experiences that strengthened my
+								ability to collaborate, communicate, and build solutions
+								that create a positive impact within my community. Every
+								project I work on is another opportunity to grow while
+								creating something useful, reliable, and purposeful.
 							</p>
 						</div>
 					</div>

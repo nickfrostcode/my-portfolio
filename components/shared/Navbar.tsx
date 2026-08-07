@@ -6,7 +6,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMode } from "@/context/ModeContext";
 import { useTheme } from "next-themes";
-import { LuMoon as Moon, LuSun as Sun, LuMonitor as Monitor, LuMenu as Menu, LuX as X, LuChevronDown as ChevronDown } from "react-icons/lu";
+import {
+	LuMoon,
+	LuSun,
+	LuMenu,
+	LuX,
+	LuChevronDown,
+	LuPalette,
+	LuCodeXml,
+} from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
@@ -22,37 +30,53 @@ export function Navbar() {
 
 	useEffect(() => setMounted(true), []);
 
-	const isLanding = ["/", "/dev", "/design"].includes(pathname);
 	const activeMode = pathname.startsWith("/dev")
 		? "dev"
 		: pathname.startsWith("/design")
 			? "design"
 			: "general";
 
-	const getHref = (hash: string, path: string) => {
-		if (isLanding) return hash;
+	const getHref = (path: string) => {
 		if (activeMode === "general") return path;
-		return `/${activeMode}${path}`;
+		return path === "/" ? `/${activeMode}` : `/${activeMode}${path}`;
 	};
 
 	const links = [
-		{ label: "About", href: isLanding ? "#about" : "/about" },
-		{ label: "Projects", href: isLanding ? "#projects" : "/projects" },
-		{ label: "Blog", href: isLanding ? "#blog" : "/blog" },
-		{ label: "Resume", href: isLanding ? "#resume" : "/resume" },
+		{ label: "About", href: getHref("/about") },
+		{ label: "Projects", href: getHref("/projects") },
+		{ label: "Blog", href: getHref("/blog") },
+		{ label: "Resume", href: getHref("/resume") },
 	];
+
+	const getModePath = (targetMode: "general" | "dev" | "design") => {
+		let currentPath = pathname;
+		if (currentPath.startsWith("/dev")) {
+			currentPath = currentPath.replace("/dev", "");
+		} else if (currentPath.startsWith("/design")) {
+			currentPath = currentPath.replace("/design", "");
+		}
+		
+		if (currentPath === "") currentPath = "/";
+
+		if (targetMode === "general") {
+			return currentPath;
+		} else {
+			return currentPath === "/" ? `/${targetMode}` : `/${targetMode}${currentPath}`;
+		}
+	};
 
 	const toggleTheme = () => {
 		if (theme === "light") setTheme("dark");
-		else if (theme === "dark") setTheme("system");
 		else setTheme("light");
 	};
 
 	const renderThemeIcon = () => {
-		if (!mounted) return <Monitor className='w-4 h-4' />;
-		if (theme === "dark") return <Moon className='w-4 h-4' />;
-		if (theme === "light") return <Sun className='w-4 h-4' />;
-		return <Monitor className='w-4 h-4' />;
+		if (!mounted) return null;
+		return theme === "dark" ? (
+			<LuMoon className='w-4 h-4' />
+		) : (
+			<LuSun className='w-4 h-4' />
+		);
 	};
 
 	return (
@@ -104,10 +128,16 @@ export function Navbar() {
 				{/* Left Logo */}
 				<div className='flex items-center gap-3 text-background'>
 					<div className='w-8 h-8 rounded-full bg-background text-foreground flex items-center justify-center font-bold text-lg leading-none'>
-						N
+						{mode === "dev" ? (
+							<LuCodeXml size={20} strokeWidth={3} />
+						) : mode === "design" ? (
+							<LuPalette size={20} strokeWidth={3} />
+						) : (
+							<LuCodeXml size={20} strokeWidth={3} />
+						)}
 					</div>
 					<Link
-						href={getHref("#", "/")}
+						href={getHref("/")}
 						className='font-semibold text-lg tracking-tight hover:text-accent transition-colors'
 					>
 						Nicholas
@@ -136,7 +166,7 @@ export function Navbar() {
 						>
 							{activeMode}{" "}
 							<motion.div animate={{ rotate: modeMenuOpen ? 180 : 0 }}>
-								<ChevronDown className='w-4 h-4' />
+								<LuChevronDown className='w-4 h-4' />
 							</motion.div>
 						</button>
 						<AnimatePresence>
@@ -194,23 +224,32 @@ export function Navbar() {
 										</div>
 										<div className='flex flex-col pb-4 overflow-hidden rounded-b-3xl gap-3 pl-3'>
 											<Link
-												href='/'
-												onClick={() => setModeMenuOpen(false)}
-												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold'
+												href={getModePath("general")}
+												onClick={() => {
+													setModeMenuOpen(false);
+													setIsOpen(false);
+												}}
+												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold py-1'
 											>
 												General
 											</Link>
 											<Link
-												href='/dev'
-												onClick={() => setModeMenuOpen(false)}
-												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold'
+												href={getModePath("dev")}
+												onClick={() => {
+													setModeMenuOpen(false);
+													setIsOpen(false);
+												}}
+												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold py-1'
 											>
 												Developer
 											</Link>
 											<Link
-												href='/design'
-												onClick={() => setModeMenuOpen(false)}
-												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold'
+												href={getModePath("design")}
+												onClick={() => {
+													setModeMenuOpen(false);
+													setIsOpen(false);
+												}}
+												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold py-1'
 											>
 												Designer
 											</Link>
@@ -239,7 +278,7 @@ export function Navbar() {
 						variant='secondary'
 						className='rounded-3xl font-semibold bg-background hover:bg-card'
 					>
-						<Link href={isLanding ? "#contact" : "/#contact"}>Contact</Link>
+						<Link href='#contact'>Contact</Link>
 					</Button>
 				</div>
 			</nav>
@@ -301,7 +340,7 @@ export function Navbar() {
 								N
 							</div>
 							<Link
-								href={getHref("#", "/")}
+								href={getHref("/")}
 								className='font-semibold text-lg tracking-tight hover:text-accent transition-colors'
 							>
 								Nicholas
@@ -330,7 +369,7 @@ export function Navbar() {
 											exit={{ rotate: 90, opacity: 0 }}
 											transition={{ duration: 0.15 }}
 										>
-											<X className='w-5 h-5' />
+											<LuX className='w-5 h-5' />
 										</motion.div>
 									) : (
 										<motion.div
@@ -340,7 +379,7 @@ export function Navbar() {
 											exit={{ rotate: -90, opacity: 0 }}
 											transition={{ duration: 0.15 }}
 										>
-											<Menu className='w-5 h-5' />
+											<LuMenu className='w-5 h-5' />
 										</motion.div>
 									)}
 								</AnimatePresence>
@@ -365,7 +404,7 @@ export function Navbar() {
 
 						<div className='grid grid-cols-3 gap-2 bg-background/10 p-1 rounded-md'>
 							<Link
-								href='/'
+								href={getModePath("general")}
 								onClick={() => setIsOpen(false)}
 								className={cn(
 									"text-center py-2 text-sm rounded-md transition-colors",
@@ -377,7 +416,7 @@ export function Navbar() {
 								General
 							</Link>
 							<Link
-								href='/dev'
+								href={getModePath("dev")}
 								onClick={() => setIsOpen(false)}
 								className={cn(
 									"text-center py-2 text-sm rounded-md transition-colors",
@@ -389,7 +428,7 @@ export function Navbar() {
 								Dev
 							</Link>
 							<Link
-								href='/design'
+								href={getModePath("design")}
 								onClick={() => setIsOpen(false)}
 								className={cn(
 									"text-center py-2 text-sm rounded-md transition-colors",
@@ -406,10 +445,7 @@ export function Navbar() {
 							variant='secondary'
 							className='w-full rounded-md font-semibold bg-background text-foreground'
 						>
-							<Link
-								href={isLanding ? "#contact" : "/#contact"}
-								onClick={() => setIsOpen(false)}
-							>
+							<Link href={"#contact"} onClick={() => setIsOpen(false)}>
 								Contact
 							</Link>
 						</Button>

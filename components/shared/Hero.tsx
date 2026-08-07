@@ -4,12 +4,12 @@
 
 import { useMode } from "@/context/ModeContext";
 import { buttonVariants } from "@/components/ui/button";
+import { ModeLink } from "@/components/shared/ModeLink";
 import {
 	LuArrowRight as ArrowRight,
 	LuDownload as Download,
 } from "react-icons/lu";
 import Image from "next/image";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
@@ -73,7 +73,7 @@ export function Hero({ page = "home" }: { page: string }) {
 					</div>
 
 					<div className='font-mono text-sm uppercase tracking-widest font-bold text-accent dark:text-accent bg-muted/20 px-4 py-2 rounded-md border border-border/30'>
-						Nick Frost » @nickfrostcode
+						Nick Frost // @nickfrostcode
 					</div>
 
 					<div
@@ -82,24 +82,24 @@ export function Hero({ page = "home" }: { page: string }) {
 							page !== "home" && "justify-center",
 						)}
 					>
-						<Link
-							href='#projects'
+						<ModeLink
+							href='/projects'
 							className={cn(
 								buttonVariants({ size: "lg" }),
 								"gap-2 h-12 px-8 text-base",
 							)}
 						>
 							View Projects <ArrowRight className='w-4 h-4' />
-						</Link>
-						<Link
-							href='#'
+						</ModeLink>
+						<ModeLink
+							href='/resume'
 							className={cn(
 								buttonVariants({ size: "lg", variant: "outline" }),
 								"gap-2 h-12 px-8 text-base bg-background/50 backdrop-blur-sm",
 							)}
 						>
 							Download CV <Download className='w-4 h-4' />
-						</Link>
+						</ModeLink>
 					</div>
 				</motion.div>
 

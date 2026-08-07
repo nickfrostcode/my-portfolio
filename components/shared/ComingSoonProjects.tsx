@@ -1,35 +1,18 @@
 /** @format */
 
 import { Badge } from "@/components/ui/badge";
-
-const upcomingProjects = [
-	{
-		id: 1,
-		title: "CreaTub",
-		description:
-			"A collaboration repository for designers and creatives to share their work and get inspired by others.",
-	},
-	{
-		id: 2,
-		title: "Rotnem",
-		description:
-			"A tree and graph connections where every body is a mentor and a mentee.",
-	},
-	{
-		id: 3,
-		title: "EQue",
-		description: "A queue management system to make queues organized.",
-	},
-	{
-		id: 4,
-		title: "Anonyme",
-		description: "An anonymous messaging app with advance features",
-	},
-];
+import { upcomingProjects } from "@/lib/data";
+import { motion } from "motion/react";
 
 export function ComingSoonProjects() {
 	return (
-		<div className='w-full py-3'>
+		<motion.div 
+			initial={{ opacity: 0, y: 30 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, margin: "-50px" }}
+			transition={{ duration: 0.5, delay: 0.2 }}
+			className='w-full py-3'
+		>
 			<div className='text-center space-y-2 mb-12'>
 				<h3 className='text-2xl md:text-3xl font-bold tracking-tight text-foreground'>
 					In the <span className='text-accent'>Pipeline</span>
@@ -38,7 +21,8 @@ export function ComingSoonProjects() {
 					What I&apos;m currently brewing behind the scenes.
 				</p>
 			</div>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+			{/* Using auto-fit with minmax ensures the grid perfectly resizes based on the number of items, while capping at whatever fits (typically ~4 on large screens). If you want them left-aligned when fewer, use auto-fill instead. */}
+			<div className='grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6'>
 				{upcomingProjects.map((project) => (
 					<div
 						key={project.id}
@@ -58,6 +42,6 @@ export function ComingSoonProjects() {
 					</div>
 				))}
 			</div>
-		</div>
+		</motion.div>
 	);
 }

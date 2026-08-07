@@ -1,6 +1,6 @@
 /** @format */
 
-import Link from "next/link";
+import { ModeLink } from "@/components/shared/ModeLink";
 
 import { socialLinks } from "@/lib/data";
 
@@ -25,42 +25,42 @@ export function Footer() {
 						{/* Routes */}
 						<div className='flex flex-col gap-3 flex-1'>
 							<h3 className='font-semibold text-lg mb-2'>Routes</h3>
-							<Link
+							<ModeLink
 								href='/'
 								className='text-sm text-muted-foreground hover:text-accent transition-colors'
 							>
 								Home
-							</Link>
-							<Link
+							</ModeLink>
+							<ModeLink
 								href='/about'
 								className='text-sm text-muted-foreground hover:text-accent transition-colors'
 							>
 								About
-							</Link>
-							<Link
+							</ModeLink>
+							<ModeLink
 								href='/#projects'
 								className='text-sm text-muted-foreground hover:text-accent transition-colors'
 							>
 								Projects
-							</Link>
-							<Link
-								href='#'
+							</ModeLink>
+							<ModeLink
+								href='/blog'
 								className='text-sm text-muted-foreground hover:text-accent transition-colors'
 							>
 								Blog
-							</Link>
-							<Link
-								href='#'
+							</ModeLink>
+							<ModeLink
+								href='/resume'
 								className='text-sm text-muted-foreground hover:text-accent transition-colors'
 							>
 								Resume
-							</Link>
-							<Link
+							</ModeLink>
+							<ModeLink
 								href='/#contact'
 								className='text-sm text-muted-foreground hover:text-accent transition-colors'
 							>
 								Contact
-							</Link>
+							</ModeLink>
 						</div>
 
 						{/* Social Handles */}

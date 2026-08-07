@@ -1,13 +1,12 @@
 /** @format */
 
 import Image from "next/image";
-import Link from "next/link";
+import { ModeLink } from "@/components/shared/ModeLink";
 import {
 	LuCodeXml as Code2,
 	LuPalette as Palette,
 	LuExternalLink as ExternalLink,
 } from "react-icons/lu";
-import { Badge } from "@/components/ui/badge";
 import type { Project } from "@/types";
 
 interface ProjectCardProps {
@@ -17,11 +16,9 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
 	return (
 		<div className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'>
-			<Link href='#' className='absolute inset-0 z-10'>
-				<span className='sr-only'>
-					View {project.title} Case Study
-				</span>
-			</Link>
+			<ModeLink href={project.link} className='absolute inset-0 z-10'>
+				<span className='sr-only'>View {project.title} Case Study</span>
+			</ModeLink>
 
 			{/* Project Image */}
 			<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
@@ -34,9 +31,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
 				<div className='absolute top-4 right-4 z-10 p-2 bg-background/80 backdrop-blur-sm rounded-full border border-border text-foreground'>
 					{project.mode === "dev" ? (
 						<Code2 className='w-4 h-4' />
-					) : (
+					) : project.mode === "design" ? (
 						<Palette className='w-4 h-4' />
-					)}
+					) : null}
 				</div>
 			</div>
 
@@ -47,18 +44,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
 						<h3 className='text-xl font-bold text-foreground leading-tight py-1'>
 							{project.title}
 						</h3>
-						<Badge
-							variant={
-								project.status === "Completed"
-									? "secondary"
-									: "outline"
-							}
-							className='shrink-0'
-						>
-							{project.status}
-						</Badge>
+						{project.status && (
+							<span className='px-2 py-1 bg-accent/10 text-[10px] font-bold uppercase tracking-wider text-accent rounded-full border border-accent/20'>
+								{project.status}
+							</span>
+						)}
 					</div>
-					<p className='text-sm text-muted-foreground line-clamp-3 leading-relaxed'>
+					<p className='text-sm text-muted-foreground line-clamp-3 leading-relaxed mt-2'>
 						{project.description}
 					</p>
 				</div>
