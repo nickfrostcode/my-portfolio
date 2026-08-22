@@ -3,28 +3,30 @@
 
 import { useState, useMemo } from "react";
 import { LuSearch, LuX } from "react-icons/lu";
-import { useMode } from "@/context/ModeContext";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 import { ComingSoonProjects } from "@/components/shared/ComingSoonProjects";
 import { projects } from "@/lib/data";
+import { rearrangeByMode } from "@/lib/logic";
 import { cn } from "@/lib/utils";
 
 type SortOption = "newest" | "oldest" | "featured";
-type TabOption = "all" | "dev" | "design" | "research" | "misc";
-
-// Extract all unique tech tags from projects
-const allTechTags = Array.from(new Set(projects.flatMap((p) => p.tech))).sort();
 
 export function ProjectsPage() {
-	const { mode } = useMode();
-
-	// Default tab to current mode, or "all" for general
-	const [activeTab, setActiveTab] = useState<TabOption>(
-		mode === "dev" || mode === "design" ? mode : "all",
-	);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
 	const [sortBy, setSortBy] = useState<SortOption>("newest");
+
+	// Scope to dev mode (dev + general), date-sorted
+	const devProjects = useMemo(
+		() => rearrangeByMode(projects, "dev", (p) => p.dateVal),
+		[],
+	);
+
+	// Tech tags derived from visible dev projects
+	const allTechTags = useMemo(
+		() => Array.from(new Set(devProjects.flatMap((p) => p.tech))).sort(),
+		[devProjects],
+	);
 
 	const toggleTech = (tech: string) => {
 		setSelectedTechs((prev) =>
@@ -36,16 +38,10 @@ export function ProjectsPage() {
 		setSearchQuery("");
 		setSelectedTechs([]);
 		setSortBy("newest");
-		setActiveTab(mode === "dev" || mode === "design" ? mode : "all");
 	};
 
 	const filteredProjects = useMemo(() => {
-		let result = [...projects];
-
-		// Tab filter
-		if (activeTab !== "all") {
-			result = result.filter((p) => p.mode === activeTab);
-		}
+		let result = [...devProjects];
 
 		// Search filter
 		if (searchQuery.trim()) {
@@ -68,34 +64,27 @@ export function ProjectsPage() {
 		// Sort
 		switch (sortBy) {
 			case "newest":
-				result.sort((a, b) => b.id - a.id);
+				result.sort((a, b) => b.dateVal - a.dateVal);
 				break;
 			case "oldest":
-				result.sort((a, b) => a.id - b.id);
+				result.sort((a, b) => a.dateVal - b.dateVal);
 				break;
 			case "featured":
-				result.sort((a, b) =>
-					a.status === "Completed" && b.status !== "Completed" ? -1 : 1,
+				result.sort(
+					(a, b) =>
+						Number(b.featured ?? false) - Number(a.featured ?? false) ||
+						b.dateVal - a.dateVal,
 				);
 				break;
 		}
 
 		return result;
-	}, [activeTab, searchQuery, selectedTechs, sortBy]);
+	}, [devProjects, searchQuery, selectedTechs, sortBy]);
 
 	const hasActiveFilters =
 		searchQuery.trim() !== "" ||
 		selectedTechs.length > 0 ||
-		sortBy !== "newest" ||
-		activeTab !== (mode === "dev" || mode === "design" ? mode : "all");
-
-	const tabs: { label: string; value: TabOption }[] = [
-		{ label: "All", value: "all" },
-		{ label: "Developer", value: "dev" },
-		{ label: "Designer", value: "design" },
-		{ label: "Researches", value: "research" },
-		{ label: "Miscallenous", value: "misc" },
-	];
+		sortBy !== "newest";
 
 	const sortOptions: { label: string; value: SortOption }[] = [
 		{ label: "Newest", value: "newest" },
@@ -116,8 +105,8 @@ export function ProjectsPage() {
 						My <span className='text-accent'>Projects</span>
 					</h1>
 					<p className='text-muted-foreground font-medium max-w-2xl mx-auto text-lg'>
-						A collection of work spanning software engineering and visual
-						design.
+						A collection of full-stack software applications and engineering
+						projects.
 					</p>
 				</div>
 
@@ -135,73 +124,55 @@ export function ProjectsPage() {
 						<button
 							onClick={() => setSearchQuery("")}
 							className='absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors'
+							aria-label='Clear search'
 						>
 							<LuX className='w-4 h-4' />
 						</button>
 					)}
 				</div>
 
-				{/* Tabs & Sort Row */}
-				<div className='flex flex-row items-center md:justify-center gap-4 flex-wrap'>
-					{/* Mode Tabs */}
-					<div className='flex items-center gap-1 flex-wrap'>
-						{tabs.map((tab) => (
-							<button
-								key={tab.value}
-								onClick={() => setActiveTab(tab.value)}
-								className={cn(
-									"px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200",
-									activeTab === tab.value
-										? "bg-foreground text-background"
-										: "text-muted-foreground hover:text-foreground hover:bg-card",
-								)}
-							>
-								{tab.label}
-							</button>
+				{/* Sort Row */}
+				<div className='flex flex-row items-center md:justify-center gap-3 flex-wrap'>
+					<select
+						value={sortBy}
+						onChange={(e) => setSortBy(e.target.value as SortOption)}
+						className='px-3 py-2 rounded-xl border border-border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer'
+					>
+						{sortOptions.map((opt) => (
+							<option key={opt.value} value={opt.value}>
+								{opt.label}
+							</option>
 						))}
-					</div>
-
-					{/* Sort Dropdown */}
-					<div className='flex items-center gap-3'>
-						<select
-							value={sortBy}
-							onChange={(e) => setSortBy(e.target.value as SortOption)}
-							className='px-3 py-2 rounded-xl border border-border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer'
+					</select>
+					{hasActiveFilters && (
+						<button
+							onClick={clearFilters}
+							className='text-xs font-medium text-muted-foreground hover:text-accent transition-colors underline underline-offset-2'
 						>
-							{sortOptions.map((opt) => (
-								<option key={opt.value} value={opt.value}>
-									{opt.label}
-								</option>
-							))}
-						</select>
-						{hasActiveFilters && (
-							<button
-								onClick={clearFilters}
-								className='text-xs font-medium text-muted-foreground hover:text-accent transition-colors underline underline-offset-2'
-							>
-								Clear all
-							</button>
-						)}
-					</div>
+							Clear all
+						</button>
+					)}
 				</div>
 
 				{/* Technology Filters */}
-				<div className='flex flex-row items-center md:justify-center gap-2 flex-wrap'>
-					{allTechTags.map((tech) => (
-						<button
-							key={tech}
-							onClick={() => toggleTech(tech)}
-							className={cn(
-								"px-3 py-1.5 text-xs font-medium rounded-lg border transition-all duration-200 font-mono",
-								selectedTechs.includes(tech)
-									? "bg-accent/10 border-accent text-accent"
-									: "bg-card border-border/50 text-muted-foreground hover:border-border hover:text-foreground",
-							)}
-						>
-							{tech}
-						</button>
-					))}
-				</div>
+				{allTechTags.length > 0 && (
+					<div className='flex flex-row items-center md:justify-center gap-2 flex-wrap'>
+						{allTechTags.map((tech) => (
+							<button
+								key={tech}
+								onClick={() => toggleTech(tech)}
+								className={cn(
+									"px-3 py-1.5 text-xs font-medium rounded-lg border transition-all duration-200 font-mono",
+									selectedTechs.includes(tech)
+										? "bg-accent/10 border-accent text-accent"
+										: "bg-card border-border/50 text-muted-foreground hover:border-border hover:text-foreground",
+								)}
+							>
+								{tech}
+							</button>
+						))}
+					</div>
+				)}
 
 				{/* Results Count */}
 				<div className='flex items-center justify-between'>
@@ -211,10 +182,18 @@ export function ProjectsPage() {
 							{filteredProjects.length}
 						</span>{" "}
 						project{filteredProjects.length !== 1 ? "s" : ""}
+						{hasActiveFilters && (
+							<button
+								onClick={clearFilters}
+								className='ml-3 text-xs font-medium text-muted-foreground hover:text-accent transition-colors underline underline-offset-2'
+							>
+								Clear all
+							</button>
+						)}
 					</p>
 				</div>
 
-				{/* Projects Grid */}
+				{/* Dev Grid */}
 				{filteredProjects.length > 0 ? (
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-25'>
 						{filteredProjects.map((project) => (
@@ -242,8 +221,10 @@ export function ProjectsPage() {
 						</button>
 					</div>
 				)}
-            <hr className="my-10" />
-            <ComingSoonProjects />
+
+				{/* Pipeline / upcoming work */}
+				<hr className='my-10' />
+				<ComingSoonProjects />
 			</div>
 		</section>
 	);

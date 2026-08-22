@@ -12,20 +12,53 @@ import pictureImg from "@/app/assets/picture.jpg";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import { certificates, technicalArsenal } from "@/lib/data";
+import {
+	certificates,
+	awards,
+	technicalArsenal,
+	aboutOverview,
+} from "@/lib/data";
+import { rearrangeByMode } from "@/lib/logic";
 
 export function AboutPreview() {
 	const { mode } = useMode();
-	const [certIndex, setCertIndex] = useState(0);
+	const [currentIndex, setCurrentIndex] = useState(0);
+
+	const modeCerts = rearrangeByMode(certificates, mode);
+	const modeAwards = rearrangeByMode(awards, mode);
+
+	// Combined list of both certificates and awards
+	const credentials = [
+		...modeCerts.map((cert) => ({
+			id: `cert-${cert.id}`,
+			type: cert.type || "Certificate",
+			issuer: cert.issuer,
+			title: cert.title,
+			desc: cert.desc,
+			meta: cert.progress,
+		})),
+		...modeAwards.map((award) => ({
+			id: `award-${award.id}`,
+			type: "Award",
+			issuer: award.issuer,
+			title: award.title,
+			desc: award.description,
+			meta: award.date,
+		})),
+	];
+
+	const safeIndex = credentials.length > 0 ? currentIndex % credentials.length : 0;
+	const activeItem = credentials[safeIndex] ?? credentials[0];
 
 	useEffect(() => {
+		if (credentials.length <= 1) return;
 		const interval = setInterval(() => {
-			setCertIndex((prev) => (prev + 1) % certificates.length);
+			setCurrentIndex((prev) => (prev + 1) % credentials.length);
 		}, 5000);
 		return () => clearInterval(interval);
-	}, []);
+	}, [credentials.length]);
 
-	const activeArsenal = technicalArsenal[mode] || technicalArsenal.general;
+	const activeArsenal = technicalArsenal[mode];
 
 	return (
 		<section
@@ -80,15 +113,8 @@ export function AboutPreview() {
 							<h3 className='text-sm font-semibold tracking-widest text-accent uppercase'>
 								Overview
 							</h3>
-							<p className='text-sm md:text-md font-normal text-foreground leading-relaxed'>
-								I'm a Computer Scientist working as a Software Developer
-								with experience in building modern web applications and
-								digital solutions. Alongside software development, I
-								also work in graphic design, creating visual identities
-								and digital assets that complement the products I build.
-								My approach combines technical problem-solving with
-								thoughtful design to create solutions that are
-								functional, intuitive, and visually refined.
+							<p className='text-sm md:text-base font-normal text-foreground leading-relaxed'>
+								{aboutOverview[mode]}
 							</p>
 						</div>
 
@@ -111,40 +137,42 @@ export function AboutPreview() {
 							</div>
 						</div>
 
-						{/* Certifications Card */}
+						{/* Certificates & Awards Card */}
 						<ModeLink href='/about' className='group block'>
 							<div className='p-6 rounded-2xl bg-card border border-border/50 space-y-4 transition-colors hover:border-accent'>
 								<div className='flex items-center justify-between'>
 									<h3 className='text-sm font-semibold tracking-widest text-accent uppercase'>
-										Certifications
+										Certificates &amp; Awards
 									</h3>
 									<ArrowRight className='w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors' />
 								</div>
 								<div className='flex items-start gap-4 min-h-30'>
 									<div className='relative w-full h-full'>
 										<AnimatePresence mode='wait'>
-											<motion.div
-												key={certIndex}
-												initial={{ opacity: 0, y: 10 }}
-												animate={{ opacity: 1, y: 0 }}
-												exit={{ opacity: 0, y: -10 }}
-												transition={{ duration: 0.4 }}
-												className='absolute inset-0 space-y-1'
-											>
-												<div className='text-xs font-semibold text-muted-foreground tracking-wider uppercase'>
-													{certificates[certIndex].type} &bull;{" "}
-													{certificates[certIndex].issuer}
-												</div>
-												<p className='font-semibold text-foreground text-lg leading-tight'>
-													{certificates[certIndex].title}
-												</p>
-												<p className='text-sm font-normal text-muted-foreground line-clamp-2'>
-													{certificates[certIndex].desc}
-												</p>
-												<div className='text-xs font-medium text-muted-foreground font-mono pt-2'>
-													{certificates[certIndex].progress}
-												</div>
-											</motion.div>
+											{activeItem && (
+												<motion.div
+													key={activeItem.id}
+													initial={{ opacity: 0, y: 10 }}
+													animate={{ opacity: 1, y: 0 }}
+													exit={{ opacity: 0, y: -10 }}
+													transition={{ duration: 0.4 }}
+													className='absolute inset-0 space-y-1'
+												>
+													<div className='text-xs font-semibold text-muted-foreground tracking-wider uppercase'>
+														{activeItem.type} &bull;{" "}
+														{activeItem.issuer}
+													</div>
+													<p className='font-semibold text-foreground text-lg leading-tight'>
+														{activeItem.title}
+													</p>
+													<p className='text-sm font-normal text-muted-foreground line-clamp-2'>
+														{activeItem.desc}
+													</p>
+													<div className='text-xs font-medium text-muted-foreground font-mono pt-2'>
+														{activeItem.meta}
+													</div>
+												</motion.div>
+											)}
 										</AnimatePresence>
 									</div>
 								</div>

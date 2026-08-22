@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
-import { LuStar, LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { LuStar, LuChevronLeft, LuChevronRight, LuExternalLink } from "react-icons/lu";
 import { useMode } from "@/context/ModeContext";
 
 import { allTestimonials } from "@/lib/data";
@@ -36,9 +36,14 @@ export function Testimonials() {
 		setScrollSnaps(api.scrollSnapList());
 		setCurrent(api.selectedScrollSnap());
 
-		api.on("select", () => {
+		const onSelect = () => {
 			setCurrent(api.selectedScrollSnap());
-		});
+		};
+
+		api.on("select", onSelect);
+		return () => {
+			api.off("select", onSelect);
+		};
 	}, [api, displayTestimonials]);
 
 	return (
@@ -85,6 +90,7 @@ export function Testimonials() {
 
 				<Carousel
 					setApi={setApi}
+					// eslint-disable-next-line react-hooks/refs
 					plugins={[plugin.current]}
 					opts={{
 						align: "center",
@@ -125,13 +131,20 @@ export function Testimonials() {
 										{/* Header: Avatar + Name/Role | Rating */}
 										<div className='flex flex-row items-start justify-between gap-4 mb-6'>
 											<div className='flex items-center gap-3 md:gap-4'>
-												<div className='relative w-12 h-12 rounded-full overflow-hidden bg-muted border border-border shrink-0'>
-													<Image
-														src={testimonial.avatar}
-														alt={testimonial.name}
-														fill
-														className='object-cover'
-													/>
+												<div className='relative w-12 h-12 rounded-full overflow-hidden bg-muted border border-border shrink-0 flex items-center justify-center'>
+													{testimonial.avatar ? (
+														<Image
+															src={testimonial.avatar}
+															alt={testimonial.name}
+															fill
+															sizes='48px'
+															className='object-cover'
+														/>
+													) : (
+														<span className='font-semibold text-foreground text-base'>
+															{testimonial.name.charAt(0) || "U"}
+														</span>
+													)}
 												</div>
 												<div className='flex flex-col'>
 													<span className='font-bold text-foreground text-sm md:text-lg'>
@@ -162,8 +175,8 @@ export function Testimonials() {
 										{/* Dynamic Content */}
 										<div className='flex-1'>
 											{testimonial.type === "text" && (
-												<p className='text-md md:text-xl font-medium text-foreground leading-relaxed'>
-													"{testimonial.content}"
+												<p className='text-base md:text-xl font-medium text-foreground leading-relaxed'>
+													&ldquo;{testimonial.content}&rdquo;
 												</p>
 											)}
 
@@ -213,11 +226,17 @@ export function Testimonials() {
 						/>
 					))}
 				</div>
-         </div>
-         
-			<div className='flex items-center justify-center mt-3 text-accent'>
-				<Link href='https://docs.google.com/forms/d/e/1FAIpQLSeQpC5O3o2N12n1YyYf6f6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6x6/viewform?usp=sharing'>
-					Drop a testimonial or review for me
+			</div>
+
+			<div className='flex items-center justify-center mt-3'>
+				<Link
+					href='https://forms.gle/aTCiFgPL9gJyk5NA8'
+					target='_blank'
+					rel='noopener noreferrer'
+					className='inline-flex items-center gap-1.5 text-accent hover:underline text-sm font-medium transition-all group'
+				>
+					<span>Drop a testimonial or review for me</span>
+					<LuExternalLink className='w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
 				</Link>
 			</div>
 		</section>

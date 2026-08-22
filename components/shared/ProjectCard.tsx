@@ -2,11 +2,7 @@
 
 import Image from "next/image";
 import { ModeLink } from "@/components/shared/ModeLink";
-import {
-	LuCodeXml as Code2,
-	LuPalette as Palette,
-	LuExternalLink as ExternalLink,
-} from "react-icons/lu";
+import { LuExternalLink as ExternalLink } from "react-icons/lu";
 import type { Project } from "@/types";
 
 interface ProjectCardProps {
@@ -15,9 +11,9 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
 	return (
-		<div className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'>
+		<div className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative h-full'>
 			<ModeLink href={project.link} className='absolute inset-0 z-10'>
-				<span className='sr-only'>View {project.title} Case Study</span>
+				<span className='sr-only'>View {project.title} Project</span>
 			</ModeLink>
 
 			{/* Project Image */}
@@ -28,24 +24,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
 					fill
 					className='object-cover transition-transform duration-700 group-hover:scale-105'
 				/>
-				<div className='absolute top-4 right-4 z-10 p-2 bg-background/80 backdrop-blur-sm rounded-full border border-border text-foreground'>
-					{project.mode === "dev" ? (
-						<Code2 className='w-4 h-4' />
-					) : project.mode === "design" ? (
-						<Palette className='w-4 h-4' />
-					) : null}
-				</div>
 			</div>
 
 			{/* Project Details */}
 			<div className='flex flex-col flex-1 px-2 py-4 space-y-4'>
 				<div className='space-y-2'>
 					<div className='flex items-start justify-between gap-2'>
-						<h3 className='text-xl font-bold text-foreground leading-tight py-1'>
+						<h3 className='text-xl font-semibold text-foreground leading-tight py-1'>
 							{project.title}
 						</h3>
 						{project.status && (
-							<span className='px-2 py-1 bg-accent/10 text-[10px] font-bold uppercase tracking-wider text-accent rounded-full border border-accent/20'>
+							<span className='px-2 py-1 bg-accent/10 text-[10px] uppercase tracking-wider text-accent rounded-full border border-accent/20'>
 								{project.status}
 							</span>
 						)}
@@ -60,7 +49,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 					{project.tech.map((t) => (
 						<span
 							key={t}
-							className='px-2 py-1 bg-card text-xs font-medium rounded-md border border-border/50 font-mono text-accent'
+							className='px-2 py-1 bg-card text-xs rounded-md border border-border/50 font-mono text-accent'
 						>
 							{t}
 						</span>
@@ -69,14 +58,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
 				{/* View Project Button */}
 				<div className='pt-2 mt-auto px-2 flex justify-between'>
-					<div className='inline-flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-accent transition-colors'>
-						View Case Study
+					<div className='inline-flex items-center gap-2 text-sm font-medium text-foreground group-hover:text-accent transition-colors'>
+						View Project
 					</div>
 
 					<a
 						href={project.link}
 						target={project.link !== "#" ? "_blank" : "_self"}
-						className='relative z-20 inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-accent transition-colors'
+						rel={project.link !== "#" ? "noopener noreferrer" : undefined}
+						className='relative z-20 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-accent transition-colors'
 					>
 						Live <ExternalLink className='w-4 h-4' />
 					</a>

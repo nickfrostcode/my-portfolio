@@ -2,8 +2,8 @@
 
 "use client";
 
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useMode } from "@/context/ModeContext";
 import { useTheme } from "next-themes";
 import {
@@ -11,59 +11,59 @@ import {
 	LuSun,
 	LuMenu,
 	LuX,
-	LuChevronDown,
+	// LuChevronDown,
 	LuPalette,
 	LuCodeXml,
 } from "react-icons/lu";
-import { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { resolveModeHref } from "@/lib/logic";
+
+const emptySubscribe = () => () => {};
 
 export function Navbar() {
-	const { mode } = useMode();
-	const pathname = usePathname();
+	const { mode, isSubdomain } = useMode();
 	const { theme, setTheme } = useTheme();
-	const [mounted, setMounted] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const [modeMenuOpen, setModeMenuOpen] = useState(false);
+	// const [modeMenuOpen, setModeMenuOpen] = useState(false);
+	const mounted = useSyncExternalStore(
+		emptySubscribe,
+		() => true,
+		() => false,
+	);
 
-	useEffect(() => setMounted(true), []);
+	const isDesign = mode === "design";
 
-	const activeMode = pathname.startsWith("/dev")
-		? "dev"
-		: pathname.startsWith("/design")
-			? "design"
-			: "general";
+	const getHref = (path: string) => resolveModeHref(path, mode, isSubdomain);
 
-	const getHref = (path: string) => {
-		if (activeMode === "general") return path;
-		return path === "/" ? `/${activeMode}` : `/${activeMode}${path}`;
-	};
+	const links = isDesign
+		? [
+				{ label: "About", href: getHref("/about") },
+				{
+					label: "Services",
+					href: getHref("/#services"),
+				},
+				{ label: "Works", href: getHref("/works") },
+				{ label: "Resume", href: getHref("/resume") },
+		  ]
+		: [
+				{ label: "About", href: getHref("/about") },
+				{ label: "Projects", href: getHref("/projects") },
+				{ label: "Blog", href: getHref("/blog") },
+				{ label: "Resume", href: getHref("/resume") },
+		  ];
 
-	const links = [
-		{ label: "About", href: getHref("/about") },
-		{ label: "Projects", href: getHref("/projects") },
-		{ label: "Blog", href: getHref("/blog") },
-		{ label: "Resume", href: getHref("/resume") },
+	/*
+	const modeOptions: {
+		key: "dev" | "design";
+		label: string;
+		shortLabel: string;
+	}[] = [
+		{ key: "dev", label: "Developer", shortLabel: "Dev" },
+		{ key: "design", label: "Designer", shortLabel: "Design" },
 	];
-
-	const getModePath = (targetMode: "general" | "dev" | "design") => {
-		let currentPath = pathname;
-		if (currentPath.startsWith("/dev")) {
-			currentPath = currentPath.replace("/dev", "");
-		} else if (currentPath.startsWith("/design")) {
-			currentPath = currentPath.replace("/design", "");
-		}
-		
-		if (currentPath === "") currentPath = "/";
-
-		if (targetMode === "general") {
-			return currentPath;
-		} else {
-			return currentPath === "/" ? `/${targetMode}` : `/${targetMode}${currentPath}`;
-		}
-	};
+	*/
 
 	const toggleTheme = () => {
 		if (theme === "light") setTheme("dark");
@@ -128,9 +128,7 @@ export function Navbar() {
 				{/* Left Logo */}
 				<div className='flex items-center gap-3 text-background'>
 					<div className='w-8 h-8 rounded-full bg-background text-foreground flex items-center justify-center font-bold text-lg leading-none'>
-						{mode === "dev" ? (
-							<LuCodeXml size={20} strokeWidth={3} />
-						) : mode === "design" ? (
+						{isDesign ? (
 							<LuPalette size={20} strokeWidth={3} />
 						) : (
 							<LuCodeXml size={20} strokeWidth={3} />
@@ -150,7 +148,7 @@ export function Navbar() {
 						<Link
 							key={link.label}
 							href={link.href}
-							className='text-md font-semibold text-muted-foreground transition-colors hover:text-accent'
+							className='text-base font-semibold text-muted-foreground transition-colors hover:text-accent'
 						>
 							{link.label}
 						</Link>
@@ -159,12 +157,14 @@ export function Navbar() {
 
 				{/* Right Actions */}
 				<div className='flex items-center gap-3 lg:gap-4'>
+					{/* Mode Selector Dropdown commented out as requested */}
+					{/* 
 					<div className='relative'>
 						<button
 							onClick={() => setModeMenuOpen(!modeMenuOpen)}
-							className='flex items-center gap-1.5 text-md font-semibold text-muted-foreground hover:text-accent transition-colors capitalize cursor-pointer'
+							className='flex items-center gap-1.5 text-base font-semibold text-muted-foreground hover:text-accent transition-colors capitalize cursor-pointer'
 						>
-							{activeMode}{" "}
+							{mode}{" "}
 							<motion.div animate={{ rotate: modeMenuOpen ? 180 : 0 }}>
 								<LuChevronDown className='w-4 h-4' />
 							</motion.div>
@@ -182,83 +182,30 @@ export function Navbar() {
 									className='absolute top-9.5 left-1/2 -translate-x-1/2 w-25 flex flex-col z-40 origin-top'
 								>
 									<div className='relative w-full bg-foreground rounded-b-2xl flex flex-col shadow-sm'>
-										{/* Left Incurve for dropdown */}
-										<div className='absolute top-0 -left-5 w-5 h-5 overflow-visible -scale-x-100 pointer-events-none'>
-											<svg
-												viewBox='0 0 20 20'
-												fill='none'
-												xmlns='http://www.w3.org/2000/svg'
-												className='w-full h-full text-foreground overflow-visible'
-											>
-												<path
-													d='M 0 0 L 20 0 C 8.954 0 0 8.954 0 20 Z'
-													fill='currentColor'
-												/>
-												<path
-													d='M 20 0 C 8.954 0 0 8.954 0 20'
-													className='stroke-border'
-													strokeWidth='0'
-													fill='none'
-												/>
-											</svg>
-										</div>
-										{/* Right Incurve for dropdown */}
-										<div className='absolute top-0 -right-5 w-5 h-5 overflow-visible pointer-events-none'>
-											<svg
-												viewBox='0 0 20 20'
-												fill='none'
-												xmlns='http://www.w3.org/2000/svg'
-												className='w-full h-full text-foreground overflow-visible'
-											>
-												<path
-													d='M 0 0 L 20 0 C 8.954 0 0 8.954 0 20 Z'
-													fill='currentColor'
-												/>
-												<path
-													d='M 20 0 C 8.954 0 0 8.954 0 20'
-													className='stroke-border'
-													strokeWidth='0'
-													fill='none'
-												/>
-											</svg>
-										</div>
 										<div className='flex flex-col pb-4 overflow-hidden rounded-b-3xl gap-3 pl-3'>
-											<Link
-												href={getModePath("general")}
-												onClick={() => {
-													setModeMenuOpen(false);
-													setIsOpen(false);
-												}}
-												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold py-1'
-											>
-												General
-											</Link>
-											<Link
-												href={getModePath("dev")}
-												onClick={() => {
-													setModeMenuOpen(false);
-													setIsOpen(false);
-												}}
-												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold py-1'
-											>
-												Developer
-											</Link>
-											<Link
-												href={getModePath("design")}
-												onClick={() => {
-													setModeMenuOpen(false);
-													setIsOpen(false);
-												}}
-												className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold py-1'
-											>
-												Designer
-											</Link>
+											{modeOptions
+												.filter((option) => option.key !== mode)
+												.map((option) => (
+													<Link
+														key={option.key}
+														href={option.key === "design" ? "/design" : "/"}
+														onClick={() => {
+															setModeMenuOpen(false);
+															setIsOpen(false);
+														}}
+														className='text-sm text-muted-foreground hover:text-accent transition-colors font-semibold py-1'
+													>
+														{option.label}
+													</Link>
+												))}
 										</div>
 									</div>
 								</motion.div>
 							)}
 						</AnimatePresence>
 					</div>
+					*/}
+
 					<div className='relative'>
 						<motion.button
 							whileTap={{ scale: 0.8, rotate: 180 }}
@@ -270,16 +217,20 @@ export function Navbar() {
 							}}
 							onClick={toggleTheme}
 							className='flex items-center justify-center w-8 h-8 rounded-full text-muted-foreground hover:text-accent transition-colors cursor-pointer'
+							aria-label='Toggle theme'
 						>
 							{renderThemeIcon()}
 						</motion.button>
 					</div>
-					<Button
-						variant='secondary'
-						className='rounded-3xl font-semibold bg-background hover:bg-card'
+					<Link
+						href={getHref("/") + "#contact"}
+						className={cn(
+							buttonVariants({ variant: "secondary" }),
+							"rounded-3xl font-semibold bg-background hover:bg-card text-foreground",
+						)}
 					>
-						<Link href='#contact'>Contact</Link>
-					</Button>
+						Contact
+					</Link>
 				</div>
 			</nav>
 
@@ -337,7 +288,11 @@ export function Navbar() {
 						{/* Left */}
 						<div className='flex items-center gap-3 text-background'>
 							<div className='w-8 h-8 rounded-full bg-background text-foreground flex items-center justify-center font-bold text-lg leading-none'>
-								N
+								{isDesign ? (
+									<LuPalette size={18} strokeWidth={3} />
+								) : (
+									<LuCodeXml size={18} strokeWidth={3} />
+								)}
 							</div>
 							<Link
 								href={getHref("/")}
@@ -352,6 +307,7 @@ export function Navbar() {
 								whileTap={{ scale: 0.8, rotate: 180 }}
 								onClick={toggleTheme}
 								className='p-2 text-muted-foreground hover:text-accent transition-colors cursor-pointer'
+								aria-label='Toggle theme'
 							>
 								{renderThemeIcon()}
 							</motion.button>
@@ -359,6 +315,7 @@ export function Navbar() {
 								whileTap={{ scale: 0.8 }}
 								className='p-2 text-muted-foreground hover:text-accent cursor-pointer'
 								onClick={() => setIsOpen(!isOpen)}
+								aria-label='Toggle menu'
 							>
 								<AnimatePresence mode='wait'>
 									{isOpen ? (
@@ -402,53 +359,34 @@ export function Navbar() {
 							))}
 						</div>
 
-						<div className='grid grid-cols-3 gap-2 bg-background/10 p-1 rounded-md'>
-							<Link
-								href={getModePath("general")}
-								onClick={() => setIsOpen(false)}
-								className={cn(
-									"text-center py-2 text-sm rounded-md transition-colors",
-									activeMode === "general"
-										? "bg-background font-semibold"
-										: "text-muted-foreground hover:text-accent",
-								)}
-							>
-								General
-							</Link>
-							<Link
-								href={getModePath("dev")}
-								onClick={() => setIsOpen(false)}
-								className={cn(
-									"text-center py-2 text-sm rounded-md transition-colors",
-									activeMode === "dev"
-										? "bg-background font-semibold"
-										: "text-muted-foreground hover:text-accent",
-								)}
-							>
-								Dev
-							</Link>
-							<Link
-								href={getModePath("design")}
-								onClick={() => setIsOpen(false)}
-								className={cn(
-									"text-center py-2 text-sm rounded-md transition-colors",
-									activeMode === "design"
-										? "bg-background  font-semibold"
-										: "text-muted-foreground hover:text-accent",
-								)}
-							>
-								Design
-							</Link>
+						{/* Mode selector commented out on mobile as requested */}
+						{/* 
+						<div className='grid grid-cols-2 gap-2 bg-background/10 p-1 rounded-md'>
+							{modeOptions
+								.filter((option) => option.key !== mode)
+								.map((option) => (
+									<Link
+										key={option.key}
+										href={option.key === "design" ? "/design" : "/"}
+										onClick={() => setIsOpen(false)}
+										className='text-center py-2 text-sm rounded-md transition-colors text-muted-foreground hover:text-accent'
+									>
+										{option.shortLabel}
+									</Link>
+								))}
 						</div>
+						*/}
 
-						<Button
-							variant='secondary'
-							className='w-full rounded-md font-semibold bg-background text-foreground'
+						<Link
+							href={getHref("/") + "#contact"}
+							onClick={() => setIsOpen(false)}
+							className={cn(
+								buttonVariants({ variant: "secondary" }),
+								"w-full rounded-md font-semibold bg-background text-foreground",
+							)}
 						>
-							<Link href={"#contact"} onClick={() => setIsOpen(false)}>
-								Contact
-							</Link>
-						</Button>
+							Contact
+						</Link>
 					</div>
 				</motion.nav>
 			</div>

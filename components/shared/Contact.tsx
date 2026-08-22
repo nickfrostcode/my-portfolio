@@ -13,13 +13,23 @@ import {
 } from "react-icons/lu";
 import { socialLinks } from "@/lib/data";
 
-// Get the Google Apps Script Web App URL from environment variables
-const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
+interface ContactPayload {
+	name: string;
+	email: string;
+	subject: string;
+	category: string;
+	message: string;
+	website?: string;
+	fileData?: string | ArrayBuffer | null;
+	fileName?: string;
+	fileMimeType?: string;
+}
 
 export function Contact() {
 	const [status, setStatus] = useState<
 		"idle" | "loading" | "success" | "error"
 	>("idle");
+	const [errorMessage, setErrorMessage] = useState<string>("");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -32,25 +42,22 @@ export function Contact() {
 
 		// File Size Validation (10MB limit)
 		if (attachment && attachment.size > 10 * 1024 * 1024) {
-			alert("File size exceeds 10MB limit. Please upload a smaller file.");
+			setErrorMessage("File size exceeds 10MB limit. Please upload a smaller file.");
+			setStatus("error");
 			return;
 		}
 
 		setStatus("loading");
+		setErrorMessage("");
 
 		const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-		const email = (form.elements.namedItem("email") as HTMLInputElement)
-			.value;
-		const subject = (form.elements.namedItem("subject") as HTMLInputElement)
-			.value;
-		const category = (
-			form.elements.namedItem("category") as HTMLSelectElement
-		).value;
-		const message = (
-			form.elements.namedItem("message") as HTMLTextAreaElement
-		).value;
+		const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+		const subject = (form.elements.namedItem("subject") as HTMLInputElement).value;
+		const category = (form.elements.namedItem("category") as HTMLSelectElement).value;
+		const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
+		const website = (form.elements.namedItem("website") as HTMLInputElement)?.value || "";
 
-		const payload: any = { name, email, subject, category, message };
+		const payload: ContactPayload = { name, email, subject, category, message, website };
 
 		try {
 			if (attachment) {
@@ -62,46 +69,55 @@ export function Contact() {
 					payload.fileMimeType = attachment.type;
 					await sendData(payload, form);
 				};
+				reader.onerror = () => {
+					console.error("FileReader error:", reader.error);
+					setErrorMessage("Failed to read the attachment file. Please try again.");
+					setStatus("error");
+				};
 				reader.readAsDataURL(attachment);
 			} else {
 				await sendData(payload, form);
 			}
-		} catch (error) {
+		} catch (error: unknown) {
 			console.error("Submission failed:", error);
+			const msg =
+				error instanceof Error
+					? error.message
+					: "Failed to send message. Please try again or use direct email.";
+			setErrorMessage(msg);
 			setStatus("error");
 		}
 	};
 
-	const sendData = async (payload: any, form: HTMLFormElement) => {
-		if (!GOOGLE_SCRIPT_URL) {
-			console.error(
-				"Google Script URL is missing in environment variables!",
-			);
-			setStatus("error");
-			return;
-		}
-
+	const sendData = async (payload: ContactPayload, form: HTMLFormElement) => {
 		try {
-			await fetch(GOOGLE_SCRIPT_URL, {
+			const res = await fetch("/api/contact", {
 				method: "POST",
-				mode: "no-cors", // Bypass CORS; response will be opaque
 				headers: {
-					"Content-Type": "text/plain;charset=utf-8",
+					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(payload),
 			});
 
-			// With 'no-cors', we cannot read the response (it is opaque).
-			// If fetch doesn't throw a network error, we assume success!
-			setStatus("success");
-			form.reset(); // Reset the form inputs
+			const data = await res.json().catch(() => ({}));
 
-			// Optional: reset success message after some seconds
+			if (!res.ok || !data.success) {
+				throw new Error(data.error || "Failed to send message. Please try again.");
+			}
+
+			setStatus("success");
+			form.reset();
+
 			setTimeout(() => {
 				setStatus((prev) => (prev === "success" ? "idle" : prev));
 			}, 10000);
-		} catch (err) {
-			console.error(err);
+		} catch (err: unknown) {
+			console.error("Submission error:", err);
+			const msg =
+				err instanceof Error
+					? err.message
+					: "Failed to send message. Please try again or use direct email.";
+			setErrorMessage(msg);
 			setStatus("error");
 		}
 	};
@@ -120,7 +136,7 @@ export function Contact() {
 						Get In <span className='text-accent'>Touch</span>
 					</h2>
 					<p className='text-muted-foreground font-medium max-w-2xl mx-auto'>
-						Have a project in mind? Let's build something great together.
+						Have a project in mind? Let&apos;s build something great together.
 					</p>
 				</motion.div>
 
@@ -134,6 +150,17 @@ export function Contact() {
 						className='bg-card border border-border rounded-3xl p-4 md:p-8'
 					>
 						<form className='space-y-3' onSubmit={handleSubmit}>
+							{/* Honeypot field for bot spam prevention */}
+							<div className='hidden' aria-hidden='true'>
+								<label htmlFor='website'>Leave this field blank</label>
+								<input
+									id='website'
+									name='website'
+									type='text'
+									tabIndex={-1}
+									autoComplete='off'
+								/>
+							</div>
 							{/* Row 1: Name & Email */}
 							<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 								<div>
@@ -248,7 +275,7 @@ export function Contact() {
 									name='message'
 									rows={5}
 									placeholder='Tell me more about your project...'
-									className='form-input resize-none h-25'
+									className='form-input resize-none'
 									required
 									maxLength={2000}
 									disabled={status === "loading"}
@@ -257,9 +284,11 @@ export function Contact() {
 
 							{status === "error" && (
 								<div className='flex items-center gap-2 text-red-500 text-sm mt-2 font-medium'>
-									<LuCircleX className='w-4 h-4' />
-									Failed to send message. Please try again or use
-									direct email.
+									<LuCircleX className='w-4 h-4 shrink-0' />
+									<span>
+										{errorMessage ||
+											"Failed to send message. Please try again or reach out directly via email."}
+									</span>
 								</div>
 							)}
 
@@ -277,17 +306,17 @@ export function Contact() {
 							<div className='pt-2'>
 								<Button
 									type='submit'
-									className='w-full h-12'
+									className='w-full cursor-pointer h-12 text-base'
 									disabled={status === "loading"}
 								>
 									{status === "loading" ? (
 										<>
-											<LuLoaderCircle className='w-4 h-4 animate-spin' />{" "}
+											<LuLoaderCircle className='w-4 h-4 animate-spin mr-2' />{" "}
 											Sending...
 										</>
 									) : (
 										<>
-											<LuSend className='w-4 h-4' /> Send Message
+											Send Message <LuSend className='w-4 h-4 ml-2' />
 										</>
 									)}
 								</Button>
@@ -308,23 +337,25 @@ export function Contact() {
 								Connect
 							</h3>
 							<div className='flex flex-col gap-4'>
-								{socialLinks.map((social) => {
-									const Icon = social.icon;
-									return (
-										<a
-											key={social.name}
-											href={social.url}
-											target='_blank'
-											rel='noreferrer'
-											className='group flex items-center gap-2'
-										>
-											<Icon className='w-5 h-5 group-hover:text-accent transition-colors' />
-											<span className='font-medium text-md text-foreground group-hover:text-accent transition-colors'>
-												{social.name}
-											</span>
-										</a>
-									);
-								})}
+								{socialLinks
+									.filter((social) => Boolean(social.url?.trim()))
+									.map((social) => {
+										const Icon = social.icon;
+										return (
+											<a
+												key={social.name}
+												href={social.url}
+												target='_blank'
+												rel='noreferrer'
+												className='group flex items-center gap-2'
+											>
+												<Icon className='w-5 h-5 group-hover:text-accent transition-colors' />
+												<span className='font-medium text-base text-foreground group-hover:text-accent transition-colors'>
+													{social.name}
+												</span>
+											</a>
+										);
+									})}
 							</div>
 						</motion.div>
 						<motion.div 
@@ -332,12 +363,20 @@ export function Contact() {
 							whileInView={{ opacity: 1, x: 0 }}
 							viewport={{ once: true, margin: "-50px" }}
 							transition={{ duration: 0.6, delay: 0.4 }}
-							className='bg-card border border-border rounded-3xl p-6'
+							className='bg-card border border-border rounded-3xl p-6 space-y-4'
 						>
-							<p className='text-sm text-muted-foreground leading-relaxed mb-3'>
-								Prefer direct emails? Feel free to reach out anytime. I
-								usually respond within 24 hours.
-							</p>
+							<div>
+								<p className='text-sm text-muted-foreground leading-relaxed mb-2'>
+									Prefer direct emails? Feel free to reach out anytime. I
+									usually respond within 24 hours.
+								</p>
+								<a
+									href='mailto:bensonnicholas206@gmail.com'
+									className='font-medium text-sm text-foreground hover:text-accent transition-colors font-mono underline underline-offset-2 break-all'
+								>
+									bensonnicholas206@gmail.com
+								</a>
+							</div>
 							<span className='block py-0.5 text-sm font-medium rounded-full bg-accent/10 text-accent border border-accent/50 text-center w-full'>
 								Status - Available
 							</span>

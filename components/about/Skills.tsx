@@ -1,3 +1,7 @@
+"use client";
+
+import { useMode } from "@/context/ModeContext";
+import { rearrangeByMode } from "@/lib/logic";
 import { skillsData } from "@/lib/data";
 import { motion, Variants } from "motion/react";
 
@@ -17,8 +21,10 @@ const itemVariants: Variants = {
 };
 
 export function Skills() {
-	const hardSkills = skillsData.filter((group) => group.type === "hard");
-	const softSkills = skillsData.filter((group) => group.type === "soft");
+	const { mode } = useMode();
+	const groups = rearrangeByMode(skillsData, mode);
+	const hardSkills = groups.filter((group) => group.type === "hard");
+	const softSkills = groups.filter((group) => group.type === "soft");
 
 	return (
 		<motion.section 

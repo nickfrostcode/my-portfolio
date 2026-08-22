@@ -3,13 +3,16 @@
 import { cn } from "@/lib/utils";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { motion, useMotionValue, animate, AnimatePresence } from "motion/react";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 
-export interface TimelineItemProps {
+import type { ComponentType } from "react";
+import type { IconType } from "react-icons";
+
+interface TimelineItemProps {
 	id: number | string;
 	logo?: string;
-	icon?: any; // React.ElementType
+	icon?: IconType | ComponentType<{ className?: string }>;
 	card: React.ReactNode;
 }
 
@@ -25,7 +28,7 @@ export function TimelineScroll({ items }: TimelineScrollProps) {
 	const [canScrollRight, setScrollRight] = useState(true);
 	const [activeIndex, setActiveIndex] = useState(0);
 
-	const checkScroll = () => {
+	const checkScroll = useCallback(() => {
 		if (!containerRef.current || !trackRef.current) return;
 		const containerWidth = containerRef.current.offsetWidth;
 		const trackWidth = trackRef.current.scrollWidth;
@@ -41,13 +44,13 @@ export function TimelineScroll({ items }: TimelineScrollProps) {
 			Math.max(0, Math.round(Math.abs(currentX) / scrollAmount)),
 		);
 		setActiveIndex(index);
-	};
+	}, [items.length, x]);
 
 	useEffect(() => {
 		checkScroll();
 		const unsubscribe = x.on("change", checkScroll);
 		return () => unsubscribe();
-	}, [x, items.length]);
+	}, [x, checkScroll]);
 
 	const handleScroll = (dir: "left" | "right") => {
 		const nextIndex = dir === "left" ? activeIndex - 1 : activeIndex + 1;

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -64,21 +63,21 @@
    --secondary: #DBD8D4;
    --secondary-foreground: #000000;
    --muted: #E5E2DE;
-   --muted-foreground: #807e7e;
-   --accent: #00D4FF;
-   --accent-hover: #33DDFF;
-   --accent-pressed: #00A8CC;
+   --muted-foreground: #5c5a5a;
+   --accent: #0B7285;
+   --accent-hover: #096172;
+   --accent-pressed: #074e5b;
    --accent-tint: #E6FBFF;
-   --accent-glow: rgba(0, 212, 255, 0.25);
-   --accent-foreground: #000000;
+   --accent-glow: rgba(11, 114, 133, 0.2);
+   --accent-foreground: #FFFFFF;
    --destructive: #EF4444;
    --border: #D3D0CC;
    --input: #D3D0CC;
-   --ring: #00A8CC;
-   --chart-1: #00A8CC;
-   --chart-2: #00D4FF;
+   --ring: #0B7285;
+   --chart-1: #0B7285;
+   --chart-2: #15AABF;
    --chart-3: #000000;
-   --chart-4: #6E6E6E;
+   --chart-4: #5c5a5a;
    --chart-5: #DBD8D4;
    --radius: 0.625rem;
    --sidebar: #FFFFFF;
@@ -88,7 +87,7 @@
    --sidebar-accent: #DBD8D4;
    --sidebar-accent-foreground: #000000;
    --sidebar-border: #D3D0CC;
-   --sidebar-ring: #00A8CC;
+   --sidebar-ring: #0B7285;
 }
 
 .dark {
@@ -103,13 +102,13 @@
    --secondary: #262626;
    --secondary-foreground: #FFFFFF;
    --muted: #1C1C1C;
-   --muted-foreground: #807e7e;
+   --muted-foreground: #9ca3af;
    --accent: #00D4FF;
    --accent-hover: #33DDFF;
    --accent-pressed: #00A8CC;
    --accent-tint: #E6FBFF;
    --accent-glow: rgba(0, 212, 255, 0.25);
-   --accent-foreground: #FFFFFF;
+   --accent-foreground: #000000;
    --destructive: #EF4444;
    --border: #2E2E2E;
    --input: #2E2E2E;
@@ -151,5 +150,48 @@
 @layer components {
    .form-input {
       @apply w-full px-3 py-2 rounded-lg border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 transition-all mt-1 h-11;
+   }
+
+   /* Grainy background effect for cards & footer */
+   div.bg-card,
+   section.bg-card,
+   article.bg-card,
+   footer.bg-card,
+   footer,
+   .card,
+   [data-slot="card"] {
+      position: relative;
+      isolation: isolate;
+   }
+
+   div.bg-card::before,
+   section.bg-card::before,
+   article.bg-card::before,
+   footer.bg-card::before,
+   footer::before,
+   .card::before,
+   [data-slot="card"]::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-image: url("./assets/grain.png");
+      background-repeat: repeat;
+      background-size: 140px 140px;
+      opacity: 0.02;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: -1;
+   }
+
+   .dark div.bg-card::before,
+   .dark section.bg-card::before,
+   .dark article.bg-card::before,
+   .dark footer.bg-card::before,
+   .dark footer::before,
+   .dark .card::before,
+   .dark [data-slot="card"]::before {
+      opacity: 0.03;
+      mix-blend-mode: screen;
    }
 }

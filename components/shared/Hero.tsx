@@ -6,8 +6,7 @@ import { useMode } from "@/context/ModeContext";
 import { buttonVariants } from "@/components/ui/button";
 import { ModeLink } from "@/components/shared/ModeLink";
 import {
-	LuArrowRight as ArrowRight,
-	LuDownload as Download,
+	LuDownload,
 } from "react-icons/lu";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -16,7 +15,8 @@ import { motion } from "motion/react";
 import darkPicture from "@/app/assets/picture_dark.png";
 import lightPicture from "@/app/assets/picture_light.png";
 
-import { titles, secondaryTitles, techStack } from "@/lib/data";
+import { titles, secondaryTitles, techStack, resumeFiles } from "@/lib/data";
+import { workNoun } from "@/lib/logic";
 
 export function Hero({ page = "home" }: { page: string }) {
 	const { mode } = useMode();
@@ -47,7 +47,7 @@ export function Hero({ page = "home" }: { page: string }) {
 								{page === "home"
 									? "Hello, I'm"
 									: page === "projects"
-										? "Works by"
+										? `${workNoun(mode)} by`
 										: page === "blog"
 											? "Articles by"
 											: page === "resume"
@@ -89,17 +89,20 @@ export function Hero({ page = "home" }: { page: string }) {
 								"gap-2 h-12 px-8 text-base",
 							)}
 						>
-							View Projects <ArrowRight className='w-4 h-4' />
+							View {workNoun(mode)}
 						</ModeLink>
-						<ModeLink
-							href='/resume'
-							className={cn(
-								buttonVariants({ size: "lg", variant: "outline" }),
-								"gap-2 h-12 px-8 text-base bg-background/50 backdrop-blur-sm",
-							)}
-						>
-							Download CV <Download className='w-4 h-4' />
-						</ModeLink>
+						{resumeFiles[mode] && (
+							<a
+								href={resumeFiles[mode]}
+								download
+								className={cn(
+									buttonVariants({ size: "lg", variant: "outline" }),
+									"gap-2 h-12 px-8 text-base bg-background/50 backdrop-blur-sm",
+								)}
+							>
+								Download Resume <LuDownload className='w-4 h-4' />
+							</a>
+						)}
 					</div>
 				</motion.div>
 

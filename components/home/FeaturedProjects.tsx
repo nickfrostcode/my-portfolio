@@ -8,7 +8,7 @@ import { ComingSoonProjects } from "../shared/ComingSoonProjects";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 
 import { projects } from "@/lib/data";
-import { getFeaturedProjects } from "@/lib/logic";
+import { getFeaturedProjects, workNoun } from "@/lib/logic";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -37,7 +37,7 @@ export function FeaturedProjects() {
 				{/* Section Title */}
 				<div className='text-center space-y-2'>
 					<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
-						Featured <span className='text-accent'>Projects</span>
+						Featured <span className='text-accent'>{workNoun(mode)}</span>
 					</h2>
 					<p className='text-muted-foreground font-medium max-w-2xl mx-auto'>
 						A curated selection of my latest work.
@@ -55,6 +55,7 @@ export function FeaturedProjects() {
 								animate={{ opacity: 1, scale: 1 }}
 								exit={{ opacity: 0, scale: 0.9 }}
 								transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+								className='h-full'
 							>
 								<ProjectCard project={project} />
 							</motion.div>
@@ -70,12 +71,17 @@ export function FeaturedProjects() {
 							"text-background font-semibold bg-foreground h-10 w-full flex justify-center items-center gap-2 rounded-full hover:bg-foreground/90",
 						)}
 					>
-						View All Projects
+						View All {workNoun(mode)}
 						<ArrowRight className='w-4 h-4' />
 					</ModeLink>
 				</div>
-				<hr className='my-10' />
-				<ComingSoonProjects />
+				{/* Pipeline / upcoming work — hidden in design mode */}
+				{mode !== "design" && (
+					<>
+						<hr className='my-10' />
+						<ComingSoonProjects />
+					</>
+				)}
 			</motion.div>
 		</section>
 	);

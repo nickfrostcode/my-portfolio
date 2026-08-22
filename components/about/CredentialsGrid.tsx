@@ -31,7 +31,7 @@ export function CredentialsGrid() {
 	const sortedAwards = rearrangeByMode(awards, mode);
 
 	return (
-		<motion.section 
+		<motion.section
 			initial={{ opacity: 0, y: 30 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, margin: "-50px" }}
@@ -51,60 +51,60 @@ export function CredentialsGrid() {
 					</div>
 				</div>
 
-				<motion.div 
+				<motion.div
 					variants={containerVariants}
-					initial="hidden"
-					whileInView="show"
+					initial='hidden'
+					whileInView='show'
 					viewport={{ once: true, margin: "-50px" }}
 					className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
 				>
-					<AnimatePresence mode="popLayout">
+					<AnimatePresence mode='popLayout'>
 						{sortedCerts.map((cert) => (
 							<motion.div
 								key={cert.id}
 								layout
 								variants={itemVariants}
-								initial="hidden"
-								animate="show"
-								exit="exit"
-								className='group flex flex-col bg-background border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
+								initial='hidden'
+								animate='show'
+								exit='exit'
+								className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
 							>
 								{/* Image */}
-							<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
-								{cert.image ? (
-									<Image
-										src={cert.image}
-										alt={cert.title}
-										fill
-										className='object-cover transition-transform duration-700 group-hover:scale-105'
-									/>
-								) : (
-									<div className='w-full h-full flex items-center justify-center bg-muted'>
-										<LuFileBadge className='w-12 h-12 text-muted-foreground' />
-									</div>
-								)}
-							</div>
-
-							{/* Content */}
-							<div className='flex flex-col flex-1 p-2 pt-5'>
-								<div className='mb-4'>
-									<span className='inline-block px-3 py-1 text-[10px] md:text-xs font-medium rounded-full bg-muted text-muted-foreground mb-3'>
-										{cert.type}
-									</span>
-									<h3 className='text-lg md:text-xl font-bold text-foreground mb-1 leading-tight'>
-										{cert.title}
-									</h3>
-									<h4 className='text-sm font-medium text-accent'>
-										{cert.issuer}
-									</h4>
+								<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
+									{cert.image ? (
+										<Image
+											src={cert.image}
+											alt={cert.title}
+											fill
+											className='object-cover transition-transform duration-700 group-hover:scale-105'
+										/>
+									) : (
+										<div className='w-full h-full flex items-center justify-center bg-muted'>
+											<LuFileBadge className='w-12 h-12 text-muted-foreground' />
+										</div>
+									)}
 								</div>
 
-								<p className='text-sm text-foreground/80 leading-relaxed'>
-									{cert.desc}
-								</p>
-							</div>
-						</motion.div>
-					))}
+								{/* Content */}
+								<div className='flex flex-col flex-1 p-2 pt-5'>
+									<div className='mb-4'>
+										<span className='inline-block px-3 py-1 text-xs font-medium rounded-full bg-muted text-muted-foreground mb-3'>
+											{cert.type} - {cert.progress}
+										</span>
+										<h3 className='text-lg md:text-xl font-bold text-foreground mb-1 leading-tight'>
+											{cert.title}
+										</h3>
+										<h4 className='text-sm font-medium text-accent'>
+											{cert.issuer}
+										</h4>
+									</div>
+
+									<p className='text-sm text-foreground/80 leading-relaxed'>
+										{cert.desc}
+									</p>
+								</div>
+							</motion.div>
+						))}
 					</AnimatePresence>
 				</motion.div>
 			</div>
@@ -122,59 +122,59 @@ export function CredentialsGrid() {
 					</div>
 				</div>
 
-				<motion.div 
+				<motion.div
 					variants={containerVariants}
-					initial="hidden"
-					whileInView="show"
+					initial='hidden'
+					whileInView='show'
 					viewport={{ once: true, margin: "-50px" }}
 					className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
 				>
-					<AnimatePresence mode="popLayout">
+					<AnimatePresence mode='popLayout'>
 						{sortedAwards.map((award) => (
 							<motion.div
 								key={award.id}
 								layout
 								variants={itemVariants}
-								initial="hidden"
-								animate="show"
-								exit="exit"
-								className='group flex flex-col bg-background border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
+								initial='hidden'
+								animate='show'
+								exit='exit'
+								className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative'
 							>
 								{/* Image */}
-							<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
-								{award.image ? (
-									<Image
-										src={award.image}
-										alt={award.title}
-										fill
-										className='object-cover transition-transform duration-700 group-hover:scale-105'
-									/>
-								) : (
-									<div className='w-full h-full flex items-center justify-center bg-muted'>
-										<LuAward className='w-12 h-12 text-muted-foreground' />
-									</div>
-								)}
-							</div>
-
-							{/* Content */}
-							<div className='flex flex-col flex-1 p-2 pt-5'>
-								<div className='mb-4'>
-									<span className='inline-block px-3 py-1 text-[10px] md:text-xs font-medium rounded-full bg-muted text-muted-foreground mb-3'>
-										{award.date}
-									</span>
-									<h3 className='text-lg md:text-xl font-bold text-foreground mb-1 leading-tight'>
-										{award.title}
-									</h3>
-									<h4 className='text-sm font-medium text-muted-foreground'>
-										{award.issuer}
-									</h4>
+								<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
+									{award.image ? (
+										<Image
+											src={award.image}
+											alt={award.title}
+											fill
+											className='object-cover transition-transform duration-700 group-hover:scale-105'
+										/>
+									) : (
+										<div className='w-full h-full flex items-center justify-center bg-muted'>
+											<LuAward className='w-12 h-12 text-muted-foreground' />
+										</div>
+									)}
 								</div>
 
-								<p className='text-sm text-foreground/80 leading-relaxed'>
-									{award.description}
-								</p>
-							</div>
-						</motion.div>
+								{/* Content */}
+								<div className='flex flex-col flex-1 p-2 pt-5'>
+									<div className='mb-4'>
+										<span className='inline-block px-3 py-1 text-xs font-medium rounded-full bg-muted text-muted-foreground mb-3'>
+											{award.date}
+										</span>
+										<h3 className='text-lg md:text-xl font-bold text-foreground mb-1 leading-tight'>
+											{award.title}
+										</h3>
+										<h4 className='text-sm font-medium text-muted-foreground'>
+											{award.issuer}
+										</h4>
+									</div>
+
+									<p className='text-sm text-foreground/80 leading-relaxed'>
+										{award.description}
+									</p>
+								</div>
+							</motion.div>
 						))}
 					</AnimatePresence>
 				</motion.div>
