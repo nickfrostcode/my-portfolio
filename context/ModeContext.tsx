@@ -2,9 +2,14 @@
 
 "use client";
 
-import { createContext, useContext, ReactNode, useState, useEffect } from "react";
+import {
+	createContext,
+	useContext,
+	type ReactNode,
+} from "react";
 import { usePathname } from "next/navigation";
-export type Mode = "general" | "dev" | "design";
+
+export type Mode = "dev" | "design";
 
 interface ModeContextType {
 	mode: Mode;
@@ -15,31 +20,23 @@ const ModeContext = createContext<ModeContextType | undefined>(undefined);
 
 export function ModeProvider({
 	children,
-	mode: initialMode,
+	mode: initialMode = "dev",
 	isSubdomain = false,
 }: {
 	children: ReactNode;
-	mode: Mode;
+	mode?: Mode;
 	isSubdomain?: boolean;
 }) {
-	const pathname = usePathname();
-	const [mode, setMode] = useState<Mode>(initialMode);
+	const pathname = usePathname() || "";
 
-	useEffect(() => {
-		if (isSubdomain) {
-			const host = window.location.hostname;
-			if (host.startsWith("dev.")) setMode("dev");
-			else if (host.startsWith("design.")) setMode("design");
-			else setMode("general");
-		} else {
-			if (pathname.startsWith("/dev")) setMode("dev");
-			else if (pathname.startsWith("/design")) setMode("design");
-			else setMode("general");
-		}
-	}, [pathname, isSubdomain]);
+	// Derive mode directly during render without cascading effect renders
+	const isDesignPath = pathname.startsWith("/design");
+	const mode: Mode = isSubdomain || isDesignPath || initialMode === "design" ? "design" : "dev";
 
 	return (
-		<ModeContext.Provider value={{ mode, isSubdomain }}>{children}</ModeContext.Provider>
+		<ModeContext.Provider value={{ mode, isSubdomain }}>
+			{children}
+		</ModeContext.Provider>
 	);
 }
 

@@ -12,7 +12,7 @@ import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 
 const generalSans = localFont({
-	src: "./fonts/GeneralSans-Variable.woff2",
+	src: "./assets/fonts/GeneralSans-Variable.woff2",
 	variable: "--font-sans",
 	display: "swap",
 });
@@ -24,9 +24,9 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Nicholas Benson Olúwafẹ́rànmi | Portfolio",
+	title: "Nicholas Benson | Software Developer & Engineer",
 	description:
-		"Computer Scientist bridging the gap between Software Engineering and Visual Design.",
+		"Full-Stack Software Developer & Engineer building modern web applications, scalable backend systems, and intuitive user experiences.",
 };
 
 export default async function RootLayout({
@@ -35,33 +35,35 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const headersList = await headers();
-	const mode = (headersList.get("x-portfolio-mode") as Mode) || "general";
-	const host = headersList.get("host") || "";
-	const isSubdomain = host.startsWith("dev.") || host.startsWith("design.");
+	const host =
+		headersList.get("x-forwarded-host") || headersList.get("host") || "";
+	const isSubdomain =
+		host.startsWith("design.") || headersList.get("x-is-subdomain") === "1";
+	const headerMode = headersList.get("x-portfolio-mode");
+	const mode: Mode =
+		headerMode === "design" || isSubdomain ? "design" : "dev";
 
 	return (
 		<html
 			lang='en'
-			data-scroll-behavior="smooth"
+			data-scroll-behavior='smooth'
 			className={cn(
-            "h-full antialiased font-sans",
-            "scroll-smooth",
+				"h-full antialiased font-sans",
+				"scroll-smooth",
 				generalSans.variable,
 				jetBrainsMono.variable,
-         )}
-         suppressHydrationWarning
+			)}
+			suppressHydrationWarning
 		>
 			<body className='min-h-full flex flex-col'>
 				<ThemeProvider
-					attribute="class"
-					defaultTheme="dark"
+					attribute='class'
+					defaultTheme='dark'
 					disableTransitionOnChange
 				>
 					<ModeProvider mode={mode} isSubdomain={isSubdomain}>
 						<Navbar />
-						<main className="flex-1">
-							{children}
-						</main>
+						<main className='flex-1'>{children}</main>
 						<Footer />
 					</ModeProvider>
 				</ThemeProvider>

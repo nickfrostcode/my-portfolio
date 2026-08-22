@@ -1,0 +1,100 @@
+/** @format */
+
+import { Testimonial } from "@/types";
+
+// --- TESTIMONIALS DATA ---
+export const allTestimonials: Testimonial[] = [
+	{
+		id: 1,
+		name: "Rasheedat",
+		role: "Student @ FUOYE",
+		avatar: "",
+		rating: 4,
+		type: "image",
+		content: "/comments/design_comment1.png",
+		mode: "design",
+	},
+	{
+		id: 2,
+		name: "Olamide",
+		role: "Student @ FUOYE",
+		avatar: "",
+		rating: 3,
+		type: "image",
+		content: "/comments/design_comment2.png",
+		mode: "design",
+	},
+	{
+		id: 3,
+		name: "Testimony",
+		role: "Student @ FUOYE",
+		avatar: "",
+		rating: 5,
+		type: "image",
+		content: "/comments/design_comment3.png",
+		mode: "design",
+	},
+	{
+		id: 4,
+		name: "Dennis",
+		role: "General Secretary @ NACOSS",
+		avatar: "",
+		rating: 4,
+		type: "image",
+		content: "/comments/design_comment4.png",
+		mode: "design",
+	},
+	{
+		id: 5,
+		name: "Mosdiamond",
+		role: "CEO @ Mosdiamond Welding",
+		avatar: "",
+		rating: 5,
+		type: "image",
+		content: "/comments/design_comment5.png",
+		mode: "design",
+	},
+	{
+		id: 6,
+		name: "Ayodeji",
+		role: "Student @ AAUA",
+		avatar: "",
+		rating: 4,
+		type: "image",
+		content: "/comments/design_comment6.png",
+		mode: "design",
+	},
+	{
+		id: 7,
+		name: "Dev Tuyi",
+		role: "Developer",
+		avatar: "",
+		rating: 5,
+		type: "text",
+		content:
+			"I highly recommend Nick for any frontend or UI engineering role. Working with him was effortless. His UI implementation was spot-on, and his clean component architecture using modern frameworks made integrating APIs and connecting the backend completely seamless. He is a truly skilled developer who makes cross-stack collaboration easy and would be a strong asset to any engineering team.",
+		mode: "dev",
+	},
+	{
+		id: 8,
+		name: "Dev Tuyi",
+		role: "Developer",
+		avatar: "",
+		rating: 5,
+		type: "text",
+		content:
+			"I highly recommend Nick for any frontend or UI engineering role. Working with him was effortless. His UI implementation was spot-on, and his clean component architecture using modern frameworks made integrating APIs and connecting the backend completely seamless. He is a truly skilled developer who makes cross-stack collaboration easy and would be a strong asset to any engineering team.",
+		mode: "dev",
+	},
+	{
+		id: 9,
+		name: "Dev Tuyi",
+		role: "Developer",
+		avatar: "",
+		rating: 5,
+		type: "text",
+		content:
+			"I highly recommend Nick for any frontend or UI engineering role. Working with him was effortless. His UI implementation was spot-on, and his clean component architecture using modern frameworks made integrating APIs and connecting the backend completely seamless. He is a truly skilled developer who makes cross-stack collaboration easy and would be a strong asset to any engineering team.",
+		mode: "dev",
+	},
+];

@@ -6,6 +6,8 @@ import Link, { LinkProps } from "next/link";
 import { useMode } from "@/context/ModeContext";
 import { ReactNode, RefAttributes, AnchorHTMLAttributes } from "react";
 
+import { resolveModeHref } from "@/lib/logic";
+
 type ModeLinkProps = Omit<
 	AnchorHTMLAttributes<HTMLAnchorElement>,
 	keyof LinkProps
@@ -16,25 +18,7 @@ type ModeLinkProps = Omit<
 
 export function ModeLink({ href, children, ...props }: ModeLinkProps) {
 	const { mode, isSubdomain } = useMode();
-
-	let finalHref = href.toString();
-
-	if (
-		!isSubdomain &&
-		finalHref.startsWith("/") &&
-		!finalHref.startsWith("/dev") &&
-		!finalHref.startsWith("/design")
-	) {
-		if (mode !== "general") {
-			if (finalHref === "/") {
-				finalHref = `/${mode}`;
-			} else if (finalHref.startsWith("/#")) {
-				finalHref = `/${mode}${finalHref.substring(1)}`;
-			} else {
-				finalHref = `/${mode}${finalHref}`;
-			}
-		}
-	}
+	const finalHref = resolveModeHref(href.toString(), mode, isSubdomain);
 
 	return (
 		<Link href={finalHref} {...props}>

@@ -1,6 +1,11 @@
+import type { StaticImageData } from "next/image";
+import type { ComponentType } from "react";
+import type { IconType } from "react-icons";
+
+export type Mode = "dev" | "design";
 export type ModeType = "dev" | "design" | "general";
 
-export type ContentType = "text" | "image" | "video";
+type ContentType = "text" | "image" | "video";
 
 export interface Testimonial {
 	id: number;
@@ -28,17 +33,30 @@ export interface Project {
 	id: number;
 	title: string;
 	description: string;
-	image: string;
+	image: string | StaticImageData;
 	link: string;
 	status: string;
 	mode: ModeType;
 	tech: string[];
+	dateVal: number; // YYYYMM, used for date sorting (matches Experience.dateVal)
+	field?: string; // Design category (e.g. "Logo Design"); used in design mode only
+   featured?: boolean; // Pins a project into the home-page "Featured" section
+   source?: string;
+}
+
+export interface Work {
+	id: number;
+	title: string;
+	image: string | StaticImageData;
+	field: string;
+	tech: string[];
+	dateVal: number;
 }
 
 export interface SocialLink {
 	name: string;
 	url: string;
-	icon: any; // React.ElementType
+	icon: IconType | ComponentType<{ className?: string }>;
 }
 
 export interface Certificate {
@@ -63,23 +81,24 @@ export interface Award {
 	image?: string;
 }
 
-export interface JourneyItem {
+export interface Education {
 	id: number;
 	title: string;
 	subtitle: string;
 	date: string;
 	description: string;
-	icon: any; // React.ElementType
+	mode: ModeType;
 }
 
-export interface SkillItem {
+interface SkillItem {
 	name: string;
-	icon: any; // React.ElementType
+	icon: IconType | ComponentType<{ className?: string }>;
 }
 
 export interface SkillGroup {
 	category: string;
 	type: "hard" | "soft";
+	mode: ModeType;
 	skills: SkillItem[];
 }
 
@@ -99,3 +118,9 @@ export interface BlogPost {
 	category: string[];
 	platform: string;
 }
+
+export interface Language {
+	name: string;
+	proficiency: string;
+}
+
