@@ -1,0 +1,47 @@
+# Nicholas Benson — Full-Stack Software Developer & Brand Designer
+
+> Official AI context, professional background, technical documentation, and portfolio index for Nicholas Benson (Nick Frost).
+
+## Overview
+
+Nicholas Benson is a Full-Stack Software Developer, Engineer, and Visual Brand Designer based in Nigeria. He specializes in building modern web applications, scalable backend APIs, and visual identity systems.
+
+- **Developer Portfolio**: [https://nicholasbenson.cv](https://nicholasbenson.cv)
+- **Design Portfolio**: [https://design.nicholasbenson.cv](https://design.nicholasbenson.cv)
+- **Primary Stack**: Next.js, React, TypeScript, Node.js, Fastify, Golang, PostgreSQL, TailwindCSS
+- **Design Stack**: Adobe Illustrator, Photoshop, Figma, CorelDraw, Typography, Brand Identity
+
+---
+
+## Core Software Projects
+
+- [DevPulse](https://nicholasbenson.cv/projects): Developer ecosystem dashboard and engineering metrics platform built with Next.js, TypeScript, Node.js, and PostgreSQL.
+- [FlowCraft](https://nicholasbenson.cv/projects): Interactive visual workflow builder and automation engine.
+- [CloudVault](https://nicholasbenson.cv/projects): Secure cloud asset management system with high-throughput backend services in Go and Fastify.
+- [EchoStream](https://nicholasbenson.cv/projects): Real-time collaborative audio and messaging platform built with WebSockets and React.
+
+---
+
+## Brand & Visual Design Works
+
+- [Visual Identity Systems](https://design.nicholasbenson.cv/works): Comprehensive brand identity, logos, color palettes, and typography guidelines.
+- [Digital & Print Media](https://design.nicholasbenson.cv/works): Marketing collateral, packaging design, and event visual branding.
+- [UI/UX & Product Design](https://design.nicholasbenson.cv/works): User interface mockups, wireframes, and design systems in Figma.
+
+---
+
+## Verified Resumes & Credentials
+
+- [Nicholas Benson — Software Developer Resume (PDF)](https://nicholasbenson.cv/resumes/Nicholas_Benson_Developer_Resume.pdf): Full-stack developer curriculum vitae.
+- [Nicholas Benson — Graphic Designer Resume (PDF)](https://design.nicholasbenson.cv/resumes/Nicholas_Benson_Designer_Resume.pdf): Brand designer curriculum vitae.
+
+---
+
+## Official Links & Socials
+
+- [Portfolio Website](https://nicholasbenson.cv)
+- [Design Subdomain](https://design.nicholasbenson.cv)
+- [GitHub Profile](https://github.com/nickfrostcode)
+- [LinkedIn Profile](https://www.linkedin.com/in/nickfrostcode)
+- [X / Twitter](https://x.com/NBenson57814)
+- [Email Contact](mailto:bensonnicholas206@gmail.com)

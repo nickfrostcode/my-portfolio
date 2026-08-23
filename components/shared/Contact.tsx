@@ -149,7 +149,14 @@ export function Contact() {
 						transition={{ duration: 0.6, delay: 0.2 }}
 						className='bg-card border border-border rounded-3xl p-4 md:p-8'
 					>
-						<form className='space-y-3' onSubmit={handleSubmit}>
+						<form
+							name='contact_form'
+							aria-label='Contact Nicholas Benson'
+							data-webmcp-tool='submit_contact_form'
+							data-webmcp-description='Submit a message, inquiry, or project proposal to Nicholas Benson.'
+							className='space-y-3'
+							onSubmit={handleSubmit}
+						>
 							{/* Honeypot field for bot spam prevention */}
 							<div className='hidden' aria-hidden='true'>
 								<label htmlFor='website'>Leave this field blank</label>
@@ -174,6 +181,7 @@ export function Contact() {
 										id='name'
 										name='name'
 										type='text'
+										autoComplete='name'
 										placeholder='Jane Doe'
 										className='form-input'
 										required
@@ -191,6 +199,7 @@ export function Contact() {
 										id='email'
 										name='email'
 										type='email'
+										autoComplete='email'
 										placeholder='john@example.com'
 										className='form-input'
 										required
@@ -211,6 +220,7 @@ export function Contact() {
 									id='subject'
 									name='subject'
 									type='text'
+									autoComplete='off'
 									placeholder='What is this regarding?'
 									className='form-input'
 									required
