@@ -90,7 +90,11 @@ export function AboutPreview() {
 					>
 						<Image
 							src={pictureImg}
-							alt='Nicholas Benson Portrait'
+							alt={
+								mode === "design"
+									? "Nicholas Benson — Graphic, Visual & Brand Designer"
+									: "Nicholas Benson — Full-Stack Software Developer & Engineer"
+							}
 							fill
 							className='object-cover object-top grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105 mask-[linear-gradient(to_bottom,black_80%,transparent_100%)]'
 						/>

@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -104,7 +106,7 @@ export function TimelineScroll({ items }: TimelineScrollProps) {
 					{/* Start Spacer to avoid edge fade */}
 					<div className='w-4 md:w-10 shrink-0' />
 
-					<AnimatePresence mode="popLayout">
+					<AnimatePresence mode='popLayout'>
 						{items.map((item) => {
 							const Icon = item.icon;
 							return (
@@ -114,7 +116,11 @@ export function TimelineScroll({ items }: TimelineScrollProps) {
 									initial={{ opacity: 0, scale: 0.8 }}
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0, scale: 0.8 }}
-									transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+									transition={{
+										duration: 0.4,
+										type: "spring",
+										bounce: 0.2,
+									}}
 									className='relative flex flex-col items-center shrink-0 w-70 md:w-85 z-10'
 								>
 									{/* The Node Dot or Logo */}
@@ -122,7 +128,7 @@ export function TimelineScroll({ items }: TimelineScrollProps) {
 										{item.logo ? (
 											<Image
 												src={item.logo}
-												alt="Logo"
+												alt='Company logo'
 												fill
 												className='object-cover'
 											/>

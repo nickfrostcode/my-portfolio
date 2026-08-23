@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: https:;
     font-src 'self' data: https:;
@@ -13,7 +13,9 @@ const cspHeader = `
     form-action 'self' https://forms.gle https://docs.google.com;
     frame-ancestors 'none';
     connect-src 'self' https:;
-`.replace(/\s{2,}/g, " ").trim();
+`
+	.replace(/\s{2,}/g, " ")
+	.trim();
 
 const securityHeaders = [
 	{

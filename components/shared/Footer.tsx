@@ -8,7 +8,7 @@ import { socialLinks } from "@/lib/data";
 import { LuArrowRight } from "react-icons/lu";
 
 export function Footer() {
-	const { mode, isSubdomain } = useMode();
+	const { mode } = useMode();
 	const isDesign = mode === "design";
 
 	return (
@@ -31,28 +31,24 @@ export function Footer() {
 						<div className='pt-2'>
 							{isDesign ? (
 								<a
-									href={isSubdomain ? "https://nickfrost.dev" : "/"}
+									href='https://nicholasbenson.cv'
 									className='group inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors'
 								>
 									<span>Also a developer</span>
 									<LuArrowRight className='w-4 h-4 text-accent transition-transform group-hover:translate-x-1' />
 									<span className='font-mono text-xs text-muted-foreground group-hover:text-accent transition-colors'>
-										nickfrost.dev
+										nicholasbenson.cv
 									</span>
 								</a>
 							) : (
 								<a
-									href={
-										isSubdomain
-											? "https://design.nickfrost.dev"
-											: "/design"
-									}
+									href='https://design.nicholasbenson.cv'
 									className='group inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors'
 								>
 									<span>Also a designer</span>
 									<LuArrowRight className='w-4 h-4 text-accent transition-transform group-hover:translate-x-1' />
 									<span className='font-mono text-xs text-muted-foreground group-hover:text-accent transition-colors'>
-										design.nickfrost.dev
+										design.nicholasbenson.cv
 									</span>
 								</a>
 							)}

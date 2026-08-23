@@ -64,11 +64,11 @@
    --secondary-foreground: #000000;
    --muted: #E5E2DE;
    --muted-foreground: #5c5a5a;
-   --accent: #0B7285;
-   --accent-hover: #096172;
-   --accent-pressed: #074e5b;
+   --accent: #00A8CC;
+   --accent-hover: #33DDFF;
+   --accent-pressed: #00A8CC;
    --accent-tint: #E6FBFF;
-   --accent-glow: rgba(11, 114, 133, 0.2);
+   --accent-glow: rgba(0, 168, 204, 0.2);
    --accent-foreground: #FFFFFF;
    --destructive: #EF4444;
    --border: #D3D0CC;

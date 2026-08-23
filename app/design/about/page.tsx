@@ -1,6 +1,6 @@
 /** @format */
-"use client";
 
+import type { Metadata } from "next";
 import { Hero } from "@/components/shared/Hero";
 import { QuickStats } from "@/components/about/QuickStats";
 import { Biography } from "@/components/about/Biography";
@@ -8,6 +8,15 @@ import { Skills } from "@/components/about/Skills";
 import { CredentialsGrid } from "@/components/about/CredentialsGrid";
 import { WorkExperience } from "@/components/shared/WorkExperience";
 import { Contact } from "@/components/shared/Contact";
+
+export const metadata: Metadata = {
+	title: "About — Graphic, Visual & Brand Designer",
+	description:
+		"Learn about Nicholas Benson's design philosophy, visual direction, design toolkit, and creative credentials.",
+	alternates: {
+		canonical: "/about",
+	},
+};
 
 export default function DesignAboutPage() {
 	return (

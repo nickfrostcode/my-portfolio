@@ -37,10 +37,20 @@ export function FeaturedProjects() {
 				{/* Section Title */}
 				<div className='text-center space-y-2'>
 					<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
-						Featured <span className='text-accent'>{workNoun(mode)}</span>
+						{mode === "design" ? (
+							<>
+								Featured <span className='text-accent'>Design Works</span>
+							</>
+						) : (
+							<>
+								Featured <span className='text-accent'>Software Projects</span>
+							</>
+						)}
 					</h2>
-					<p className='text-muted-foreground font-medium max-w-2xl mx-auto'>
-						A curated selection of my latest work.
+					<p className='text-muted-foreground font-medium max-w-2xl mx-auto text-base md:text-lg'>
+						{mode === "design"
+							? "A curated selection of visual identities, branding systems, and digital designs."
+							: "A curated selection of production web applications, scalable backend architectures, and engineering tools."}
 					</p>
 				</div>
 

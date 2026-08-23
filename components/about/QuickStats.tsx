@@ -39,9 +39,9 @@ export function QuickStats() {
 							key={i}
 							className='flex flex-col items-center justify-center text-center px-4'
 						>
-							<h3 className='text-3xl md:text-5xl font-extrabold text-foreground mb-2'>
+							<span className='text-3xl md:text-5xl font-extrabold text-foreground mb-2 block tracking-tight'>
 								{stat.value}
-							</h3>
+							</span>
 							<p className='text-sm md:text-base font-medium text-muted-foreground uppercase tracking-wider'>
 								{stat.label}
 							</p>

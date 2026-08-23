@@ -42,26 +42,46 @@ export function Hero({ page = "home" }: { page: string }) {
 					)}
 				>
 					<div className='space-y-4'>
-						<h1 className='text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]'>
-							<span className='text-accent block text-4xl'>
+						<h1 className='text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.15]'>
+							<span className='text-accent block text-2xl sm:text-3xl font-bold tracking-normal mb-2'>
 								{page === "home"
 									? "Hello, I'm"
 									: page === "projects"
-										? `${workNoun(mode)} by`
+										? mode === "design"
+											? "Design Portfolio"
+											: "Engineering Projects"
 										: page === "blog"
-											? "Articles by"
+											? "Articles & Insights"
 											: page === "resume"
-												? "Resume of"
+												? "Curriculum Vitae"
 												: "About"}
 							</span>
-							Nicholas Benson {/*Olúwafẹ́rànmi */}
+							Nicholas Benson
+							<span className='text-foreground/90 block text-2xl md:text-3xl font-semibold mt-2'>
+								{page === "home"
+									? mode === "design"
+										? "Graphic, Visual & Brand Designer"
+										: "Full-Stack Software Developer & Engineer"
+									: page === "projects"
+										? mode === "design"
+											? "Graphic, Visual & Brand Design Works"
+											: "Full-Stack Software & Engineering Projects"
+										: page === "blog"
+											? "Software Engineering Blog & Technical Articles"
+											: page === "resume"
+												? mode === "design"
+													? "Visual Designer Resume & Creative Credentials"
+													: "Software Engineer Resume & Technical Credentials"
+												: mode === "design"
+													? "About the Graphic & Brand Designer"
+													: "About the Full-Stack Software Developer"}
+							</span>
 						</h1>
-						<p className='text-xl md:text-2xl text-foreground font-medium'>
+						<p className='text-lg md:text-xl text-muted-foreground font-medium max-w-xl'>
 							{titles[mode]}
 						</p>
 						{techStack[mode] && (
 							<p className='text-sm md:text-base text-muted-foreground font-medium'>
-								{/* <span className='text-foreground'>Tech Stack: </span> */}
 								{techStack[mode].join(" | ")}
 							</p>
 						)}
@@ -72,7 +92,7 @@ export function Hero({ page = "home" }: { page: string }) {
 						)}
 					</div>
 
-					<div className='font-mono text-sm uppercase tracking-widest font-bold text-accent dark:text-accent bg-muted/20 px-4 py-2 rounded-md border border-border/30'>
+					<div className='font-mono text-sm uppercase tracking-widest font-bold text-accent bg-muted/20 px-4 py-2 rounded-md border border-border/30'>
 						Nick Frost // @nickfrostcode
 					</div>
 
@@ -95,6 +115,8 @@ export function Hero({ page = "home" }: { page: string }) {
 							<a
 								href={resumeFiles[mode]}
 								download
+								aria-label={`Download Nicholas Benson ${mode === "design" ? "Graphic Designer" : "Full-Stack Software Developer"} Resume (PDF)`}
+								title={`Download Nicholas Benson ${mode === "design" ? "Graphic Designer" : "Full-Stack Software Developer"} Resume (PDF)`}
 								className={cn(
 									buttonVariants({ size: "lg", variant: "outline" }),
 									"gap-2 h-12 px-8 text-base bg-background/50 backdrop-blur-sm",
@@ -116,13 +138,21 @@ export function Hero({ page = "home" }: { page: string }) {
 					>
 						<Image
 							src={lightPicture}
-							alt='Nicholas Benson'
+							alt={
+								mode === "design"
+									? "Nicholas Benson — Graphic, Visual & Brand Designer"
+									: "Nicholas Benson — Full-Stack Software Developer & Engineer"
+							}
 							className='w-full h-auto object-contain grayscale opacity-90 transition-all duration-700 hover:opacity-100 mask-[linear-gradient(to_bottom,black_90%,transparent_100%)] block dark:hidden'
 							priority
 						/>
 						<Image
 							src={darkPicture}
-							alt='Nicholas Benson'
+							alt={
+								mode === "design"
+									? "Nicholas Benson — Graphic, Visual & Brand Designer"
+									: "Nicholas Benson — Full-Stack Software Developer & Engineer"
+							}
 							className='w-full h-auto object-contain grayscale opacity-90 transition-all duration-700 hover:opacity-100 mask-[linear-gradient(to_bottom,black_90%,transparent_100%)] hidden dark:block'
 							priority
 						/>

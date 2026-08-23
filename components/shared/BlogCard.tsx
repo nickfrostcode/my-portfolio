@@ -24,7 +24,7 @@ export function BlogCard({ post }: BlogCardProps) {
 			<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
 				<Image
 					src={post.image}
-					alt={post.title}
+					alt={`${post.title} — Technical Article by Nicholas Benson`}
 					fill
 					className='object-cover transition-transform duration-700 group-hover:scale-105'
 				/>

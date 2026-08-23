@@ -135,7 +135,7 @@ export function Testimonials() {
 													{testimonial.avatar ? (
 														<Image
 															src={testimonial.avatar}
-															alt={testimonial.name}
+															alt={`${testimonial.name} — Client Avatar`}
 															fill
 															sizes='48px'
 															className='object-cover'
@@ -184,7 +184,7 @@ export function Testimonials() {
 												<div className='relative w-full h-48 md:h-56 rounded-xl overflow-hidden'>
 													<Image
 														src={testimonial.content}
-														alt={`Work for ${testimonial.name}`}
+														alt={`Client project work delivered for ${testimonial.name}`}
 														fill
 														className='object-cover'
 													/>

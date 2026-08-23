@@ -2,19 +2,13 @@
 
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useMode } from "@/context/ModeContext";
 import { useTheme } from "next-themes";
-import {
-	LuMoon,
-	LuSun,
-	LuMenu,
-	LuX,
-	// LuChevronDown,
-	LuPalette,
-	LuCodeXml,
-} from "react-icons/lu";
+import { LuMoon, LuSun, LuMenu, LuX } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,15 +17,47 @@ import { resolveModeHref } from "@/lib/logic";
 const emptySubscribe = () => () => {};
 
 export function Navbar() {
+	const pathname = usePathname();
 	const { mode, isSubdomain } = useMode();
 	const { theme, setTheme } = useTheme();
 	const [isOpen, setIsOpen] = useState(false);
-	// const [modeMenuOpen, setModeMenuOpen] = useState(false);
+	const [isNavigating, setIsNavigating] = useState(false);
 	const mounted = useSyncExternalStore(
 		emptySubscribe,
 		() => true,
 		() => false,
 	);
+
+	// Clear loading state on route change
+	useEffect(() => {
+		setIsNavigating(false);
+	}, [pathname]);
+
+	// Listen for internal navigation link clicks
+	useEffect(() => {
+		const handleAnchorClick = (event: MouseEvent) => {
+			const target = event.target as HTMLElement | null;
+			const anchor = target?.closest("a");
+			if (
+				anchor &&
+				anchor.href &&
+				!anchor.target &&
+				!anchor.href.startsWith("mailto:") &&
+				!anchor.href.startsWith("tel:") &&
+				!anchor.href.startsWith("javascript:") &&
+				!anchor.getAttribute("href")?.startsWith("#") &&
+				anchor.origin === window.location.origin
+			) {
+				const targetPath = anchor.pathname;
+				if (targetPath !== window.location.pathname) {
+					setIsNavigating(true);
+				}
+			}
+		};
+
+		document.addEventListener("click", handleAnchorClick);
+		return () => document.removeEventListener("click", handleAnchorClick);
+	}, []);
 
 	const isDesign = mode === "design";
 
@@ -46,13 +72,13 @@ export function Navbar() {
 				},
 				{ label: "Works", href: getHref("/works") },
 				{ label: "Resume", href: getHref("/resume") },
-		  ]
+			]
 		: [
 				{ label: "About", href: getHref("/about") },
 				{ label: "Projects", href: getHref("/projects") },
 				{ label: "Blog", href: getHref("/blog") },
 				{ label: "Resume", href: getHref("/resume") },
-		  ];
+			];
 
 	/*
 	const modeOptions: {
@@ -82,7 +108,7 @@ export function Navbar() {
 	return (
 		<div className='sticky top-0 z-50 w-full h-13 flex justify-center items-start pointer-events-none px-4 md:px-12'>
 			{/* DESKTOP NAV */}
-			<nav className='hidden md:flex relative items-center justify-between w-full max-w-3xl h-13 bg-foreground rounded-b-3xl pointer-events-auto px-4'>
+			<nav className='hidden md:flex relative items-center justify-between w-full max-w-3xl h-13 bg-foreground rounded-b-3xl pointer-events-auto px-4 overflow-hidden'>
 				{/* Left Incurve */}
 				<div className='absolute top-0 -left-5 w-5 h-5 overflow-visible -scale-x-100 pointer-events-none'>
 					<svg
@@ -127,16 +153,19 @@ export function Navbar() {
 
 				{/* Left Logo */}
 				<div className='flex items-center gap-3 text-background'>
-					<div className='w-8 h-8 rounded-full bg-background text-foreground flex items-center justify-center font-bold text-lg leading-none'>
-						{isDesign ? (
-							<LuPalette size={20} strokeWidth={3} />
-						) : (
-							<LuCodeXml size={20} strokeWidth={3} />
-						)}
+					<div className='w-8 h-8 rounded-full overflow-hidden flex items-center justify-center shrink-0'>
+						<Image
+							src='/icon.png'
+							alt='Nicholas Benson Portfolio'
+							width={32}
+							height={32}
+							className='w-full h-full object-cover'
+							priority
+						/>
 					</div>
 					<Link
 						href={getHref("/")}
-						className='font-semibold text-lg tracking-tight hover:text-accent transition-colors'
+						className='font-bold text-lg hover:text-accent transition-colors'
 					>
 						Nicholas
 					</Link>
@@ -232,6 +261,19 @@ export function Navbar() {
 						Contact
 					</Link>
 				</div>
+
+				{/* Integrated Desktop Bottom Loading Line */}
+				<AnimatePresence>
+					{isNavigating && (
+						<motion.div
+							initial={{ scaleX: 0 }}
+							animate={{ scaleX: [0, 0.6, 0.95] }}
+							exit={{ scaleX: 1, opacity: 0 }}
+							transition={{ duration: 0.7, ease: "easeInOut" }}
+							className='absolute bottom-0 left-0 right-0 h-[2.5px] bg-accent origin-left rounded-b-3xl pointer-events-none'
+						/>
+					)}
+				</AnimatePresence>
 			</nav>
 
 			{/* MOBILE NAV WRAPPER */}
@@ -287,16 +329,19 @@ export function Navbar() {
 					<div className='relative flex items-center justify-between w-full h-13 p-2'>
 						{/* Left */}
 						<div className='flex items-center gap-3 text-background'>
-							<div className='w-8 h-8 rounded-full bg-background text-foreground flex items-center justify-center font-bold text-lg leading-none'>
-								{isDesign ? (
-									<LuPalette size={18} strokeWidth={3} />
-								) : (
-									<LuCodeXml size={18} strokeWidth={3} />
-								)}
+							<div className='w-8 h-8 rounded-full overflow-hidden flex items-center justify-center shrink-0'>
+								<Image
+									src='/icon.png'
+									alt='Nicholas Benson Portfolio'
+									width={32}
+									height={32}
+									className='w-full h-full object-cover'
+									priority
+								/>
 							</div>
 							<Link
 								href={getHref("/")}
-								className='font-semibold text-lg tracking-tight hover:text-accent transition-colors'
+								className='font-bold text-lg hover:text-accent transition-colors'
 							>
 								Nicholas
 							</Link>
@@ -388,6 +433,19 @@ export function Navbar() {
 							Contact
 						</Link>
 					</div>
+
+					{/* Integrated Mobile Bottom Loading Line */}
+					<AnimatePresence>
+						{isNavigating && (
+							<motion.div
+								initial={{ scaleX: 0 }}
+								animate={{ scaleX: [0, 0.6, 0.95] }}
+								exit={{ scaleX: 1, opacity: 0 }}
+								transition={{ duration: 0.7, ease: "easeInOut" }}
+								className='absolute bottom-0 left-0 right-0 h-[2.5px] bg-accent origin-left pointer-events-none'
+							/>
+						)}
+					</AnimatePresence>
 				</motion.nav>
 			</div>
 		</div>

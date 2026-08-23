@@ -29,11 +29,10 @@ export function DesignServices() {
 				{/* Section Title */}
 				<div className='text-center space-y-2'>
 					<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
-						My <span className='text-accent'>Services</span>
+						Creative <span className='text-accent'>Design Services</span> & Solutions
 					</h2>
-					<p className='text-muted-foreground font-medium max-w-2xl mx-auto'>
-						Comprehensive visual and graphic design solutions tailored to your
-						brand&apos;s unique vision.
+					<p className='text-muted-foreground font-medium max-w-2xl mx-auto text-base md:text-lg'>
+						Comprehensive visual, branding, and graphic design solutions tailored to elevate your business and brand identity.
 					</p>
 				</div>
 
@@ -56,7 +55,7 @@ export function DesignServices() {
 								<div className='relative w-full aspect-4/3 bg-muted overflow-hidden rounded-2xl mb-4'>
 									<Image
 										src={service.image}
-										alt={service.title}
+										alt={`${service.title} — Graphic & Brand Design Service by Nicholas Benson`}
 										fill
 										sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 										className='object-cover transition-transform duration-700 group-hover:scale-105'

@@ -1,21 +1,71 @@
-/** @format */
-
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import {
+	CANONICAL_DEV_DOMAIN,
+	CANONICAL_DESIGN_DOMAIN,
+	DEV_REDIRECT_HOSTS,
+	DESIGN_REDIRECT_HOSTS,
+	parseHostname,
+	isDesignHostname,
+	isLocalHostname,
+} from "@/lib/domain";
 
 export function proxy(req: NextRequest) {
 	const url = req.nextUrl.clone();
-	const hostname = req.headers.get("host") || "";
-
-	const isDesignSubdomain = hostname.startsWith("design.");
+	const hostHeader =
+		req.headers.get("x-forwarded-host") || req.headers.get("host") || "";
+	const hostname = parseHostname(hostHeader);
+	const isLocal = isLocalHostname(hostname);
+	const isDesignSubdomain = isDesignHostname(hostname);
 	const isDesignPath =
 		url.pathname === "/design" || url.pathname.startsWith("/design/");
 	const isDevPath =
 		url.pathname === "/dev" || url.pathname.startsWith("/dev/");
 
+	// 1. Production Canonical Redirects (308)
+	if (!isLocal) {
+		// A. Explicit Design Redirects -> design.nicholasbenson.cv
+		if (DESIGN_REDIRECT_HOSTS.has(hostname)) {
+			const targetUrl = new URL(
+				`${url.pathname}${url.search}`,
+				`https://${CANONICAL_DESIGN_DOMAIN}`,
+			);
+			return NextResponse.redirect(targetUrl, 308);
+		}
+
+		// B. Explicit Dev Redirects -> nicholasbenson.cv
+		if (DEV_REDIRECT_HOSTS.has(hostname)) {
+			const targetUrl = new URL(
+				`${url.pathname}${url.search}`,
+				`https://${CANONICAL_DEV_DOMAIN}`,
+			);
+			return NextResponse.redirect(targetUrl, 308);
+		}
+
+		// C. If accessing /design path on main dev domain -> redirect to design.nicholasbenson.cv
+		if (!isDesignSubdomain && isDesignPath && hostname === CANONICAL_DEV_DOMAIN) {
+			const cleanPath = url.pathname.replace(/^\/design/, "") || "/";
+			const targetUrl = new URL(
+				`${cleanPath}${url.search}`,
+				`https://${CANONICAL_DESIGN_DOMAIN}`,
+			);
+			return NextResponse.redirect(targetUrl, 308);
+		}
+
+		// D. If accessing legacy /dev path on main dev domain -> redirect to clean URL
+		if (!isDesignSubdomain && isDevPath && hostname === CANONICAL_DEV_DOMAIN) {
+			const cleanPath = url.pathname.replace(/^\/dev/, "") || "/";
+			const targetUrl = new URL(
+				`${cleanPath}${url.search}`,
+				`https://${CANONICAL_DEV_DOMAIN}`,
+			);
+			return NextResponse.redirect(targetUrl, 308);
+		}
+	}
+
 	let mode: "dev" | "design" = "dev";
 
-	// 1. Subdomain routing (e.g., design.nickfrost.dev or design.localhost:3000)
+	// 2. Subdomain & Path Internal Routing
 	if (isDesignSubdomain) {
 		mode = "design";
 		// Internally route subdomain requests to the /design app routes
@@ -23,14 +73,12 @@ export function proxy(req: NextRequest) {
 			url.pathname = `/design${url.pathname === "/" ? "" : url.pathname}`;
 		}
 	} else if (isDesignPath) {
-		// 2. Path routing (e.g., nickfrost.dev/design or /design/about)
 		mode = "design";
 	} else if (isDevPath) {
 		// Strip legacy /dev path so it maps cleanly to the main dev root
 		url.pathname = url.pathname.replace(/^\/dev/, "") || "/";
 		mode = "dev";
 	} else {
-		// 3. Default main app (Dev view)
 		mode = "dev";
 	}
 

@@ -24,7 +24,7 @@ export function ComingSoonProjects() {
 			{/* Using auto-fit with minmax ensures the grid perfectly resizes based on the number of items, while capping at whatever fits (typically ~4 on large screens). If you want them left-aligned when fewer, use auto-fill instead. */}
 			<div className='grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6'>
 				{upcomingProjects.map((project) => (
-					<div
+					<article
 						key={project.id}
 						className='group flex flex-col bg-background border border-border border-dashed rounded-3xl p-6 relative overflow-hidden transition-colors hover:border-border hover:bg-background'
 					>
@@ -39,7 +39,7 @@ export function ComingSoonProjects() {
 						<p className='text-sm text-muted-foreground leading-relaxed mt-2'>
 							{project.description}
 						</p>
-					</div>
+					</article>
 				))}
 			</div>
 		</motion.div>

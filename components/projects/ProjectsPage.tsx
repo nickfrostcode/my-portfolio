@@ -99,14 +99,13 @@ export function ProjectsPage() {
 			<div className='absolute inset-0 z-0 mask-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_10%,black_100%)]'></div>
 
 			<div className='container px-4 md:px-6 w-full max-w-7xl mx-auto space-y-6 relative z-10'>
-				{/* Page Header */}
-				<div className='text-center space-y-3'>
-					<h1 className='text-4xl md:text-5xl font-bold tracking-tight text-foreground'>
-						My <span className='text-accent'>Projects</span>
-					</h1>
-					<p className='text-muted-foreground font-medium max-w-2xl mx-auto text-lg'>
-						A collection of full-stack software applications and engineering
-						projects.
+				{/* Section Header & SEO Prose */}
+				<div className='text-center space-y-3 max-w-3xl mx-auto'>
+					<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
+						Software <span className='text-accent'>Projects & Engineering</span>
+					</h2>
+					<p className='text-muted-foreground font-medium text-base md:text-lg leading-relaxed'>
+						Selected full-stack software applications, interactive web platforms, REST APIs, and scalable backend systems built with Next.js, React, Node.js, Go, TypeScript, and PostgreSQL.
 					</p>
 				</div>
 

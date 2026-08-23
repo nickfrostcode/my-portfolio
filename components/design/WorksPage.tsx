@@ -89,6 +89,16 @@ export function WorksPage() {
 			<div className='absolute inset-0 z-0 mask-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_10%,black_100%)]'></div>
 
 			<div className='container px-4 md:px-6 w-full max-w-7xl mx-auto space-y-6 relative z-10'>
+				{/* Section Header & SEO Prose */}
+				<div className='text-center space-y-3 max-w-3xl mx-auto mb-8'>
+					<h2 className='text-3xl md:text-4xl font-bold tracking-tight text-foreground'>
+						Design <span className='text-accent'>Works & Portfolio</span>
+					</h2>
+					<p className='text-muted-foreground font-medium text-base md:text-lg leading-relaxed'>
+						Selected brand identities, visual design systems, event graphics, typography, packaging, and digital media creations crafted by Nicholas Benson.
+					</p>
+				</div>
+
 				{/* Search Bar */}
 				<div className='relative max-w-2xl mx-auto'>
 					<LuSearch className='absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground' />

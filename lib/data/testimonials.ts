@@ -77,13 +77,13 @@ export const allTestimonials: Testimonial[] = [
 	},
 	{
 		id: 8,
-		name: "Dev Tuyi",
-		role: "Developer",
+		name: "Olamide",
+		role: "AGS @ NACOSS",
 		avatar: "",
 		rating: 5,
 		type: "text",
 		content:
-			"I highly recommend Nick for any frontend or UI engineering role. Working with him was effortless. His UI implementation was spot-on, and his clean component architecture using modern frameworks made integrating APIs and connecting the backend completely seamless. He is a truly skilled developer who makes cross-stack collaboration easy and would be a strong asset to any engineering team.",
+			"Nicholas completely transformed our internal communication by building a custom memo generator that digitalized our paper-based workflow. The intuitive interface and integrated database make creating, tracking, and storing memos effortless, saving us countless administrative hours. His solution brought much-needed efficiency to our operations, and I highly recommend him for any digital transformation project.",
 		mode: "dev",
 	},
 	{

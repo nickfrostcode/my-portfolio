@@ -8,13 +8,15 @@ interface WorkCardProps {
 }
 
 export function WorkCard({ work }: WorkCardProps) {
+	const imageAlt = `${work.title || "Brand & Visual Identity"} — ${work.field || "Graphic Design"} by Nicholas Benson`;
+
 	return (
-		<div className='break-inside-avoid mb-4 group flex flex-col bg-card rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-lg'>
+		<article className='break-inside-avoid mb-4 group flex flex-col bg-card rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent hover:shadow-lg'>
 			{/* Image - full width touching card borders, no padding */}
 			<div className='relative w-full overflow-hidden bg-muted'>
 				<Image
 					src={work.image}
-					alt={work.title || "Design work"}
+					alt={imageAlt}
 					width={800}
 					height={600}
 					sizes='(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
@@ -38,6 +40,6 @@ export function WorkCard({ work }: WorkCardProps) {
 					</span>
 				))}
 			</div>
-		</div>
+		</article>
 	);
 }

@@ -43,10 +43,10 @@ export function CredentialsGrid() {
 				<div className='flex items-center gap-4'>
 					<div className='text-center space-y-2 w-full'>
 						<h2 className='text-3xl md:text-4xl font-bold text-foreground'>
-							Certifications
+							Professional <span className='text-accent'>Certifications</span>
 						</h2>
-						<p className='text-muted-foreground font-medium max-w-2xl mx-auto'>
-							Academic and professional qualifications.
+						<p className='text-muted-foreground font-medium max-w-2xl mx-auto text-base md:text-lg'>
+							Academic and industry-recognized qualifications in computer science and software engineering.
 						</p>
 					</div>
 				</div>
@@ -74,7 +74,7 @@ export function CredentialsGrid() {
 									{cert.image ? (
 										<Image
 											src={cert.image}
-											alt={cert.title}
+											alt={`${cert.title} — ${cert.issuer} Certification`}
 											fill
 											className='object-cover transition-transform duration-700 group-hover:scale-105'
 										/>
@@ -114,10 +114,10 @@ export function CredentialsGrid() {
 				<div className='flex items-center gap-4'>
 					<div className='text-center space-y-2 w-full'>
 						<h2 className='text-3xl md:text-4xl font-bold text-foreground'>
-							Awards & <span className='text-accent'>Honors</span>
+							Recognitions, Awards & <span className='text-accent'>Honors</span>
 						</h2>
-						<p className='text-muted-foreground font-medium text-center'>
-							Recognition for outstanding contributions.
+						<p className='text-muted-foreground font-medium text-center text-base md:text-lg'>
+							Industry recognition and accolades for outstanding technical and creative contributions.
 						</p>
 					</div>
 				</div>
@@ -145,7 +145,7 @@ export function CredentialsGrid() {
 									{award.image ? (
 										<Image
 											src={award.image}
-											alt={award.title}
+											alt={`${award.title} — ${award.issuer} Award`}
 											fill
 											className='object-cover transition-transform duration-700 group-hover:scale-105'
 										/>

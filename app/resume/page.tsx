@@ -1,9 +1,18 @@
 /** @format */
-"use client";
 
+import type { Metadata } from "next";
 import { Hero } from "@/components/shared/Hero";
 import { ResumeView } from "@/components/resume/ResumeView";
 import { Contact } from "@/components/shared/Contact";
+
+export const metadata: Metadata = {
+	title: "Software Engineer Resume & Technical Credentials",
+	description:
+		"Resume, Curriculum vitae, technical competencies, education, certifications, and work experience of Nicholas Benson.",
+	alternates: {
+		canonical: "/resume",
+	},
+};
 
 export default function Resume() {
 	return (

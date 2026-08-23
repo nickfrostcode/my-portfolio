@@ -16,6 +16,7 @@ export function WorkExperience() {
 	const timelineItems = sortedExperiences.map((exp) => ({
 		id: exp.id,
 		logo: exp.logo,
+		alt: `${exp.company} company logo`,
 		card: (
 			<div className='w-full flex-1 flex flex-col p-4 md:p-6 rounded-3xl bg-card border border-border transition-all duration-300 hover:-translate-y-1 z-20 relative'>
 				<div className='flex items-start justify-between mb-4'>

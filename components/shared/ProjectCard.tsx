@@ -1,7 +1,7 @@
 /** @format */
 
 import Image from "next/image";
-import { ModeLink } from "@/components/shared/ModeLink";
+// import { ModeLink } from "@/components/shared/ModeLink";
 import { LuExternalLink as ExternalLink } from "react-icons/lu";
 import type { Project } from "@/types";
 
@@ -11,16 +11,16 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
 	return (
-		<div className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative h-full'>
-			<ModeLink href={project.link} className='absolute inset-0 z-10'>
+		<article className='group flex flex-col bg-card border border-border dark:border-border/50 rounded-3xl overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-lg p-3 relative h-full'>
+			{/* <ModeLink href={project.link} className='absolute inset-0 z-10'>
 				<span className='sr-only'>View {project.title} Project</span>
-			</ModeLink>
+			</ModeLink> */}
 
 			{/* Project Image */}
 			<div className='relative w-full aspect-video bg-muted overflow-hidden rounded-xl'>
 				<Image
 					src={project.image}
-					alt={project.title}
+					alt={`${project.title} — ${project.tech.slice(0, 3).join(", ")} project by Nicholas Benson`}
 					fill
 					className='object-cover transition-transform duration-700 group-hover:scale-105'
 				/>
@@ -57,21 +57,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
 				</div>
 
 				{/* View Project Button */}
-				<div className='pt-2 mt-auto px-2 flex justify-between'>
-					<div className='inline-flex items-center gap-2 text-sm font-medium text-foreground group-hover:text-accent transition-colors'>
-						View Project
-					</div>
-
+				<div className='pt-2 mt-auto px-2 flex justify-end'>
 					<a
 						href={project.link}
 						target={project.link !== "#" ? "_blank" : "_self"}
 						rel={project.link !== "#" ? "noopener noreferrer" : undefined}
+						aria-label={`View live demo and details for ${project.title}`}
 						className='relative z-20 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-accent transition-colors'
 					>
-						Live <ExternalLink className='w-4 h-4' />
+						View Project <ExternalLink className='w-4 h-4' />
 					</a>
 				</div>
 			</div>
-		</div>
+		</article>
 	);
 }

@@ -41,10 +41,10 @@ export function ResumeView() {
 				<div className='bg-card border border-border rounded-2xl p-8 md:p-12 space-y-12'>
 					{/* Header section */}
 					<div className='space-y-4 border-b border-border/50 pb-8'>
-						<h1 className='text-4xl font-bold text-foreground'>
+						<h2 className='text-3xl md:text-4xl font-bold text-foreground'>
 							Nicholas Benson
-						</h1>
-						<p className='text-lg text-accent'>
+						</h2>
+						<p className='text-lg text-accent font-semibold'>
 							{resumeRole[mode]}
 						</p>
 
@@ -70,27 +70,33 @@ export function ResumeView() {
 					</div>
 
 					{/* Summary section */}
-					<div className='space-y-4'>
-						<h2 className='text-xl font-bold text-foreground flex items-center gap-2'>
+					<section className='space-y-4' aria-labelledby='resume-summary'>
+						<h3
+							id='resume-summary'
+							className='text-xl font-bold text-foreground flex items-center gap-2'
+						>
 							Professional Summary
-						</h2>
+						</h3>
 						<p className='text-muted-foreground leading-relaxed'>
 							{professionalSummary[mode]}
 						</p>
-					</div>
+					</section>
 
 					{/* Experience section */}
-					<div className='space-y-6'>
-						<h2 className='text-xl font-bold text-foreground border-b border-border/50 pb-2'>
+					<section className='space-y-6' aria-labelledby='resume-experience'>
+						<h3
+							id='resume-experience'
+							className='text-xl font-bold text-foreground border-b border-border/50 pb-2'
+						>
 							Work Experience
-						</h2>
+						</h3>
 						<div className='space-y-6'>
 							{filteredExperiences.map((exp) => (
-								<div key={exp.id} className='space-y-1'>
+								<article key={exp.id} className='space-y-1'>
 									<div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4'>
-										<h3 className='font-semibold text-foreground'>
+										<h4 className='font-semibold text-foreground text-base'>
 											{exp.role}
-										</h3>
+										</h4>
 										<span className='text-sm text-muted-foreground whitespace-nowrap'>
 											{exp.date}
 										</span>
@@ -98,26 +104,29 @@ export function ResumeView() {
 									<div className='text-sm text-accent font-medium'>
 										{exp.company}
 									</div>
-									<p className='text-sm text-muted-foreground'>
+									<p className='text-sm text-muted-foreground leading-relaxed'>
 										{exp.description}
 									</p>
-								</div>
+								</article>
 							))}
 						</div>
-					</div>
+					</section>
 
 					{/* Education section */}
-					<div className='space-y-6'>
-						<h2 className='text-xl font-bold text-foreground border-b border-border/50 pb-2'>
+					<section className='space-y-6' aria-labelledby='resume-education'>
+						<h3
+							id='resume-education'
+							className='text-xl font-bold text-foreground border-b border-border/50 pb-2'
+						>
 							Education
-						</h2>
+						</h3>
 						<div className='space-y-6'>
 							{filteredEducation.map((edu) => (
-								<div key={edu.id} className='space-y-1'>
+								<article key={edu.id} className='space-y-1'>
 									<div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4'>
-										<h3 className='font-semibold text-foreground'>
+										<h4 className='font-semibold text-foreground text-base'>
 											{edu.title}
-										</h3>
+										</h4>
 										<span className='text-sm text-muted-foreground whitespace-nowrap'>
 											{edu.date}
 										</span>
@@ -125,25 +134,28 @@ export function ResumeView() {
 									<div className='text-sm text-accent font-medium'>
 										{edu.subtitle}
 									</div>
-									<p className='text-sm text-muted-foreground'>
+									<p className='text-sm text-muted-foreground leading-relaxed'>
 										{edu.description}
 									</p>
-								</div>
+								</article>
 							))}
 						</div>
-					</div>
+					</section>
 
 					{/* Skills section */}
-					<div className='space-y-6'>
-						<h2 className='text-xl font-bold text-foreground border-b border-border/50 pb-2'>
-							Core Skills
-						</h2>
+					<section className='space-y-6' aria-labelledby='resume-skills'>
+						<h3
+							id='resume-skills'
+							className='text-xl font-bold text-foreground border-b border-border/50 pb-2'
+						>
+							Core Skills & Competencies
+						</h3>
 						<div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
 							{rearrangeByMode(skillsData, mode).map((group) => (
 								<div key={group.category} className='space-y-2'>
-									<h3 className='font-semibold text-foreground text-sm'>
+									<h4 className='font-semibold text-foreground text-sm'>
 										{group.category}
-									</h3>
+									</h4>
 									<div className='flex flex-wrap gap-2'>
 										{group.skills.map((skill) => (
 											<span
@@ -157,21 +169,24 @@ export function ResumeView() {
 								</div>
 							))}
 						</div>
-					</div>
+					</section>
 
 					{/* Awards section */}
 					{filteredAwards.length > 0 && (
-						<div className='space-y-6'>
-							<h2 className='text-xl font-bold text-foreground border-b border-border/50 pb-2'>
+						<section className='space-y-6' aria-labelledby='resume-awards'>
+							<h3
+								id='resume-awards'
+								className='text-xl font-bold text-foreground border-b border-border/50 pb-2'
+							>
 								Awards & Certifications
-							</h2>
+							</h3>
 							<div className='space-y-4'>
 								{filteredAwards.map((award) => (
-									<div key={award.id} className='space-y-1'>
+									<article key={award.id} className='space-y-1'>
 										<div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4'>
-											<h3 className='font-semibold text-foreground'>
+											<h4 className='font-semibold text-foreground text-base'>
 												{award.title}
-											</h3>
+											</h4>
 											<span className='text-sm text-muted-foreground whitespace-nowrap'>
 												{award.date}
 											</span>
@@ -179,20 +194,23 @@ export function ResumeView() {
 										<div className='text-sm text-accent font-medium'>
 											{award.issuer}
 										</div>
-										<p className='text-sm text-muted-foreground'>
+										<p className='text-sm text-muted-foreground leading-relaxed'>
 											{award.description}
 										</p>
-									</div>
+									</article>
 								))}
 							</div>
-						</div>
+						</section>
 					)}
 
 					{/* Languages section */}
-					<div className='space-y-4'>
-						<h2 className='text-xl font-bold text-foreground border-b border-border/50 pb-2'>
+					<section className='space-y-4' aria-labelledby='resume-languages'>
+						<h3
+							id='resume-languages'
+							className='text-xl font-bold text-foreground border-b border-border/50 pb-2'
+						>
 							Languages
-						</h2>
+						</h3>
 						<div className='flex flex-wrap gap-4'>
 							{spokenLanguages.map((lang) => (
 								<div
@@ -208,7 +226,7 @@ export function ResumeView() {
 								</div>
 							))}
 						</div>
-					</div>
+					</section>
 				</div>
 			</div>
 		</section>
