@@ -1,0 +1,57 @@
+MIT License (with Personal Identity, Data & Media Exclusion)
+
+Copyright (c) 2026 Nicholas Benson (Nick Frost)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+==============================================================================
+PERSONAL IDENTITY, DATA, ASSETS & MEDIA RESERVATION CLAUSE
+==============================================================================
+
+The MIT License above applies strictly and exclusively to the software source
+code, layout architecture, component logic, and styling systems of this project.
+
+The following folders, files, assets, and data are EXPLICITLY EXCLUDED from this
+license and remain the exclusive proprietary copyright and personal property of
+Nicholas Benson:
+
+1. All Content & Files in `/public/`:
+   Including, but not limited to, all resume PDFs (`/public/resumes/`), project preview
+   graphics, case study screenshots, project icons, and personal media files.
+
+2. All Image & Visual Assets in `/app/assets/` & Local Media:
+   Including personal logos, avatar photos, custom textures, and brand imagery.
+
+3. All Data & Profiles in `/lib/data/`:
+   Including personal biographies, work experience records, client recommendations &
+   testimonials, educational achievements, certificates, awards, and project descriptions.
+
+4. Personal Identity & Likeness:
+   The personal names ("Nicholas Benson", "Nick Frost", "Nick Frostcode"), personal brand
+   identity, and likeness.
+
+==============================================================================
+USAGE REQUIREMENTS FOR FORKS & DERIVATIVE WORKS
+==============================================================================
+
+You are free to use this codebase as a starter template for your own personal website,
+provided that you:
+- Replace ALL data in `lib/data/` with your own information.
+- Replace ALL images, assets, and resume files in `public/` and `app/assets/` with your own assets.
+- Remove all personal references to Nicholas Benson / Nick Frost before deploying or publishing.
