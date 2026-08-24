@@ -66,8 +66,8 @@ export const allTestimonials: Testimonial[] = [
 	},
 	{
 		id: 7,
-		name: "Dev Tuyi",
-		role: "Developer",
+		name: "Dev TUYI",
+		role: "Softare Developer",
 		avatar: "",
 		rating: 5,
 		type: "text",
