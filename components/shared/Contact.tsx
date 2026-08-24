@@ -354,7 +354,8 @@ export function Contact() {
 										return (
 											<a
 												key={social.name}
-												href={social.url}
+                                    href={social.url}
+                                    title={social.url}
 												target='_blank'
 												rel='noreferrer'
 												className='group flex items-center gap-2'

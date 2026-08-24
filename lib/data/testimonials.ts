@@ -88,13 +88,12 @@ export const allTestimonials: Testimonial[] = [
 	},
 	{
 		id: 9,
-		name: "Dev Tuyi",
-		role: "Developer",
+		name: "Xela",
+		role: "Software Engineer",
 		avatar: "",
 		rating: 5,
 		type: "text",
-		content:
-			"I highly recommend Nick for any frontend or UI engineering role. Working with him was effortless. His UI implementation was spot-on, and his clean component architecture using modern frameworks made integrating APIs and connecting the backend completely seamless. He is a truly skilled developer who makes cross-stack collaboration easy and would be a strong asset to any engineering team.",
+		content: "He is a focused developer with a great sense of leadership and innovation.",
 		mode: "dev",
 	},
 ];
