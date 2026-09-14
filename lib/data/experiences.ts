@@ -25,7 +25,7 @@ export const allExperiences: Experience[] = [
 	},
 	{
 		id: 5,
-		role: "Full Stack Software Engineer",
+		role: "Founder & Full-Stack Software Enginee",
 		company: "Nick Frost Innovations",
 		date: "Jan 2021 - Present",
 		dateVal: 202606,

@@ -4,9 +4,9 @@ import { Mode, Language, TechCategory } from "@/types";
 
 // --- ABOUT OVERVIEW (home "About Me" card; first-person, per mode) ---
 export const aboutOverview: Record<Mode, string> = {
-	dev: "I'm a full-stack software developer and engineer with a strong focus on frontend development and user experience. I design, build, and maintain modern web applications and digital products from concept to deployment, with an emphasis on scalable, reliable, and intuitive software that solves real-world problems.",
+	dev: "I'm a Full-stack software developer and engineer with a strong focus on frontend development and user experience. Experienced in designing, building, and maintaining modern web applications and digital products from concept to deployment. Focused on developing scalable, reliable, and intuitive software that solves real-world problems.",
 	design:
-		"I'm a graphic designer and brand identity specialist focused on creating clear, distinctive, and purposeful visual identities. I develop brand concepts, digital graphics, marketing materials, and visual systems from concept to final delivery, with a strong focus on typography, composition, and visual consistency.",
+		"I'm a Graphic Designer and Brand Identity Specialist experienced in developing logos, visual identities, marketing materials, digital graphics, and print-ready artwork for organizations, events, and digital products. Skilled in translating concepts into cohesive visual systems through typography, color, composition, layout, and consistent brand application. Experienced in managing design projects from concept and ideation through revisions, production, and final delivery, with a strong focus on clear and effective visual communication.",
 };
 
 // --- BIOGRAPHY (About page; per mode) ---

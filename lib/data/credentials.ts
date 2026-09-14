@@ -14,6 +14,56 @@ export const certificates: Certificate[] = [
 		mode: "general",
 		image: "/certificates/fuoye.jpg",
 	},
+	{
+		id: 2,
+		type: "Professional",
+		issuer: "Jobberman",
+		title: "Successful Global Gig Worker",
+		desc: "Successfully acquired Digital Skills required to become a successful Global Gig Worker.",
+		progress: "Completed",
+		mode: "general",
+		image: "/certificates/jobberman.jpg",
+	},
+	{
+		id: 3,
+		type: "Professional",
+		issuer: "Institute of Management, Technology & Finance",
+		title: "Prompt Engineering Professional",
+		desc: "Acquired the knowledge of prompt engineering to optimize and enhance the functionality of AI tools.",
+		progress: "Completed",
+		mode: "general",
+		image: "/certificates/prompt_engineering.jpg",
+	},
+	{
+		id: 4,
+		type: "Professional",
+		issuer: "Institute of Management, Technology & Finance",
+		title: "Digital Marketing Professional",
+		desc: "Acquired the knowledge of digital marketing to enhance the functionality of businesses and organizations.",
+		progress: "Completed",
+		mode: "general",
+		image: "/certificates/digital_marketing.jpg",
+	},
+	{
+		id: 5,
+		type: "Course",
+		issuer: "Udemy",
+		title: "CSS for Beginners",
+		desc: "Learned modern CSS and how to use it to style responsive web applications and pages.",
+		progress: "Completed",
+		mode: "dev",
+		image: "/certificates/css.jpg",
+	},
+	{
+		id: 6,
+		type: "Course",
+		issuer: "Udemy",
+		title: "HTML for Beginners",
+		desc: "Learned proper HTML and how to use it to create web pages and applications.",
+		progress: "Completed",
+		mode: "dev",
+		image: "/certificates/html.jpg",
+	},
 ];
 
 // --- AWARDS DATA ---
@@ -30,7 +80,7 @@ export const awards: Award[] = [
 	},
 	{
 		id: 2,
-		title: "Certificate of Service",
+		title: "Certificate of Service as Graphic Designer",
 		issuer: "Department of Computer Science, FUOYE",
 		date: "2026",
 		description:
@@ -40,7 +90,7 @@ export const awards: Award[] = [
 	},
 	{
 		id: 3,
-		title: "VP Certificate of Service",
+		title: "Vice President Certificate of Service",
 		issuer: "Department of Computer Science, FUOYE",
 		date: "2026",
 		description:
@@ -52,7 +102,7 @@ export const awards: Award[] = [
 		id: 4,
 		title: "Asst. Librarian Certificate of Service",
 		issuer: "Department of Computer Science, FUOYE",
-		date: "2026",
+		date: "2025",
 		description:
 			"Recognized for outstanding service as the Assistant Librarian of the department.",
 		mode: "general",
