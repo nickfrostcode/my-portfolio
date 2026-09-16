@@ -12,17 +12,17 @@ import { LuMail } from "react-icons/lu";
 export const socialLinks: SocialLink[] = [
 	{
 		name: "Email",
-		url: "mailto:bensonnicholas206@gmail.com",
+		url: "mailto:nb.nicholasbenson@gmail.com",
 		icon: LuMail,
 	},
 	{
 		name: "LinkedIn",
-		url: "https://www.linkedin.com/in/nickfrostcode",
+		url: "https://www.linkedin.com/in/nickfrostech",
 		icon: FaLinkedinIn,
 	},
 	{
 		name: "GitHub",
-		url: "https://github.com/nickfrostcode",
+		url: "https://github.com/nickfrostech",
 		icon: FaGithub,
 	},
 	{

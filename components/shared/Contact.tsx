@@ -382,10 +382,10 @@ export function Contact() {
 									usually respond within 24 hours.
 								</p>
 								<a
-									href='mailto:bensonnicholas206@gmail.com'
+									href='mailto:nb.nicholasbenson@gmail.com'
 									className='font-medium text-sm text-foreground hover:text-accent transition-colors font-mono underline underline-offset-2 break-all'
 								>
-									bensonnicholas206@gmail.com
+									nb.nicholasbenson@gmail.com
 								</a>
 							</div>
 							<span className='block py-0.5 text-sm font-medium rounded-full bg-accent/10 text-accent border border-accent/50 text-center w-full'>

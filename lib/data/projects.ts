@@ -37,14 +37,13 @@ export const projects: Project[] = [
 		title: "Signature Verification",
 		description:
 			"This repository contains tools for building and evaluating a signature verification pipeline. It includes preprocessing utilities for cleaning handwritten signature scans, dataset auditing helpers, and a FastAPI-ready application scaffold.",
-		image:
-			"https://dummyimage.com/1600x900/000000/fff.png&text=Signature-verification",
-		link: "https://github.com/nickfrostcode/signature-verification",
+		image: "https://dummyimage.com/1600x900/000000/fff.png&text=Signature-verification",
+		link: "https://github.com/nickfrostech/signature-verification",
 		status: "Completed",
 		mode: "dev",
 		tech: ["Python", "ML", "FastAPI", "JavaScript"],
 		dateVal: 202606,
-		source: "https://github.com/nickfrostcode/signature-verification",
+		source: "https://github.com/nickfrostech/signature-verification",
 	},
 	{
 		id: 4,
@@ -57,7 +56,7 @@ export const projects: Project[] = [
 		mode: "dev",
 		tech: ["React.js", "JavaScript", "Supabase", "Vite"],
 		dateVal: 202603,
-		source: "https://github.com/nickfrostcode/Yoruba-Lexicon",
+		source: "https://github.com/nickfrostech/Yoruba-Lexicon",
 	},
 	{
 		id: 5,
@@ -89,14 +88,13 @@ export const projects: Project[] = [
 		title: "Dictionary",
 		description:
 			"A lightweight, interactive JavaScript dictionary web app built with HTML, CSS, and vanilla JS. Search for word definitions instantly with a clean, responsive interface and seamless dark mode toggle for enhanced usability. Perfect for developers, learners, and anyone building online dictionary tools.",
-		image:
-			"https://dummyimage.com/1600x900/000000/fff.png&text=Dictionary",
-		link: "https://nickfrostcode.github.io/Dictionary/",
+		image: "https://dummyimage.com/1600x900/000000/fff.png&text=Dictionary",
+		link: "https://nickfrostech.github.io/Dictionary/",
 		status: "Abandoned",
 		mode: "dev",
 		tech: ["JavaScript", "CSS"],
 		dateVal: 202404,
-		source: "https://github.com/nickfrostcode/Dictionary",
+		source: "https://github.com/nickfrostech/Dictionary",
 	},
 	{
 		id: 9,
@@ -104,12 +102,12 @@ export const projects: Project[] = [
 		description:
 			"JSPlayz is an open-source growing collection of fun, beginner-friendly JavaScript projects and micro-tutorials built to sharpen beginners skills, one playful line at a time.",
 		image: "https://dummyimage.com/1600x900/000000/fff.png&text=JSPlayz",
-		link: "https://nickfrostcode.github.io/JSPlayz/",
+		link: "https://nickfrostech.github.io/JSPlayz/",
 		status: "Abandoned",
 		mode: "dev",
 		tech: ["JavaScript"],
 		dateVal: 202403,
-		source: "https://github.com/nickfrostcode/JSPlayz",
+		source: "https://github.com/nickfrostech/JSPlayz",
 	},
 ];
 

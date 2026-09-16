@@ -11,7 +11,7 @@ import { BlogPost } from "@/types";
  *    title: "Title of your article",
  *    excerpt: "A concise 1-2 sentence overview of the article content for SEO cards and previews.",
  *    image: "/path/to/cover-image.png", // or external URL
- *    link: "https://medium.com/@nickfrostcode/... or /blog/slug",
+ *    link: "https://medium.com/@nickfrostech/... or /blog/slug",
  *    date: "YYYY-MM-DD",
  *    mode: "dev" | "design" | "general",
  *    category: ["Category 1", "Category 2"],
@@ -19,4 +19,3 @@ import { BlogPost } from "@/types";
  * }
  */
 export const blogPosts: BlogPost[] = [];
-

@@ -1,3 +1,5 @@
+/** @format */
+
 import Script from "next/script";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
@@ -86,9 +88,9 @@ export async function generateMetadata(): Promise<Metadata> {
 			authors: [
 				{
 					name: "Nicholas Benson",
-					url: "https://www.linkedin.com/in/nickfrostcode",
+					url: "https://www.linkedin.com/in/nickfrostech",
 				},
-				{ name: "Nick Frost", url: "https://github.com/nickfrostcode" },
+				{ name: "Nick Frost", url: "https://github.com/nickfrostech" },
 			],
 			creator: "Nicholas Benson",
 			publisher: "Nicholas Benson",
@@ -98,13 +100,9 @@ export async function generateMetadata(): Promise<Metadata> {
 				telephone: false,
 			},
 			icons: {
-				icon: [
-					{ url: "/icon.png", type: "image/png" },
-				],
+				icon: [{ url: "/icon.png", type: "image/png" }],
 				shortcut: "/icon.png",
-				apple: [
-					{ url: "/icon.png", type: "image/png" },
-				],
+				apple: [{ url: "/icon.png", type: "image/png" }],
 			},
 			openGraph: {
 				title: "Nicholas Benson - Graphic, Visual & Brand Designer",
@@ -152,9 +150,9 @@ export async function generateMetadata(): Promise<Metadata> {
 			verification: {
 				other: {
 					me: [
-						"mailto:bensonnicholas206@gmail.com",
-						"https://github.com/nickfrostcode",
-						"https://www.linkedin.com/in/nickfrostcode",
+						"mailto:nb.nicholasbenson@gmail.com",
+						"https://github.com/nickfrostech",
+						"https://www.linkedin.com/in/nickfrostech",
 					],
 				},
 			},
@@ -182,7 +180,7 @@ export async function generateMetadata(): Promise<Metadata> {
 			"Computer scientist",
 			"Nicholas Benson",
 			"Nick Frost",
-			"nickfrostcode",
+			"nickfrostech",
 			"Nicholas Benson CV",
 			"nicholasbenson.cv",
 			"best software developer",
@@ -209,9 +207,9 @@ export async function generateMetadata(): Promise<Metadata> {
 		authors: [
 			{
 				name: "Nicholas Benson",
-				url: "https://www.linkedin.com/in/nickfrostcode",
+				url: "https://www.linkedin.com/in/nickfrostech",
 			},
-			{ name: "Nick Frost", url: "https://github.com/nickfrostcode" },
+			{ name: "Nick Frost", url: "https://github.com/nickfrostech" },
 		],
 		creator: "Nicholas Benson",
 		publisher: "Nicholas Benson",
@@ -271,9 +269,9 @@ export async function generateMetadata(): Promise<Metadata> {
 		verification: {
 			other: {
 				me: [
-					"mailto:bensonnicholas206@gmail.com",
-					"https://github.com/nickfrostcode",
-					"https://www.linkedin.com/in/nickfrostcode",
+					"mailto:nb.nicholasbenson@gmail.com",
+					"https://github.com/nickfrostech",
+					"https://www.linkedin.com/in/nickfrostech",
 				],
 			},
 		},
@@ -289,10 +287,15 @@ export default async function RootLayout({
 	const hostHeader =
 		headersList.get("x-forwarded-host") || headersList.get("host") || "";
 	const headerMode = headersList.get("x-portfolio-mode") as Mode | null;
-	const { isDesign: isDesignHost, mode: detectedMode, gaId, siteUrl } =
-		getSiteInfoFromHost(hostHeader);
+	const {
+		isDesign: isDesignHost,
+		mode: detectedMode,
+		gaId,
+		siteUrl,
+	} = getSiteInfoFromHost(hostHeader);
 	const mode: Mode = headerMode || detectedMode;
-	const isSubdomain = isDesignHost || headersList.get("x-is-subdomain") === "1";
+	const isSubdomain =
+		isDesignHost || headersList.get("x-is-subdomain") === "1";
 	const isDesign = mode === "design";
 
 	const jsonLd = isDesign
@@ -314,10 +317,10 @@ export default async function RootLayout({
 					jobTitle: "Graphic, Visual & Brand Designer",
 					description:
 						"Graphic, Visual & Brand Designer crafting distinctive graphic assets, visual identities, digital media assets, packaging, typography, and brand design systems.",
-					email: "bensonnicholas206@gmail.com",
+					email: "nb.nicholasbenson@gmail.com",
 					sameAs: [
-						"https://github.com/nickfrostcode",
-						"https://linkedin.com/in/nickfrostcode",
+						"https://github.com/nickfrostech",
+						"https://linkedin.com/in/nickfrostech",
 						"https://x.com/NBenson57814",
 					],
 					knowsAbout: [
@@ -330,7 +333,7 @@ export default async function RootLayout({
 						"Digital Content Creation",
 					],
 				},
-		  }
+			}
 		: {
 				"@context": "https://schema.org",
 				"@type": "ProfilePage",
@@ -339,16 +342,16 @@ export default async function RootLayout({
 				mainEntity: {
 					"@type": "Person",
 					name: "Nicholas Benson",
-					alternateName: ["Nick Frost", "nickfrostcode"],
+					alternateName: ["Nick Frost", "nickfrostech"],
 					url: siteUrl,
 					image: `${siteUrl}/icon.png`,
 					jobTitle: "Full-Stack Software Developer & Software Engineer",
 					description:
 						"Full-Stack Software Developer & Computer Scientist specializing in Next.js, React, Node.js, TypeScript, Go, PostgreSQL, and scalable backend architecture.",
-					email: "bensonnicholas206@gmail.com",
+					email: "nb.nicholasbenson@gmail.com",
 					sameAs: [
-						"https://github.com/nickfrostcode",
-						"https://linkedin.com/in/nickfrostcode",
+						"https://github.com/nickfrostech",
+						"https://linkedin.com/in/nickfrostech",
 						"https://x.com/NBenson57814",
 					],
 					knowsAbout: [
@@ -366,7 +369,7 @@ export default async function RootLayout({
 						"Scalable Distributed Systems",
 					],
 				},
-		  };
+			};
 
 	return (
 		<html

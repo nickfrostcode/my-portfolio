@@ -11,20 +11,20 @@ Built with Next.js 16 (App Router + Turbopack), React 19, Tailwind CSS v4, and M
 ## ✨ Features & Highlights
 
 - **Dual-Mode System (`dev` & `design`)**:
-  - **Developer Mode (`/`)**: Focuses on full-stack web applications, APIs, architecture, databases, technical leadership, and engineering credentials.
-  - **Designer Mode (`/design`)**: Focuses on brand identity, typography, visual direction, packaging, and design works with a masonry showcase.
-  - **Subdomain & Path Support**: Includes proxy middleware to seamlessly handle subdomains (`design.domain.com`) or subpaths (`/design`).
+   - **Developer Mode (`/`)**: Focuses on full-stack web applications, APIs, architecture, databases, technical leadership, and engineering credentials.
+   - **Designer Mode (`/design`)**: Focuses on brand identity, typography, visual direction, packaging, and design works with a masonry showcase.
+   - **Subdomain & Path Support**: Includes proxy middleware to seamlessly handle subdomains (`design.domain.com`) or subpaths (`/design`).
 - **Interactive 3D Testimonials Carousel**:
-  - Embla Carousel with continuous infinite looping, touch/mouse drag navigation, smooth 3D scale/blur transitions, and autoplay.
+   - Embla Carousel with continuous infinite looping, touch/mouse drag navigation, smooth 3D scale/blur transitions, and autoplay.
 - **Dynamic Works & Project Gallery**:
-  - Real-time client-side search, tag filtering across tools and categories, and date-based sorting.
+   - Real-time client-side search, tag filtering across tools and categories, and date-based sorting.
 - **Interactive Credentials & Experience Timeline**:
-  - Scroll-synced interactive timeline and categorized credentials grid with live category filters.
+   - Scroll-synced interactive timeline and categorized credentials grid with live category filters.
 - **Secure Serverless Contact Form**:
-  - Next.js Server Route (`/api/contact`) with bot honeypot protection, sliding-window IP rate limiting, file MIME-type and extension validation, and server-side Google Apps Script webhook integration.
+   - Next.js Server Route (`/api/contact`) with bot honeypot protection, sliding-window IP rate limiting, file MIME-type and extension validation, and server-side Google Apps Script webhook integration.
 - **Accessibility & Design**:
-  - Full WCAG AA compliant contrast ratios in both Dark and Light modes.
-  - Custom grain overlay and sleek glassmorphic surfaces.
+   - Full WCAG AA compliant contrast ratios in both Dark and Light modes.
+   - Custom grain overlay and sleek glassmorphic surfaces.
 
 ---
 
@@ -43,36 +43,45 @@ Built with Next.js 16 (App Router + Turbopack), React 19, Tailwind CSS v4, and M
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
+
 - **Node.js** >= 20.0.0
 - **pnpm** >= 9.0.0 (recommended)
 
 ### 2. Clone and Install
+
 ```bash
-git clone https://github.com/nickfrostcode/my-portfolio.git
+git clone https://github.com/nickfrostech/my-portfolio.git
 cd my-portfolio
 pnpm install
 ```
 
 ### 3. Environment Variables
+
 Copy the example environment file:
+
 ```bash
 cp .env.example .env
 ```
+
 Fill in your Google Apps Script webhook URL if you wish to enable the contact form submission forwarder:
+
 ```env
 GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/your-deployment-id/exec
 ```
 
 ### 4. Run Development Server
+
 ```bash
 pnpm dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 - **Developer Portfolio**: `http://localhost:3000/`
 - **Design Portfolio**: `http://localhost:3000/design`
 
 ### 5. Build for Production
+
 ```bash
 pnpm build
 pnpm start
@@ -111,11 +120,11 @@ pnpm start
 This project is open-sourced under the **MIT License with Personal Identity, Data & Media Reservation**.
 
 - **Source Code**: You are free to use, study, fork, and adapt the software architecture, components, and layout code for your own portfolio.
-- **Personal Data & Assets (Strictly Excluded)**: 
-  - All files and media in `/public/` (resume PDFs, screenshots, project graphics).
-  - All images and brand graphics in `/app/assets/` (avatar photos, brand logos, custom visuals).
-  - All data files in `/lib/data/` (work experience history, testimonials, credentials, education, and bio).
-  - Personal identity and likeness ("Nicholas Benson", "Nick Frost").
+- **Personal Data & Assets (Strictly Excluded)**:
+   - All files and media in `/public/` (resume PDFs, screenshots, project graphics).
+   - All images and brand graphics in `/app/assets/` (avatar photos, brand logos, custom visuals).
+   - All data files in `/lib/data/` (work experience history, testimonials, credentials, education, and bio).
+   - Personal identity and likeness ("Nicholas Benson", "Nick Frost").
 
 > **Note**: If you fork or clone this repository to build your own portfolio, you must replace all data in `lib/data/`, media in `public/` and `app/assets/`, and personal branding with your own prior to deployment.
 

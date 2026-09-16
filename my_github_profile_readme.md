@@ -1,5 +1,8 @@
+<!-- @format -->
+
 # <img src="./assets/logo.png" width="30"/> Hey there! I'm Nicholas Benson
-> *"Nick Frost❄️"* • Full-Stack Software Developer & Software Engineer
+
+> _"Nick Frost❄️"_ • Full-Stack Software Developer & Software Engineer
 
 <div align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=24&duration=3000&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=true&width=600&height=100&lines=Full-Stack+Software+Developer;Computer+Scientist+%2B+Software+Engineer;Building+Scalable+Solutions+for+the+Future!" alt="Typing SVG" />
@@ -8,16 +11,19 @@
 ---
 
 ## 💻 About Me
+
 I'm a **Full-Stack Software Developer & Engineer** focused on designing, building, and maintaining modern web applications from concept to deployment. I specialize in developing scalable, reliable, and intuitive software that solves real-world problems.
 
 ```javascript
 const developer = {
-  name: "Nicholas Benson",
-  devName: "Nick Frost❄️",
-  roles: ["Full-Stack Developer", "Software Engineer", "Computer Scientist"],
-  location: "📍 Nigeria • Open to Relocation, Remote & Freelance",
-  currentFocus: "Architecting scalable full-stack applications, real-time backend systems, and intuitive user experiences.",
-  funFact: "My brain often tries to console.log() real-world observations, especially when debugging complex systems."
+	name: "Nicholas Benson",
+	devName: "Nick Frost❄️",
+	roles: ["Full-Stack Developer", "Software Engineer", "Computer Scientist"],
+	location: "📍 Nigeria • Open to Relocation, Remote & Freelance",
+	currentFocus:
+		"Architecting scalable full-stack applications, real-time backend systems, and intuitive user experiences.",
+	funFact:
+		"My brain often tries to console.log() real-world observations, especially when debugging complex systems.",
 };
 ```
 
@@ -69,16 +75,19 @@ const developer = {
 ## 🎯 What I Do
 
 **💻 Frontend & Web Engineering**
+
 - Responsive web applications with React & Next.js
 - Component architecture with TypeScript & Tailwind CSS
 - Accessibility (a11y) & frontend performance optimization
 
 **⚙️ Backend & Systems Architecture**
+
 - High-performance RESTful APIs & microservices (Node.js / Fastify / Go)
 - Server-side validation & secure authentication workflows
 - WebSockets, Webhooks, and Progressive Web App (PWA) development
 
 **🗄️ Database & Security**
+
 - Database design, schema modeling, & migrations (PostgreSQL)
 - Supabase integrations & Row-Level Security (RLS) policies
 - Multi-tenant architecture & data isolation
@@ -87,12 +96,12 @@ const developer = {
 
 ## 🏆 Featured Projects
 
-| Project | Description | Tech Stack | Link |
-|---------|-------------|------------|------|
-| **Enque** | Digital queue management platform with offline-first support & real-time tracking | Next.js, React, Node.js, WebSockets | [Live Demo →](https://enque.live) |
-| **NicksPay** | Multi-tenant payment platform built for student departments & organizations | Next.js, Node.js, PostgreSQL | [Live Demo →](https://nickspay.com.ng) |
-| **Ttenda** | Location-based smart attendance system reducing attendance fraud through automated records | React, TypeScript, Node.js | [Live Demo →](https://ttenda.vercel.app) |
-| **UniScore** | AI screening calculator automating university admission score computations | React, Node.js, AI Engine | [Live Demo →](https://uniscore.vercel.app) |
+| Project      | Description                                                                                | Tech Stack                          | Link                                       |
+| ------------ | ------------------------------------------------------------------------------------------ | ----------------------------------- | ------------------------------------------ |
+| **Enque**    | Digital queue management platform with offline-first support & real-time tracking          | Next.js, React, Node.js, WebSockets | [Live Demo →](https://enque.live)          |
+| **NicksPay** | Multi-tenant payment platform built for student departments & organizations                | Next.js, Node.js, PostgreSQL        | [Live Demo →](https://nickspay.com.ng)     |
+| **Ttenda**   | Location-based smart attendance system reducing attendance fraud through automated records | React, TypeScript, Node.js          | [Live Demo →](https://ttenda.vercel.app)   |
+| **UniScore** | AI screening calculator automating university admission score computations                 | React, Node.js, AI Engine           | [Live Demo →](https://uniscore.vercel.app) |
 
 ---
 
@@ -107,10 +116,10 @@ const developer = {
 ## 📈 GitHub Stats
 
 <div align="center">
-  <img src="https://github-readme-stats-xpmd.vercel.app/api?username=nickfrostcode&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=true&theme=tokyonight&locale=en&hide_border=true&order=1&card_width=300&custom_title=GitHub%20Stats" height="150" width="270" alt="stats graph" />
-  <img src="https://github-readme-streak-stats-ashen-sigma.vercel.app/?user=nickfrostcode&locale=en&mode=daily&theme=tokyonight&hide_border=true&border_radius=5&order=3&short_numbers=true&card_width=300" height="150" width="270" alt="streak graph" />
-  <img src="https://github-readme-stats-xpmd.vercel.app/api/top-langs?username=nickfrostcode&locale=en&hide_title=false&layout=compact&card_width=300&langs_count=10&theme=tokyonight&hide_border=true&order=2&count_private=true&hide=HTML" height="150" width="270" alt="languages graph" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=nickfrostcode&radius=16&theme=tokyo-night&area=true&order=5&custom_title=Activity%20Graph&hide_border=true" alt="activity-graph graph" />
+  <img src="https://github-readme-stats-xpmd.vercel.app/api?username=nickfrostech&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=true&theme=tokyonight&locale=en&hide_border=true&order=1&card_width=300&custom_title=GitHub%20Stats" height="150" width="270" alt="stats graph" />
+  <img src="https://github-readme-streak-stats-ashen-sigma.vercel.app/?user=nickfrostech&locale=en&mode=daily&theme=tokyonight&hide_border=true&border_radius=5&order=3&short_numbers=true&card_width=300" height="150" width="270" alt="streak graph" />
+  <img src="https://github-readme-stats-xpmd.vercel.app/api/top-langs?username=nickfrostech&locale=en&hide_title=false&layout=compact&card_width=300&langs_count=10&theme=tokyonight&hide_border=true&order=2&count_private=true&hide=HTML" height="150" width="270" alt="languages graph" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=nickfrostech&radius=16&theme=tokyo-night&area=true&order=5&custom_title=Activity%20Graph&hide_border=true" alt="activity-graph graph" />
 </div>
 
 ---
@@ -128,22 +137,22 @@ const developer = {
 ## 📫 Let's Connect!
 
 <div align="left">
-  <a href="mailto:bensonnicholas206@gmail.com" target="_blank">
+  <a href="mailto:nb.nicholasbenson@gmail.com" target="_blank">
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/gmail/default.svg" width="52" height="40" alt="gmail logo" />
   </a>
-  <a href="https://www.linkedin.com/in/nickfrostcode" target="_blank">
+  <a href="https://www.linkedin.com/in/nickfrostech" target="_blank">
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/linkedin/default.svg" width="52" height="40" alt="linkedin logo" />
   </a>
   <a href="https://wa.me/message/VQDOCBOCB&MMK1" target="_blank">
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/whatsapp/default.svg" width="52" height="40" alt="whatsapp logo" />
   </a>
-  <a href="https://codepen.io/nickfrostcode" target="_blank">
+  <a href="https://codepen.io/nickfrostech" target="_blank">
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/codepen/default.svg" width="52" height="40" alt="codepen logo" />
   </a>
-  <!-- <a href="https://x.com/nickfrostcode" target="_blank">
+  <!-- <a href="https://x.com/nickfrostech" target="_blank">
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/twitter/default.svg" width="52" height="40" alt="twitter logo" />
   </a> -->
-  <a href="https://t.me/nickfrostcode" target="_blank">
+  <a href="https://t.me/nickfrostech" target="_blank">
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/telegram/default.svg" width="52" height="40" alt="telegram logo" />
   </a>
 </div>
@@ -152,13 +161,13 @@ const developer = {
 
 I'm available for **full-time engineering roles**, **freelance projects**, and **technical collaborations**. If you have a project that needs solid full-stack engineering, let me know!
 
-[![Hire Me](https://img.shields.io/badge/Hire%20Me-00D4FF?style=for-the-badge&logo=handshake&logoColor=white)](mailto:bensonnicholas206@gmail.com)
+[![Hire Me](https://img.shields.io/badge/Hire%20Me-00D4FF?style=for-the-badge&logo=handshake&logoColor=white)](mailto:nb.nicholasbenson@gmail.com)
 [![View Portfolio](https://img.shields.io/badge/View%20Portfolio-001014?style=for-the-badge&logo=firefoxbrowser&logoColor=00D4FF)](https://nickfrost.vercel.app/dev)
 
 ---
 
 <div align="center">
-  <img src="https://hits.sh/github.com/nickfrostcode.svg?style=for-the-badge&label=Profile%20Views&extraCount=20&color=00d4ff&labelColor=001014&logo=github" />
+  <img src="https://hits.sh/github.com/nickfrostech.svg?style=for-the-badge&label=Profile%20Views&extraCount=20&color=00d4ff&labelColor=001014&logo=github" />
 </div>
 
 <div align="center">

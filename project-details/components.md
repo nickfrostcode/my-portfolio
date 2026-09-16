@@ -136,14 +136,14 @@ Skills → Certifications → Awards → Download PDF
 │  · · · · · · · · · · · · · (subtle grid background) · · · │
 │  Nicholas Benson Olúwafẹ́rànmi        ┌─────────────────┐  │
 │  [mode subtitle]                     │                 │  │
-│  Nick Frost » @nickfrostcode         │   photo (B&W    │  │
+│  Nick Frost » @nickfrostech         │   photo (B&W    │  │
 │  [View Projects] [Download CV]       │   treatment)    │  │
 │                                       └─────────────────┘  │
 │  · · · · · · · · · · · · · · · · · · · · · · · · · · · · │
 └───────────────────────────────────────────────────────────┘
 ```
 
-- **Left column:** name (H1), mode-specific subtitle, identity element (static "Nick Frost » @nickfrostcode"), CTA buttons (View Projects, Download CV). Avoid duplicate CTAs competing above the fold. No autoplaying animations on the name, which breaks scannability.
+- **Left column:** name (H1), mode-specific subtitle, identity element (static "Nick Frost » @nickfrostech"), CTA buttons (View Projects, Download CV). Avoid duplicate CTAs competing above the fold. No autoplaying animations on the name, which breaks scannability.
 - **Right column:** photo — black & white treatment, plain or softly blurred background in the shot itself.
 - **Background:** full-bleed graph/grid-square pattern spanning the entire hero section edge to edge.
 
@@ -194,7 +194,7 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 
 ## 5. Identity Element
 
-- **Display:** "Nick Frost » @nickfrostcode" (or similar separator) — both shown together, no toggle, no click required.
+- **Display:** "Nick Frost » @nickfrostech" (or similar separator) — both shown together, no toggle, no click required.
 - **Position:** directly beneath the H1 in the Hero, small text size, `neutral-500`.
 
 ---
@@ -262,14 +262,14 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 └───────────────────────┘
 ```
 
-| Field       | Project                                | Blog                            | Certification       |
-| ----------- | -------------------------------------- | ------------------------------- | ------------------- |
-| Preview     | Thumbnail/screenshot                   | Cover image                     | Issuer badge/logo   |
-| Title       | Project title                          | Post title                      | Certification name  |
-| Description | Short summary                          | Excerpt                         | Issuer + short note |
-| Tags        | Tech stack used                        | Category                        | Skills covered      |
+| Field       | Project                             | Blog                         | Certification       |
+| ----------- | ----------------------------------- | ---------------------------- | ------------------- |
+| Preview     | Thumbnail/screenshot                | Cover image                  | Issuer badge/logo   |
+| Title       | Project title                       | Post title                   | Certification name  |
+| Description | Short summary                       | Excerpt                      | Issuer + short note |
+| Tags        | Tech stack used                     | Category                     | Skills covered      |
 | Link A      | View Case Study →`/projects/[slug]` | Read Article →`/blog/[slug]` | View Certificate    |
-| Link B      | Live Demo                              | _none_                        | Verify Credential   |
+| Link B      | Live Demo                           | _none_                       | Verify Credential   |
 
 ---
 
@@ -283,11 +283,11 @@ Stacking order, top to bottom, centered: Title → Photo → Cards (full-width) 
 
 ## 11. Buttons
 
-| Variant   | Fill                                                          | Use                                                |
-| --------- | ------------------------------------------------------------- | -------------------------------------------------- |
+| Variant   | Fill                                                     | Use                                               |
+| --------- | -------------------------------------------------------- | ------------------------------------------------- |
 | Primary   | Solid —`neutral-black` (light) or `neutral-white` (dark) | Main actions — Contact, Download CV, form submit  |
-| Secondary | Outlined, neutral border/text, transparent fill               | Supporting actions — View More, View All Projects |
-| Tertiary  | Outlined in`accent`, transparent fill                       | Used sparingly                                     |
+| Secondary | Outlined, neutral border/text, transparent fill          | Supporting actions — View More, View All Projects |
+| Tertiary  | Outlined in`accent`, transparent fill                    | Used sparingly                                    |
 
 **Hover:** reduced contrast on the button's own fill/border.
 **Sizes:** small / default / large (32px / 40px / 48px height).

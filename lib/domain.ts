@@ -1,3 +1,5 @@
+/** @format */
+
 export const CANONICAL_DEV_DOMAIN = "nicholasbenson.cv";
 export const CANONICAL_DESIGN_DOMAIN = "design.nicholasbenson.cv";
 
@@ -5,14 +7,12 @@ export const DEV_REDIRECT_HOSTS = new Set([
 	"www.nicholasbenson.cv",
 	"nicholasbenson.vercel.app",
 	"nickfrost.is-a.dev",
-	"nickfrostcode.vercel.app",
+	"nickfrostech.vercel.app",
 	"frostnick.vercel.app",
 	"nickfrost.vercel.app",
 ]);
 
-export const DESIGN_REDIRECT_HOSTS = new Set([
-	"design.nickfrost.is-a.dev",
-]);
+export const DESIGN_REDIRECT_HOSTS = new Set(["design.nickfrost.is-a.dev"]);
 
 export const DEV_SITE_URL = `https://${CANONICAL_DEV_DOMAIN}`;
 export const DESIGN_SITE_URL = `https://${CANONICAL_DESIGN_DOMAIN}`;

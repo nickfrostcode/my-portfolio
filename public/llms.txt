@@ -41,7 +41,7 @@ Nicholas Benson is a Full-Stack Software Developer, Engineer, and Visual Brand D
 
 - [Portfolio Website](https://nicholasbenson.cv)
 - [Design Subdomain](https://design.nicholasbenson.cv)
-- [GitHub Profile](https://github.com/nickfrostcode)
-- [LinkedIn Profile](https://www.linkedin.com/in/nickfrostcode)
+- [GitHub Profile](https://github.com/nickfrostech)
+- [LinkedIn Profile](https://www.linkedin.com/in/nickfrostech)
 - [X / Twitter](https://x.com/NBenson57814)
-- [Email Contact](mailto:bensonnicholas206@gmail.com)
+- [Email Contact](mailto:nb.nicholasbenson@gmail.com)

@@ -5,9 +5,7 @@
 import { useMode } from "@/context/ModeContext";
 import { buttonVariants } from "@/components/ui/button";
 import { ModeLink } from "@/components/shared/ModeLink";
-import {
-	LuDownload,
-} from "react-icons/lu";
+import { LuDownload } from "react-icons/lu";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
@@ -93,7 +91,7 @@ export function Hero({ page = "home" }: { page: string }) {
 					</div>
 
 					<div className='font-mono text-sm uppercase tracking-widest font-bold text-accent bg-muted/20 px-4 py-2 rounded-md border border-border/30'>
-						Nick Frost // @nickfrostcode
+						Nick Frost // @nickfrostech
 					</div>
 
 					<div
