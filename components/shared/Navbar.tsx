@@ -108,7 +108,7 @@ export function Navbar() {
 	return (
 		<div className='sticky top-0 z-50 w-full h-13 flex justify-center items-start pointer-events-none px-4 md:px-12'>
 			{/* DESKTOP NAV */}
-			<nav className='hidden md:flex relative items-center justify-between w-full max-w-3xl h-13 bg-foreground rounded-b-3xl pointer-events-auto px-4 overflow-hidden'>
+			<nav className='hidden md:flex relative items-center justify-between w-full max-w-3xl h-13 bg-foreground rounded-b-3xl pointer-events-auto px-4'>
 				{/* Left Incurve */}
 				<div className='absolute top-0 -left-5 w-5 h-5 overflow-visible -scale-x-100 pointer-events-none'>
 					<svg
